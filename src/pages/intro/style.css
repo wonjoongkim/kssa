@@ -1,0 +1,153 @@
+.con_table {
+    width: 100%;
+    padding-right: 11px;
+    overflow-y: auto;
+    direction: ltr;
+    background: #fff;
+}
+
+.con_table .table {
+    width: 100%;
+    padding-right: 11px;
+}
+
+.con_table .table tr:hover td,
+.con_table .table tr.on td {
+    background: #f2f6fc;
+}
+
+.con_table .table tr th {
+    border-top: 3px solid #a9c0ff;
+    border-bottom: 1px solid #a9c0ff;
+    background-color: #64a5f5;
+    font-family: 'SUIT';
+    font-size: 0.9rem;
+    line-height: 1;
+    text-align: center;
+    color: #ffffff;
+    vertical-align: middle;
+}
+
+.con_table .table tr td {
+    padding: 10px 2px;
+    border-bottom: 1px solid #a9c0ff;
+    font-family: 'SUIT';
+    font-size: 0.8rem;
+    line-height: 1;
+    text-align: center;
+    color: #111111;
+    vertical-align: middle;
+}
+
+.con_table .table tr th {
+    font-weight: 700;
+}
+
+.con_table .table tr td {
+    font-weight: 500;
+}
+
+.con_table .table tr td:not(:first-child) {
+    font-weight: 500;
+    border-left: 1px solid #a9c0ff;
+}
+
+.con_table .table .t_blue {
+    color: #155eb6;
+}
+
+.cop_table.scrollbar {
+    padding-right: 7px;
+    border-radius: 0;
+}
+
+.cop_table.scrollbar + .cop_table {
+    margin-top: 30px;
+}
+
+.cop_table .table tr th,
+.cop_table .table tr td {
+    padding: 12.5px 2px;
+}
+
+/* 스크롤 바 전체 */
+.con_table::-webkit-scrollbar {
+    width: 4px;
+    border-radius: 8px;
+    height: calc(100% - 40px);
+}
+
+/* 스크롤 막대 */
+.con_table::-webkit-scrollbar-thumb {
+    width: 4px;
+    height: 60%;
+    background-color: #3895fd;
+    border-radius: 8px;
+}
+
+/* 스크롤 여백 */
+.cop_table::-webkit-scrollbar-track {
+    background-color: #dce0e8;
+    border-radius: 8px;
+}
+
+/* 높이 */
+.height80 {
+    height: 80px;
+}
+
+.height90 {
+    height: 90px;
+}
+
+.height110 {
+    height: 110px;
+}
+
+.height120 {
+    height: 120px;
+}
+
+.height130 {
+    height: 130px;
+}
+
+.height140 {
+    height: 140px;
+}
+
+.height150 {
+    height: 150px;
+}
+
+.height160 {
+    height: 160px;
+}
+
+.height175 {
+    height: 175px;
+}
+
+.height180 {
+    height: 180px;
+}
+
+.height200 {
+    height: 200px;
+}
+
+.height240 {
+    height: 240px;
+}
+
+.height300 {
+    height: 300px;
+}
+
+.height360 {
+    height: 360px;
+}
+
+#components-grid-demo-flex [class~='ant-row'] {
+    background: rgba(128, 128, 128, 0.08);
+}
