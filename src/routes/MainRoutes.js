@@ -7,6 +7,8 @@ import MainLayout from 'layout/MainLayout';
 // render - dashboard
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 
+import { Admin_Login } from 'pages/admin';
+
 // render - Intro page
 import { Intro_Greetings } from 'pages/intro/greetings';
 import { Intro_Facilities } from 'pages/intro/facilities';
@@ -94,6 +96,10 @@ const MainRoutes = {
         {
             path: 'notification',
             element: <Notice_Notification />
+        },
+        {
+            path: 'admin',
+            element: <Admin_Login />
         }
     ]
 };

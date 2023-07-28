@@ -20,9 +20,17 @@ export const mainManagement = createApi({
         }
     }),
     endpoints: (builder) => ({
-        getLoginInfo: builder.mutation({
+        selectMainNoticeList: builder.mutation({
             query: (body) => ({
-                url: 'main/getLoginInfo',
+                url: 'board/selectMainNoticeList.do',
+                method: 'POST',
+                body: body
+            })
+        }),
+
+        selectMainInfoList: builder.mutation({
+            query: (body) => ({
+                url: 'board/selectMainInfoList.do',
                 method: 'POST',
                 body: body
             })
@@ -30,4 +38,4 @@ export const mainManagement = createApi({
     })
 });
 
-export const { useGetLoginInfoMutation } = mainManagement;
+export const { useSelectMainNoticeListMutation, useSelectMainInfoListMutation } = mainManagement;

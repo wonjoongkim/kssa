@@ -1,18 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Box, Grid, Button } from '@mui/material';
-import { AppstoreOutlined } from '@ant-design/icons';
-import { Space } from 'antd';
+import { AppstoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+
+import { Space, Modal } from 'antd';
 import kssa_logo from '../../../../images/kssa_logo.png';
 import kssa_title from '../../../../images/kssa_title.png';
 import 'antd/dist/antd.css';
 
+import { useUserToken } from '../../../../hooks/core/UserToken';
+import { useUserStatus } from '../../../../hooks/core/UserStatus';
+
 const linkStyle = {
     color: 'inherit', // 상위 요소의 색상 상속
-    textDecoration: 'none' // 텍스트 밑줄 제거
+    textDecoration: 'none', // 텍스트 밑줄 제거
+    margin: '0 5px'
 };
 
 const HeaderContent = () => {
+    const { confirm } = Modal;
     const [activeMenu, setActiveMenu] = useState(null);
     const navigate = useNavigate();
 
@@ -68,6 +74,23 @@ const HeaderContent = () => {
         // 페이지 이동
     };
 
+    const isLoggedIn = useUserStatus();
+    // 로그인 토큰 정보
+    const [userToken] = useUserToken();
+
+    const LoginOut = () => {
+        confirm({
+            icon: <ExclamationCircleOutlined />,
+            content: '로그아웃 하시겠습니까?',
+            style: { marginTop: '250px' },
+            onOk() {
+                userToken.setItem('');
+                navigate('/dashboard');
+            },
+            onCancel() {}
+        });
+    };
+
     return (
         <>
             <AppBar position="fixed" color="transparent" style={{ background: '#ffffff' }}>
@@ -86,12 +109,22 @@ const HeaderContent = () => {
                                     </Link>{' '}
                                     |{' '}
                                     <Link to="/directions" style={linkStyle}>
-                                        찾아오시는길
+                                        찾아오시는 길
                                     </Link>{' '}
                                     |{' '}
                                     <Link to="/kasa" style={linkStyle}>
                                         KASA
                                     </Link>
+                                    |{' '}
+                                    {isLoggedIn === false ? (
+                                        <Link to="/admin" style={linkStyle}>
+                                            Admin
+                                        </Link>
+                                    ) : (
+                                        <Button type="text" style={linkStyle} onClick={LoginOut}>
+                                            Log Out
+                                        </Button>
+                                    )}
                                 </Typography>
                             </Box>
                         </Grid>

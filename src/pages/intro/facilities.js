@@ -19,9 +19,50 @@ export const Intro_Facilities = () => {
         navigate('/' + menuKey);
     };
 
+    const [imageStyle, setImageStyle] = useState({
+        width: '280px',
+        height: 'auto'
+    });
+
     useEffect(() => {
         const handleResize = () => {
             setIsMobileView(window.innerWidth < 768);
+            if (window.innerWidth <= 768) {
+                setImageStyle({
+                    ...imageStyle,
+                    width: '200px',
+                    marginBottom: '20px'
+                });
+            } else if (window.innerWidth <= 1000) {
+                setImageStyle({
+                    ...imageStyle,
+                    width: '150px',
+                    marginBottom: '20px'
+                });
+            } else if (window.innerWidth <= 1200) {
+                setImageStyle({
+                    ...imageStyle,
+                    width: '180px',
+                    marginBottom: '20px'
+                });
+            } else if (window.innerWidth <= 1300) {
+                setImageStyle({
+                    ...imageStyle,
+                    width: '200px',
+                    marginBottom: '20px'
+                });
+            } else if (window.innerWidth <= 1500) {
+                setImageStyle({
+                    ...imageStyle,
+                    width: '240px',
+                    marginBottom: '-20px'
+                });
+            } else {
+                setImageStyle({
+                    ...imageStyle,
+                    width: '280px'
+                });
+            }
         };
         handleResize();
         window.addEventListener('resize', handleResize);
@@ -290,92 +331,103 @@ export const Intro_Facilities = () => {
                             </Title>
                             <div>
                                 <Row justify="space-around" align="middle" style={{ marginTop: '40px' }}>
-                                    <Col span={4}>
+                                    <Col span={12} sm={8} md={6} lg={4}>
                                         <Image
                                             src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
                                             alt=""
-                                            style={{ width: '260px' }}
+                                            style={imageStyle}
+                                            preview={false}
                                         />
                                     </Col>
-                                    <Col span={4}>
+                                    <Col span={12} sm={8} md={6} lg={4}>
                                         <Image
                                             src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
                                             alt=""
-                                            style={{ width: '260px' }}
+                                            style={imageStyle}
+                                            preview={false}
                                         />
                                     </Col>
-                                    <Col span={4}>
+                                    <Col span={12} sm={8} md={6} lg={4}>
                                         <Image
                                             src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
                                             alt=""
-                                            style={{ width: '260px' }}
+                                            style={imageStyle}
+                                            preview={false}
                                         />
                                     </Col>
-                                    <Col span={4}>
+                                    <Col span={12} sm={8} md={6} lg={4}>
                                         <Image
                                             src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
                                             alt=""
-                                            style={{ width: '260px' }}
-                                        />
-                                    </Col>
-                                </Row>
-                                <Row justify="space-around" align="middle" style={{ marginTop: '40px' }}>
-                                    <Col span={4}>
-                                        <Image
-                                            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-                                            alt=""
-                                            style={{ width: '260px' }}
-                                        />
-                                    </Col>
-                                    <Col span={4}>
-                                        <Image
-                                            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-                                            alt=""
-                                            style={{ width: '260px' }}
-                                        />
-                                    </Col>
-                                    <Col span={4}>
-                                        <Image
-                                            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-                                            alt=""
-                                            style={{ width: '260px' }}
-                                        />
-                                    </Col>
-                                    <Col span={4}>
-                                        <Image
-                                            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-                                            alt=""
-                                            style={{ width: '260px' }}
+                                            style={imageStyle}
+                                            preview={false}
                                         />
                                     </Col>
                                 </Row>
                                 <Row justify="space-around" align="middle" style={{ marginTop: '40px' }}>
-                                    <Col span={4}>
+                                    <Col span={12} sm={8} md={6} lg={4}>
                                         <Image
                                             src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
                                             alt=""
-                                            style={{ width: '260px' }}
+                                            style={imageStyle}
+                                            preview={false}
                                         />
                                     </Col>
-                                    <Col span={4}>
+                                    <Col span={12} sm={8} md={6} lg={4}>
                                         <Image
                                             src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
                                             alt=""
-                                            style={{ width: '260px' }}
+                                            style={imageStyle}
                                         />
                                     </Col>
-                                    <Col span={4}>
+                                    <Col span={12} sm={8} md={6} lg={4}>
                                         <Image
                                             src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
                                             alt=""
-                                            style={{ width: '260px' }}
+                                            style={imageStyle}
+                                            preview={false}
                                         />
                                     </Col>
-                                    <Col span={4}>
+                                    <Col span={12} sm={8} md={6} lg={4}>
                                         <Image
                                             src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
                                             alt=""
-                                            style={{ width: '260px' }}
+                                            style={imageStyle}
+                                            preview={false}
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row justify="space-around" align="middle" style={{ marginTop: '40px' }}>
+                                    <Col span={12} sm={8} md={6} lg={4}>
+                                        <Image
+                                            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+                                            alt=""
+                                            style={imageStyle}
+                                            preview={false}
+                                        />
+                                    </Col>
+                                    <Col span={12} sm={8} md={6} lg={4}>
+                                        <Image
+                                            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+                                            alt=""
+                                            style={imageStyle}
+                                            preview={false}
+                                        />
+                                    </Col>
+                                    <Col span={12} sm={8} md={6} lg={4}>
+                                        <Image
+                                            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+                                            alt=""
+                                            style={imageStyle}
+                                            preview={false}
+                                        />
+                                    </Col>
+                                    <Col span={12} sm={8} md={6} lg={4}>
+                                        <Image
+                                            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+                                            alt=""
+                                            style={imageStyle}
+                                            preview={false}
                                         />
                                     </Col>
                                 </Row>

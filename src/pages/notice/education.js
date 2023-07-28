@@ -1,10 +1,32 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Layout, Menu, Card, Button, Row, Col, Divider, Typography, Input, Space, Table, Image, Tooltip } from 'antd';
-import { CaretRightOutlined, BlockOutlined, SearchOutlined, FileDoneOutlined } from '@ant-design/icons';
+import {
+    CaretRightOutlined,
+    BlockOutlined,
+    SearchOutlined,
+    FileDoneOutlined,
+    PlusOutlined,
+    EditFilled,
+    DeleteFilled
+} from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 
 import { useNavigate } from 'react-router-dom';
 import './style.css';
+
+import { EducationRegister } from 'pages/notice/educationRegister';
+import { EducationView } from 'pages/notice/educationView';
+
+// 교육안내 리스트, 상세조회, 등록, 수정, 삭제
+import {
+    useSelectInfoListMutation,
+    useSelectInfoMutation,
+    useInsertInfoMutation,
+    useUpdateInfoMutation,
+    useDeleteInfoMutation
+} from '../../hooks/api/BoardManagement/BoardManagement';
+
+import { useUserStatus } from '../../hooks/core/UserStatus';
 
 const { Title, Paragraph, Text, Link } = Typography;
 const { Sider, Content } = Layout;
@@ -13,6 +35,9 @@ export const Notice_Education = () => {
     const navigate = useNavigate();
     const [selectedMenu, setSelectedMenu] = useState('education');
     const [isMobileView, setIsMobileView] = useState(false);
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]); //셀렉트 박스 option Selected 값
+
+    const isLoggedIn = useUserStatus();
 
     const handleMenuClick = (menuKey) => {
         setSelectedMenu(menuKey);
@@ -110,28 +135,6 @@ export const Notice_Education = () => {
                     >
                         Reset
                     </Button>
-                    {/* <Button
-                        type="link"
-                        size="small"
-                        onClick={() => {
-                            confirm({
-                                closeDropdown: false
-                            });
-                            setSearchText(selectedKeys[0]);
-                            setSearchedColumn(dataIndex);
-                        }}
-                    >
-                        Filter
-                    </Button>
-                    <Button
-                        type="link"
-                        size="small"
-                        onClick={() => {
-                            close();
-                        }}
-                    >
-                        close
-                    </Button> */}
                 </Space>
             </div>
         ),
@@ -163,7 +166,7 @@ export const Notice_Education = () => {
                 text
             )
     });
-    const columns = [
+    const defaultColumns = [
         {
             title: '번호',
             dataIndex: 'key',
@@ -191,14 +194,79 @@ export const Notice_Education = () => {
             width: '12%',
             align: 'center'
         },
-        {
-            title: '조회',
-            dataIndex: 'visited',
-            key: 'visited',
-            width: '8%',
-            align: 'center'
-        }
+        isLoggedIn === true
+            ? ({
+                  title: '조회',
+                  dataIndex: 'visited',
+                  key: 'visited',
+                  width: '8%',
+                  align: 'center'
+              },
+              {
+                  title: '수정',
+                  render: (_, { key }) => (
+                      <>
+                          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+                              <Tooltip title="수정" color="#108ee9">
+                                  <Button
+                                      type="primary"
+                                      // onClick={() => handleEdit(key)}
+                                      style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb' }}
+                                      icon={<EditFilled />}
+                                  >
+                                      수정
+                                  </Button>
+                              </Tooltip>
+                          </div>
+                      </>
+                  ),
+                  align: 'center'
+              })
+            : {
+                  title: '조회',
+                  dataIndex: 'visited',
+                  key: 'visited',
+                  width: '8%',
+                  align: 'center'
+              }
     ];
+
+    // 체크 박스
+    const handleSave = (row) => {
+        const newData = [...selectBaselineListData];
+        const index = newData.findIndex((item) => row.key === item.key);
+        const item = newData[index];
+        newData.splice(index, 1, {
+            ...item,
+            ...row
+        });
+        setSelectBaselineListData(newData);
+    };
+
+    const columns = defaultColumns.map((col) => {
+        if (!col.editable) {
+            return col;
+        }
+        return {
+            ...col,
+            onCell: (record) => ({
+                record,
+                dataIndex: col.dataIndex,
+                title: col.title,
+                handleSave
+            })
+        };
+    });
+
+    const onSelectChange = (newSelectedRowKeys) => {
+        setSelectedRowKeys(newSelectedRowKeys);
+    };
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange
+    };
+    // 체크 박스
 
     useEffect(() => {
         const handleResize = () => {
@@ -322,7 +390,32 @@ export const Notice_Education = () => {
                             }}
                             style={{ marginLeft: '45px' }}
                         >
-                            <Table columns={columns} dataSource={data} />
+                            {isLoggedIn === true ? (
+                                <>
+                                    <Space style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
+                                        <Button
+                                            // onClick={EditSubmit}
+                                            style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb' }}
+                                            type="success"
+                                            icon={<PlusOutlined />}
+                                        >
+                                            추가
+                                        </Button>
+
+                                        <Button
+                                            type="danger"
+                                            // onClick={handleDel}
+                                            style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb' }}
+                                            icon={<DeleteFilled />}
+                                        >
+                                            삭제
+                                        </Button>
+                                    </Space>
+                                    <Table columns={columns} dataSource={data} rowSelection={rowSelection} bordered={true} />
+                                </>
+                            ) : (
+                                <Table columns={columns} dataSource={data} bordered={true} />
+                            )}
                         </Col>
                     </Row>
                 </Content>

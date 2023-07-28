@@ -23,11 +23,11 @@ const MainLayout = () => {
                         flexDirection: 'column'
                     }}
                 >
-                    <Box style={{ flex: 'none', marginBottom: '270px' }}>{/* Content above the Outlet */}</Box>
+                    <Box style={{ flex: 'none', marginBottom: '270px' }}></Box>
                     <Box sx={{ p: { xs: 2, sm: 2 }, flexGrow: 1, overflowY: 'auto' }}>
                         <Outlet />
                     </Box>
-                    <Box style={{ flex: 'none', marginBottom: '75px' }}>{/* Content above the Outlet */}</Box>
+                    <Box style={{ flex: 'none', marginBottom: '75px' }}></Box>
                 </Box>
                 <Footer />
             </Box>

@@ -1,16 +1,35 @@
 // material-ui
+import React, { useState, useEffect } from 'react';
 import { Typography } from '@mui/material';
 import { Card, Row, Col } from 'antd';
 import { NotificationOutlined } from '@ant-design/icons';
 
 // project import
 import MainCard from 'components/MainCard';
-
-// project import
-
+import { useSelectMainNoticeListMutation, useSelectMainInfoListMutation } from '../../hooks/api/MainManagement/MainManagement';
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
 const DashboardDefault = () => {
+    // 메인-공지사항 5개항목
+    const [SelectMainNoticeListApi] = useSelectMainNoticeListMutation();
+    const [selectMainNoticeListData, setSelectMainNoticeListData] = useState([]);
+    const SelectMainNoticeList_ApiCall = async () => {
+        const SelectMainNoticeListResponse = await SelectMainNoticeListApi({});
+        setSelectMainNoticeListData(SelectMainNoticeListResponse?.data?.RET_DATA);
+    };
+
+    // 메인-교육안내 5개항목
+    const [SelectMainInfoListApi] = useSelectMainInfoListMutation();
+    const [selectMainInfoListData, setSelectMainInfoListData] = useState([]);
+    const SelectMainInfoList_ApiCall = async () => {
+        const SelectMainInfoListResponse = await SelectMainInfoListApi({});
+        setSelectMainInfoListData(SelectMainInfoListResponse?.data?.RET_DATA);
+    };
+
+    useEffect(() => {
+        SelectMainNoticeList_ApiCall();
+        SelectMainInfoList_ApiCall();
+    }, []);
     return (
         <MainCard>
             <Row justify="space-around" gutter={[16, 16]}>
@@ -22,28 +41,14 @@ const DashboardDefault = () => {
                                 <NotificationOutlined /> 교육안내
                             </span>
                         }
-                        extra={<a href="#">More</a>}
+                        extra={<a href="/education">More</a>}
                     >
-                        <Row gutter={24} style={{ margin: '20px 0px' }}>
-                            <Col span={18}>23년 6월 공항/항공사 보안검색요원 초기교육</Col>
-                            <Col span={6}>2023.05.29</Col>
-                        </Row>
-                        <Row gutter={24} style={{ margin: '20px 0px' }}>
-                            <Col span={18}>23년 6월 공항/항공사 보안검색요원 초기교육</Col>
-                            <Col span={6}>2023.05.29</Col>
-                        </Row>
-                        <Row gutter={24} style={{ margin: '20px 0px' }}>
-                            <Col span={18}>23년 6월 공항/항공사 보안검색요원 초기교육</Col>
-                            <Col span={6}>2023.05.29</Col>
-                        </Row>
-                        <Row gutter={24} style={{ margin: '20px 0px' }}>
-                            <Col span={18}>23년 6월 공항/항공사 보안검색요원 초기교육</Col>
-                            <Col span={6}>2023.05.29</Col>
-                        </Row>
-                        <Row gutter={24} style={{ margin: '20px 0px' }}>
-                            <Col span={18}>23년 6월 공항/항공사 보안검색요원 초기교육</Col>
-                            <Col span={6}>2023.05.29</Col>
-                        </Row>
+                        {selectMainNoticeListData.map((Ndata, i) => (
+                            <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
+                                <Col span={18}>{Ndata.title}</Col>
+                                <Col span={6}>{Ndata.insertDate}</Col>
+                            </Row>
+                        ))}
                     </Card>
                 </Col>
                 <Col xs={24} sm={12} md={12} lg={12} xl={12}>
@@ -54,28 +59,14 @@ const DashboardDefault = () => {
                                 <NotificationOutlined /> 공지사항
                             </span>
                         }
-                        extra={<a href="#">More</a>}
+                        extra={<a href="/notification">More</a>}
                     >
-                        <Row gutter={24} style={{ margin: '20px 0px' }}>
-                            <Col span={18}>23년 6월 공항/항공사 보안검색요원 초기교육</Col>
-                            <Col span={6}>2023.05.29</Col>
-                        </Row>
-                        <Row gutter={24} style={{ margin: '20px 0px' }}>
-                            <Col span={18}>23년 6월 공항/항공사 보안검색요원 초기교육</Col>
-                            <Col span={6}>2023.05.29</Col>
-                        </Row>
-                        <Row gutter={24} style={{ margin: '20px 0px' }}>
-                            <Col span={18}>23년 6월 공항/항공사 보안검색요원 초기교육</Col>
-                            <Col span={6}>2023.05.29</Col>
-                        </Row>
-                        <Row gutter={24} style={{ margin: '20px 0px' }}>
-                            <Col span={18}>23년 6월 공항/항공사 보안검색요원 초기교육</Col>
-                            <Col span={6}>2023.05.29</Col>
-                        </Row>
-                        <Row gutter={24} style={{ margin: '20px 0px' }}>
-                            <Col span={18}>23년 6월 공항/항공사 보안검색요원 초기교육</Col>
-                            <Col span={6}>2023.05.29</Col>
-                        </Row>
+                        {selectMainInfoListData.map((Idata, i) => (
+                            <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
+                                <Col span={18}>{Idata.title}</Col>
+                                <Col span={6}>{Idata.insertDate}</Col>
+                            </Row>
+                        ))}
                     </Card>
                 </Col>
             </Row>
