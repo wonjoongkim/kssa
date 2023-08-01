@@ -22,12 +22,7 @@ import { NoticeModify } from 'pages/notice/noticeModify';
 import { NoticeView } from 'pages/notice/noticeView';
 
 // 공지사항 리스트, 상세조회, 등록, 수정, 삭제
-import {
-    useSelectNoticeListMutation,
-    useInsertNoticeMutation,
-    useUpdateNoticeMutation,
-    useDeleteNoticeMutation
-} from '../../hooks/api/BoardManagement/BoardManagement';
+import { useSelectNoticeListMutation, useDeleteNoticeMutation } from '../../hooks/api/BoardManagement/BoardManagement';
 
 import { useUserStatus } from '../../hooks/core/UserStatus';
 
@@ -183,7 +178,8 @@ export const Notice_Notification = () => {
                 }}
             />
         ),
-        onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+        onFilter: (value, record) => record.rowdata2.toString().toLowerCase().includes(value.toLowerCase()),
+        // onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
         onFilterDropdownOpenChange: (visible) => {
             if (visible) {
                 setTimeout(() => searchInput.current?.select(), 100);
@@ -347,7 +343,6 @@ export const Notice_Notification = () => {
     const handle_View = (seqId) => {
         setModalOpenVi(true);
         setSeqIdValue(seqId);
-        SelectNotice_ApiCall();
     };
     // 상세 클릭 End
 
@@ -562,7 +557,6 @@ export const Notice_Notification = () => {
                 open={ModalOpenRe}
                 onOk={handleOk_Re}
                 closable={false}
-                // onCancel={handleCancel_Re}
                 width={780}
                 style={{
                     top: 320,
@@ -581,7 +575,6 @@ export const Notice_Notification = () => {
                 open={ModalOpenMo}
                 onOk={handleOk_Mo}
                 closable={false}
-                // onCancel={handleCancel_Mo}
                 width={780}
                 style={{
                     top: 320,

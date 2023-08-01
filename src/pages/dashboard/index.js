@@ -43,10 +43,10 @@ const DashboardDefault = () => {
                         }
                         extra={<a href="/education">More</a>}
                     >
-                        {selectMainNoticeListData.map((Ndata, i) => (
+                        {selectMainInfoListData.map((Idata, i) => (
                             <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
-                                <Col span={18}>{Ndata.title}</Col>
-                                <Col span={6}>{Ndata.insertDate}</Col>
+                                <Col span={18}>{Idata.title}</Col>
+                                <Col span={6}>{Idata.insertDate}</Col>
                             </Row>
                         ))}
                     </Card>
@@ -61,10 +61,10 @@ const DashboardDefault = () => {
                         }
                         extra={<a href="/notification">More</a>}
                     >
-                        {selectMainInfoListData.map((Idata, i) => (
+                        {selectMainNoticeListData.map((Ndata, i) => (
                             <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
-                                <Col span={18}>{Idata.title}</Col>
-                                <Col span={6}>{Idata.insertDate}</Col>
+                                <Col span={18}>{Ndata.title}</Col>
+                                <Col span={6}>{Ndata.insertDate}</Col>
                             </Row>
                         ))}
                     </Card>

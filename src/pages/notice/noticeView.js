@@ -3,15 +3,7 @@ import { Card, Typography, Tooltip } from 'antd';
 
 import { useSelectNoticeMutation } from '../../hooks/api/BoardManagement/BoardManagement';
 import { Space } from '../../../node_modules/antd/lib/index';
-import {
-    CaretRightOutlined,
-    BlockOutlined,
-    SearchOutlined,
-    FileDoneOutlined,
-    PlusOutlined,
-    EditFilled,
-    DeleteFilled
-} from '@ant-design/icons';
+import { FileDoneOutlined } from '@ant-design/icons';
 const { Title, Paragraph, Text, Link } = Typography;
 
 export const NoticeView = (props) => {
@@ -46,10 +38,10 @@ export const NoticeView = (props) => {
                                             Date {selectNoticeData?.insertDate}
                                         </blockquote>
                                         <blockquote style={{ marginLeft: '10px', fontSize: '12px' }}>
-                                            Hit: {selectNoticeData?.hit}
+                                            Hit {selectNoticeData?.hit}
                                         </blockquote>
                                         <blockquote style={{ marginLeft: '10px', fontSize: '12px' }}>
-                                            File:{' '}
+                                            File
                                             {
                                                 <>
                                                     {selectNoticeData?.fileList?.map((f, i) => (
@@ -82,7 +74,7 @@ export const NoticeView = (props) => {
                         </>
                     }
                 >
-                    <Paragraph>{selectNoticeData.contents}</Paragraph>
+                    <pre>{selectNoticeData.contents}</pre>
                 </Card>
             </Card>
         </>

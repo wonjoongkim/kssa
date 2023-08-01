@@ -1,13 +1,15 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Layout, Menu, Card, Button, Row, Col, Divider, Typography, Input, Space, Table, Image, Tooltip } from 'antd';
+import { Layout, Menu, Card, Button, Row, Col, Divider, Typography, Input, Space, Table, Image, Tooltip, Modal } from 'antd';
 import {
     CaretRightOutlined,
     BlockOutlined,
     SearchOutlined,
     FileDoneOutlined,
+    FilePdfOutlined,
     PlusOutlined,
     EditFilled,
-    DeleteFilled
+    DeleteFilled,
+    ExclamationCircleFilled
 } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 
@@ -15,16 +17,11 @@ import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 import { EducationRegister } from 'pages/notice/educationRegister';
+import { EducationModify } from 'pages/notice/educationModify';
 import { EducationView } from 'pages/notice/educationView';
 
 // 교육안내 리스트, 상세조회, 등록, 수정, 삭제
-import {
-    useSelectInfoListMutation,
-    useSelectInfoMutation,
-    useInsertInfoMutation,
-    useUpdateInfoMutation,
-    useDeleteInfoMutation
-} from '../../hooks/api/BoardManagement/BoardManagement';
+import { useSelectInfoListMutation, useDeleteInfoMutation } from '../../hooks/api/BoardManagement/BoardManagement';
 
 import { useUserStatus } from '../../hooks/core/UserStatus';
 
@@ -32,53 +29,95 @@ const { Title, Paragraph, Text, Link } = Typography;
 const { Sider, Content } = Layout;
 
 export const Notice_Education = () => {
+    const currentDateTime = new Date();
+    const minutes = currentDateTime.getMinutes();
+    const seconds = currentDateTime.getSeconds();
+
+    const { confirm } = Modal;
     const navigate = useNavigate();
     const [selectedMenu, setSelectedMenu] = useState('education');
+    const [loading, setLoading] = useState(false);
     const [isMobileView, setIsMobileView] = useState(false);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]); //셀렉트 박스 option Selected 값
-
     const isLoggedIn = useUserStatus();
+    const [seqIdValue, setSeqIdValue] = useState(null); // Notice 시퀀스 아이디
+    const [ModalOpenRe, setModalOpenRe] = useState(false); // Notice 추가 Modal창
+    const [ModalOpenMo, setModalOpenMo] = useState(false); // Notice 수정 Modal창
+    const [ModalOpenVi, setModalOpenVi] = useState(false); // Notice 상세 Modal창
+
+    // 교육안내 리스트
+    const [SelectInfoListApi] = useSelectInfoListMutation();
+    const [selectInfoListData, setSelectInfoListData] = useState([]);
+    const SelectInfoList_ApiCall = async () => {
+        const SelectInfoListResponse = await SelectInfoListApi({});
+        setSelectInfoListData([
+            ...SelectInfoListResponse?.data?.RET_DATA.map((d, i) => ({
+                key: d.seqId,
+                rowdata0: i + 1, // 일련번호
+                rowdata1: d.seqId, // 시퀀스
+                rowdata2: d.title, // 제목
+                rowdata3: d.contents, // 내용
+                rowdata4: d.hit, // 조회수
+                rowdata5: d.insertId, // 등록자 아이디
+                rowdata6: d.insertDate, // 등록일자
+                rowdata7: d.updateId, // 수정자 아이디
+                rowdata8: d.userName, // 등록자
+                rowdata9: d.updateDate, // 수정일자
+                rowdata10: d.searchTxt, // 검색내용
+                rowdata11: d.attachFileId, // 등록파일 아이디
+                rowdata12: d.fileList // 파일 리스트
+            }))
+        ]);
+        setLoading(false);
+    };
+
+    // 교육안내 삭제
+    const [DeleteInfoApi] = useDeleteInfoMutation();
+    const [deleteInfoData, setDeleteInfoData] = useState([]);
+    const DeleteInfo_ApiCall = async () => {
+        const DeleteInfoResponse = await DeleteInfoApi({});
+        setDeleteInfoData(DeleteInfoResponse?.data?.RET_DATA);
+    };
 
     const handleMenuClick = (menuKey) => {
         setSelectedMenu(menuKey);
         navigate('/' + menuKey);
     };
-
-    const data = [
-        {
-            key: '1',
-            subject: '’23년 항공보안검색요원 교육(2차) 안내 (6/12~16)',
-            files: '',
-            indate: '2023.05.29',
-            visited: '66'
-        },
-        {
-            key: '2',
-            subject: '’23년 항공경비요원 교육(2차) 안내 (6/12~16)',
-            files: (
-                <Tooltip title="파일명" placement="bottom">
-                    <a
-                        // href={`${decodeURIComponent(`${f.filePath}/${f.saveFileName}`)}`}
-                        href="#"
-                        target="_blank"
-                        // onClick={(e) => {
-                        //     e.preventDefault();
-                        //     window.open(
-                        //         `${decodeURIComponent(`${f.filePath}/${f.saveFileName}`)}`,
-                        //         'PDFViewer',
-                        //         `width=${window.innerWidth - 60},height=${window.innerHeight},left=20,top=20`
-                        //     );
-                        // }}
-                        onClick={() => alert('파일 다운로드')}
-                    >
-                        <FileDoneOutlined style={{ fontSize: '20px' }} />
-                    </a>
-                </Tooltip>
-            ),
-            indate: '2023.05.29',
-            visited: '98'
-        }
-    ];
+    // const data = [
+    //     {
+    //         key: '1',
+    //         subject: '’23년 항공보안검색요원 교육(2차) 안내 (6/12~16)',
+    //         files: '',
+    //         indate: '2023.05.29',
+    //         visited: '66'
+    //     },
+    //     {
+    //         key: '2',
+    //         subject: '’23년 항공경비요원 교육(2차) 안내 (6/12~16)',
+    //         files: (
+    //             <Tooltip title="파일명" placement="bottom">
+    //                 <a
+    //                     // href={`${decodeURIComponent(`${f.filePath}/${f.saveFileName}`)}`}
+    //                     href="#"
+    //                     target="_blank"
+    //                     // onClick={(e) => {
+    //                     //     e.preventDefault();
+    //                     //     window.open(
+    //                     //         `${decodeURIComponent(`${f.filePath}/${f.saveFileName}`)}`,
+    //                     //         'PDFViewer',
+    //                     //         `width=${window.innerWidth - 60},height=${window.innerHeight},left=20,top=20`
+    //                     //     );
+    //                     // }}
+    //                     onClick={() => alert('파일 다운로드')}
+    //                 >
+    //                     <FileDoneOutlined style={{ fontSize: '20px' }} />
+    //                 </a>
+    //             </Tooltip>
+    //         ),
+    //         indate: '2023.05.29',
+    //         visited: '98'
+    //     }
+    // ];
 
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
@@ -145,7 +184,8 @@ export const Notice_Education = () => {
                 }}
             />
         ),
-        onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+        onFilter: (value, record) => record.rowdata2.toString().toLowerCase().includes(value.toLowerCase()),
+        // onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
         onFilterDropdownOpenChange: (visible) => {
             if (visible) {
                 setTimeout(() => searchInput.current?.select(), 100);
@@ -166,52 +206,69 @@ export const Notice_Education = () => {
                 text
             )
     });
-    const defaultColumns = [
+    const columns = [
         {
             title: '번호',
-            dataIndex: 'key',
-            key: 'key',
+            dataIndex: 'rowdata0',
             width: '8%',
             align: 'center'
         },
         {
             title: '제목',
-            dataIndex: 'subject',
-            key: 'subject',
-            ...getColumnSearchProps('subject')
+            dataIndex: 'rowdata2',
+            ...getColumnSearchProps('subject'),
+            render: (_, { rowdata1, rowdata2 }) => (
+                <Button type="text" onClick={() => handle_View(rowdata1)} style={{ cursor: 'pointer' }}>
+                    {rowdata2}
+                </Button>
+            )
         },
         {
             title: '첨부',
-            dataIndex: 'files',
-            key: 'files',
+            dataIndex: 'rowdata12',
             width: '8%',
-            align: 'center'
+            align: 'center',
+            render: (_, record) => (
+                <>
+                    {record?.rowdata12?.map((f, i) => (
+                        <Tooltip title={f.originalFileName} key={i}>
+                            <a
+                                href={`${decodeURIComponent(`${f.filePath}/${f.saveFileName}`)}`}
+                                target="_blank"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    window.open(
+                                        `${decodeURIComponent(`${f.filePath}/${f.saveFileName}`)}`,
+                                        'PDFViewer',
+                                        // 'width=1000,height=800'
+                                        `width=${window.innerWidth - 60},height=${window.innerHeight},left=20,top=20`
+                                    );
+                                }}
+                            >
+                                <FilePdfOutlined style={{ fontSize: '25px', margin: '0 5px' }} />
+                            </a>
+                        </Tooltip>
+                    ))}
+                </>
+            )
         },
         {
             title: '작성일',
-            dataIndex: 'indate',
-            key: 'files',
-            width: '12%',
+            dataIndex: 'rowdata6',
+            width: '15%',
             align: 'center'
         },
         isLoggedIn === true
-            ? ({
-                  title: '조회',
-                  dataIndex: 'visited',
-                  key: 'visited',
-                  width: '8%',
-                  align: 'center'
-              },
-              {
+            ? {
                   title: '수정',
-                  render: (_, { key }) => (
+                  render: (_, { rowdata1 }) => (
                       <>
                           <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
                               <Tooltip title="수정" color="#108ee9">
                                   <Button
                                       type="primary"
-                                      // onClick={() => handleEdit(key)}
-                                      style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb' }}
+                                      onClick={() => handle_modify(rowdata1)}
+                                      style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '12px' }}
                                       icon={<EditFilled />}
                                   >
                                       수정
@@ -221,54 +278,116 @@ export const Notice_Education = () => {
                       </>
                   ),
                   align: 'center'
-              })
+              }
             : {
                   title: '조회',
-                  dataIndex: 'visited',
-                  key: 'visited',
+                  dataIndex: 'rowdata4',
                   width: '8%',
                   align: 'center'
               }
     ];
 
-    // 체크 박스
-    const handleSave = (row) => {
-        const newData = [...selectBaselineListData];
-        const index = newData.findIndex((item) => row.key === item.key);
-        const item = newData[index];
-        newData.splice(index, 1, {
-            ...item,
-            ...row
-        });
-        setSelectBaselineListData(newData);
+    const onChange = (pagination, filters, sorter, extra) => {
+        // console.log('params', pagination, filters, sorter, extra);
+        //setSortedInfo(sorter);
     };
 
-    const columns = defaultColumns.map((col) => {
-        if (!col.editable) {
-            return col;
-        }
-        return {
-            ...col,
-            onCell: (record) => ({
-                record,
-                dataIndex: col.dataIndex,
-                title: col.title,
-                handleSave
-            })
-        };
-    });
-
+    //체크 박스 이벤트
     const onSelectChange = (newSelectedRowKeys) => {
+        // console.log('selectedRowKeys changed: ', newSelectedRowKeys);
         setSelectedRowKeys(newSelectedRowKeys);
     };
 
+    //체크 박스 선택
     const rowSelection = {
         selectedRowKeys,
         onChange: onSelectChange
     };
-    // 체크 박스
+
+    // 추가 Modal 이벤트처리 Start
+    const handle_Register = () => {
+        setSeqIdValue(null);
+        setModalOpenRe(true);
+    };
+
+    const handleOk_Re = () => {
+        setSeqIdValue(null);
+        setModalOpenRe(false);
+    };
+
+    const handleCancel_Re = () => {
+        setSeqIdValue(null);
+        setModalOpenRe(false);
+    };
+    // 추가 Modal 이벤트처리 End
+
+    // 수정 Modal 이벤트처리 Start
+    const handle_modify = (seqId) => {
+        setModalOpenMo(true);
+        setSeqIdValue(seqId);
+    };
+
+    const handleOk_Mo = () => {
+        setSeqIdValue(null);
+        setModalOpenMo(false);
+    };
+
+    const handleCancel_Mo = () => {
+        setModalOpenMo(false);
+        setSeqIdValue(null);
+    };
+    // 수정 Modal 이벤트처리 End
+
+    const SaveClose = () => {
+        setModalOpenMo(false);
+        setModalOpenRe(false);
+        SelectInfoList_ApiCall();
+    };
+
+    // 상세 클릭 Start
+    const handle_View = (seqId) => {
+        setModalOpenVi(true);
+        setSeqIdValue(seqId);
+    };
+    // 상세 클릭 End
+
+    // 상세 Modal 이벤트처리 Start
+    const handleOk_Vi = () => {
+        setModalOpenVi(false);
+    };
+
+    const handleCancel_Vi = () => {
+        setModalOpenVi(false);
+    };
+    // 상세 Modal 이벤트처리 End
+
+    // 삭제
+    const handleDel = () => {
+        if (selectedRowKeys == '') {
+            Modal.error({
+                content: '삭제할 항목을 선택해주세요.',
+                style: { top: 320 }
+            });
+        } else {
+            confirm({
+                title: '선택한 항목을 삭제하시겠습니까?',
+                icon: <ExclamationCircleFilled />,
+                okText: '예',
+                okType: 'danger',
+                cancelText: '아니오',
+                style: { top: 320 },
+                onOk() {
+                    DeleteInfo_ApiCall(selectedRowKeys);
+                },
+                onCancel() {}
+            });
+        }
+    };
 
     useEffect(() => {
+        setLoading(true);
+        SelectInfoList_ApiCall();
+
         const handleResize = () => {
             setIsMobileView(window.innerWidth < 768);
         };
@@ -294,132 +413,202 @@ export const Notice_Education = () => {
     );
 
     return (
-        <Layout>
-            {!isMobileView && (
-                <Sider width={230} theme="light">
-                    <Card
-                        type="inner"
-                        style={{ width: '225px' }}
-                        title={<span style={{ fontWeight: 'bold', color: 'white', marginLeft: '30px' }}>게시판</span>}
-                        headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#599bc4' }}
-                    >
-                        <Menu
-                            mode="vertical"
-                            selectedKeys={[selectedMenu]}
-                            style={{ borderRight: 0 }}
-                            onClick={() => setIsMobileView(false)}
+        <>
+            <Layout>
+                {!isMobileView && (
+                    <Sider width={230} theme="light">
+                        <Card
+                            type="inner"
+                            style={{ width: '225px' }}
+                            title={<span style={{ fontWeight: 'bold', color: 'white', marginLeft: '30px' }}>게시판</span>}
+                            headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#599bc4' }}
                         >
-                            {menuItems}
-                        </Menu>
-                    </Card>
-                </Sider>
-            )}
-            <Layout style={{ background: '#ffffff' }}>
-                <Content>
-                    <Row gutter={[24, 24]}>
-                        {isMobileView && (
-                            <Col span={24}>
-                                <Card
-                                    type="inner"
-                                    style={{ width: '100%', marginBottom: '24px' }}
-                                    title={<span style={{ fontWeight: 'bold' }}>게시판</span>}
-                                >
-                                    <Button
-                                        onClick={() => handleMenuClick('notification')}
-                                        style={{
-                                            margin: '10px',
-                                            border: 'none',
-                                            background: 'none',
-                                            fontWeight: 'bold',
-                                            color: selectedMenu === 'notification' ? '#599bc4' : 'inherit'
-                                        }}
+                            <Menu
+                                mode="vertical"
+                                selectedKeys={[selectedMenu]}
+                                style={{ borderRight: 0 }}
+                                onClick={() => setIsMobileView(false)}
+                            >
+                                {menuItems}
+                            </Menu>
+                        </Card>
+                    </Sider>
+                )}
+                <Layout style={{ background: '#ffffff' }}>
+                    <Content>
+                        <Row gutter={[24, 24]}>
+                            {isMobileView && (
+                                <Col span={24}>
+                                    <Card
+                                        type="inner"
+                                        style={{ width: '100%', marginBottom: '24px' }}
+                                        title={<span style={{ fontWeight: 'bold' }}>게시판</span>}
                                     >
-                                        공지사항 {selectedMenu === 'notification' && <CaretRightOutlined />}
-                                    </Button>
-                                    <Button
-                                        onClick={() => handleMenuClick('education')}
-                                        style={{
-                                            margin: '10px',
-                                            border: 'none',
-                                            background: 'none',
-                                            fontWeight: 'bold',
-                                            color: selectedMenu === 'education' ? '#599bc4' : 'inherit'
-                                        }}
-                                    >
-                                        교육안내 {selectedMenu === 'education' && <CaretRightOutlined />}
-                                    </Button>
-                                    <Button
-                                        onClick={() => handleMenuClick('faq')}
-                                        style={{
-                                            margin: '10px',
-                                            border: 'none',
-                                            background: 'none',
-                                            fontWeight: 'bold',
-                                            color: selectedMenu === 'faq' ? '#599bc4' : 'inherit'
-                                        }}
-                                    >
-                                        FAQ {selectedMenu === 'faq' && <CaretRightOutlined />}
-                                    </Button>
-                                </Card>
-                            </Col>
-                        )}
-
-                        <Col
-                            xs={{
-                                span: 24,
-                                offset: 1
-                            }}
-                            lg={{
-                                span: 21,
-                                offset: 2
-                            }}
-                            style={{ marginLeft: '30px' }}
-                        >
-                            <Title level={3}>
-                                <BlockOutlined /> 교육안내
-                            </Title>
-                        </Col>
-                        <Col
-                            xs={{
-                                span: 24,
-                                offset: 1
-                            }}
-                            lg={{
-                                span: 21,
-                                offset: 2
-                            }}
-                            style={{ marginLeft: '45px' }}
-                        >
-                            {isLoggedIn === true ? (
-                                <>
-                                    <Space style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
                                         <Button
-                                            // onClick={EditSubmit}
-                                            style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb' }}
-                                            type="success"
-                                            icon={<PlusOutlined />}
+                                            onClick={() => handleMenuClick('notification')}
+                                            style={{
+                                                margin: '10px',
+                                                border: 'none',
+                                                background: 'none',
+                                                fontWeight: 'bold',
+                                                color: selectedMenu === 'notification' ? '#599bc4' : 'inherit'
+                                            }}
                                         >
-                                            추가
+                                            공지사항 {selectedMenu === 'notification' && <CaretRightOutlined />}
                                         </Button>
-
                                         <Button
-                                            type="danger"
-                                            // onClick={handleDel}
-                                            style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb' }}
-                                            icon={<DeleteFilled />}
+                                            onClick={() => handleMenuClick('education')}
+                                            style={{
+                                                margin: '10px',
+                                                border: 'none',
+                                                background: 'none',
+                                                fontWeight: 'bold',
+                                                color: selectedMenu === 'education' ? '#599bc4' : 'inherit'
+                                            }}
                                         >
-                                            삭제
+                                            교육안내 {selectedMenu === 'education' && <CaretRightOutlined />}
                                         </Button>
-                                    </Space>
-                                    <Table columns={columns} dataSource={data} rowSelection={rowSelection} bordered={true} />
-                                </>
-                            ) : (
-                                <Table columns={columns} dataSource={data} bordered={true} />
+                                        <Button
+                                            onClick={() => handleMenuClick('faq')}
+                                            style={{
+                                                margin: '10px',
+                                                border: 'none',
+                                                background: 'none',
+                                                fontWeight: 'bold',
+                                                color: selectedMenu === 'faq' ? '#599bc4' : 'inherit'
+                                            }}
+                                        >
+                                            FAQ {selectedMenu === 'faq' && <CaretRightOutlined />}
+                                        </Button>
+                                    </Card>
+                                </Col>
                             )}
-                        </Col>
-                    </Row>
-                </Content>
+
+                            <Col
+                                xs={{
+                                    span: 24,
+                                    offset: 1
+                                }}
+                                lg={{
+                                    span: 21,
+                                    offset: 2
+                                }}
+                                style={{ marginLeft: '30px' }}
+                            >
+                                <Title level={3}>
+                                    <BlockOutlined /> 교육안내
+                                </Title>
+                            </Col>
+                            <Col
+                                xs={{
+                                    span: 24,
+                                    offset: 1
+                                }}
+                                lg={{
+                                    span: 21,
+                                    offset: 2
+                                }}
+                                style={{ marginLeft: '45px' }}
+                            >
+                                {isLoggedIn === true ? (
+                                    <>
+                                        <Space style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
+                                            <Button
+                                                onClick={handle_Register}
+                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '12px' }}
+                                                type="success"
+                                                icon={<PlusOutlined />}
+                                            >
+                                                추가
+                                            </Button>
+
+                                            <Button
+                                                type="danger"
+                                                // onClick={handleDel}
+                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '12px' }}
+                                                icon={<DeleteFilled />}
+                                                onClick={handleDel}
+                                            >
+                                                삭제
+                                            </Button>
+                                        </Space>
+                                        <Table
+                                            columns={columns}
+                                            dataSource={selectInfoListData}
+                                            rowSelection={{ ...rowSelection }}
+                                            bordered={true}
+                                            onChange={onChange}
+                                            loading={loading}
+                                        />
+                                    </>
+                                ) : (
+                                    <Table
+                                        columns={columns}
+                                        dataSource={selectInfoListData}
+                                        bordered={true}
+                                        onChange={onChange}
+                                        loading={loading}
+                                    />
+                                )}
+                            </Col>
+                        </Row>
+                    </Content>
+                </Layout>
             </Layout>
-        </Layout>
+            {/* 교육안내 등록 모달 창 Start */}
+            <Modal
+                maskClosable={false}
+                open={ModalOpenRe}
+                onOk={handleOk_Re}
+                closable={false}
+                width={780}
+                style={{
+                    top: 320,
+                    zIndex: 9999
+                }}
+                footer={null}
+                getContainer={() => document.body}
+            >
+                <EducationRegister ModalClose={handleCancel_Re} SaveClose={SaveClose} />
+            </Modal>
+            {/* 교육안내 등록 모달 창 End */}
+
+            {/* 교육안내 수정 모달 창 Start */}
+            <Modal
+                maskClosable={false}
+                open={ModalOpenMo}
+                onOk={handleOk_Mo}
+                closable={false}
+                width={780}
+                style={{
+                    top: 320,
+                    zIndex: 9999
+                }}
+                footer={null}
+                getContainer={() => document.body}
+            >
+                <EducationModify ModalClose={handleCancel_Mo} seqIdProps={seqIdValue} datetime={minutes + seconds} SaveClose={SaveClose} />
+            </Modal>
+            {/* 교육안내 수정 모달 창 End */}
+
+            {/* 교육안내 상세정보 모달 창 Start */}
+            <Modal
+                maskClosable={false}
+                open={ModalOpenVi}
+                onOk={handleOk_Vi}
+                closable={true}
+                onCancel={handleCancel_Vi}
+                width={780}
+                style={{
+                    top: 320,
+                    zIndex: 9999
+                }}
+                footer={null}
+                getContainer={() => document.body}
+            >
+                <EducationView ModalClose={handleCancel_Vi} seqIdValue={seqIdValue} />
+            </Modal>
+            {/* 교육안내 상세정보 모달 창 End */}
+        </>
     );
 };
