@@ -259,6 +259,7 @@ export const Intro_Facilities = () => {
                                 span: 21,
                                 offset: 2
                             }}
+                            style={{ marginLeft: '30px' }}
                         >
                             <div>
                                 <Title level={5}>
@@ -307,6 +308,7 @@ export const Intro_Facilities = () => {
                                 span: 21,
                                 offset: 2
                             }}
+                            style={{ marginLeft: '30px' }}
                         >
                             <Title level={5}>
                                 <AntDesignOutlined /> 교육장 배치도
@@ -324,7 +326,7 @@ export const Intro_Facilities = () => {
                                 span: 21,
                                 offset: 2
                             }}
-                            style={{ marginTop: '50px' }}
+                            style={{ marginLeft: '30px', marginTop: '50px' }}
                         >
                             <Title level={5}>
                                 <AntDesignOutlined /> 시설 및 교보재

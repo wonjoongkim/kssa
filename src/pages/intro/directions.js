@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Card, Button, Row, Col, Divider, Typography } from 'antd';
-import { CaretRightOutlined } from '@ant-design/icons';
+import { CaretRightOutlined, AntDesignOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
-import KakaoMap from './kakamap';
+import { KakaoMap } from './kakamap';
 
 const { Title, Paragraph, Text, Link } = Typography;
 const { Sider, Content } = Layout;
@@ -128,8 +128,42 @@ export const Intro_Directions = () => {
                                 </Card>
                             </Col>
                         )}
-                        <Col xs={{ span: 24, order: 2 }} sm={{ span: 8, order: isMobileView ? 1 : 3 }}>
-                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>{/* <KakaoMap /> */}</div>
+
+                        <Col
+                            xs={{
+                                span: 12,
+                                offset: 1
+                            }}
+                        >
+                            {/* <Col xs={{ span: 12, order: 2 }} sm={{ span: 8, order: isMobileView ? 1 : 3 }}> */}
+                            <div>
+                                <Title level={5}>
+                                    <AntDesignOutlined /> 찾아 오시는 길
+                                </Title>
+                            </div>
+                            <Row justify="center">
+                                <Col span={24}>서울시 강서구 방화대로 21길 72 범천빌딩 4층</Col>
+                            </Row>
+                            <Row justify="center" style={{ lineHeight: '30px' }}>
+                                <Col span={24}>
+                                    <span style={{ float: 'left', width: '250px' }}>● Tel: 031-8270-9590</span>{' '}
+                                    <span style={{ marginLeft: '30px' }}>● Fax: 031-8270-9591</span>
+                                </Col>
+                                <Col span={24}>
+                                    <span style={{ float: 'left', width: '250px' }}>● http://www.kssa.re.kr</span>{' '}
+                                    <span style={{ marginLeft: '30px' }}>● 이메일문의: admin@kssa.re.kr</span>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                    <Row justify="center" style={{ marginTop: '30px' }}>
+                        <Col
+                            xs={{
+                                span: 22,
+                                offset: 0
+                            }}
+                        >
+                            <KakaoMap />
                         </Col>
                     </Row>
                 </Content>

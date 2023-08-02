@@ -72,7 +72,7 @@ export const EducationView = (props) => {
                         </>
                     }
                 >
-                    <pre>{selectInfoData.contents}</pre>
+                    <pre style={{ fontFamily: 'SUIT' }}>{selectInfoData.contents}</pre>
                 </Card>
             </Card>
         </>

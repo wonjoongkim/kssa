@@ -74,7 +74,7 @@ export const NoticeView = (props) => {
                         </>
                     }
                 >
-                    <pre>{selectNoticeData.contents}</pre>
+                    <pre style={{ fontFamily: 'SUIT' }}>{selectNoticeData.contents}</pre>
                 </Card>
             </Card>
         </>

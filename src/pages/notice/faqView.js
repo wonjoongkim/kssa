@@ -72,7 +72,7 @@ export const FaqView = (props) => {
                         </>
                     }
                 >
-                    <pre>{selectFAQData.contents}</pre>
+                    <pre style={{ fontFamily: 'SUIT' }}>{selectFAQData.contents}</pre>
                 </Card>
             </Card>
         </>
