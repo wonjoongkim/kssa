@@ -44,7 +44,7 @@ export const FaqModify = (props) => {
         };
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
 
-        const UpdateFAQResponse = await UpdateFAQApi({ formData });
+        const UpdateFAQResponse = await UpdateFAQApi(formData);
         UpdateFAQResponse?.data?.RET_CODE === '0100'
             ? Modal.success({
                   content: '수정 완료',

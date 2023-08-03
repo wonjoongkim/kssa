@@ -24,6 +24,7 @@ export const NoticeModify = (props) => {
         const SelectNoticeResponse = await SelectNoticeApi({
             seqId: props.seqIdProps
         });
+        console.log(SelectNoticeResponse?.data?.RET_DATA);
         setItemContainer(SelectNoticeResponse?.data?.RET_DATA);
         setUploadedFiles(SelectNoticeResponse?.data?.RET_DATA.fileList);
     };
@@ -32,6 +33,7 @@ export const NoticeModify = (props) => {
     const [UpdateNoticeApi] = useUpdateNoticeMutation();
     const UpdateNotice_ApiCall = async () => {
         let formData = new FormData();
+
         const params = {
             seqId: props.seqIdProps,
             title: itemContainer.title,
@@ -45,7 +47,7 @@ export const NoticeModify = (props) => {
             formData.append('files', Noticefiles);
         });
 
-        const UpdateNoticeResponse = await UpdateNoticeApi({ formData });
+        const UpdateNoticeResponse = await UpdateNoticeApi(formData);
         UpdateNoticeResponse?.data?.RET_CODE === '0100'
             ? Modal.success({
                   content: '수정 완료',

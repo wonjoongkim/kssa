@@ -33,6 +33,7 @@ export const NoticeRegister = (props) => {
             formData.append('files', Noticefiles);
         });
 
+        console.log(formData);
         const InsertNoticeResponse = await InsertNoticeApi(formData);
         InsertNoticeResponse?.data?.RET_CODE === '0100'
             ? Modal.success({
@@ -211,18 +212,18 @@ export const NoticeRegister = (props) => {
                             </Col>
                         </Row>
                         <Divider style={{ margin: '10px 0' }} />
-                        <Form.Item
-                            name="form02"
-                            label="제목"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: '제목 입력'
-                                }
-                            ]}
-                        >
-                            <Row gutter={24}>
-                                <Col xs={24}>
+                        <Row gutter={24}>
+                            <Col xs={24}>
+                                <Form.Item
+                                    name="form02"
+                                    label="제목"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: '제목 입력'
+                                        }
+                                    ]}
+                                >
                                     <Input
                                         ref={titleRef}
                                         style={{
@@ -233,23 +234,22 @@ export const NoticeRegister = (props) => {
                                         onChange={(e) => setItemContainer({ ...itemContainer, title: e.target.value })}
                                         value={itemContainer?.title}
                                     />
-                                </Col>
-                            </Row>
-                        </Form.Item>
+                                </Form.Item>
+                            </Col>
+                        </Row>
                         <Divider style={{ margin: '10px 0' }} />
-
-                        <Form.Item
-                            name="form03"
-                            label="파일 업로드"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: '파일'
-                                }
-                            ]}
-                        >
-                            <Row gutter={24}>
-                                <Col span={24}>
+                        <Row gutter={24}>
+                            <Col span={24}>
+                                <Form.Item
+                                    name="form03"
+                                    label="파일 업로드"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: '파일'
+                                        }
+                                    ]}
+                                >
                                     {uploadedFiles?.length === 0 ? (
                                         <Space direction="vertical" style={{ width: '100%' }}>
                                             <Button
@@ -299,22 +299,22 @@ export const NoticeRegister = (props) => {
                                             </Card>
                                         </>
                                     )}
-                                </Col>
-                            </Row>
-                        </Form.Item>
+                                </Form.Item>
+                            </Col>
+                        </Row>
                         <Divider style={{ margin: '10px 0' }} />
-                        <Form.Item
-                            name="form04"
-                            label="내용"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: '내용 입력'
-                                }
-                            ]}
-                        >
-                            <Row gutter={24}>
-                                <Col span={24}>
+                        <Row gutter={24}>
+                            <Col span={24}>
+                                <Form.Item
+                                    name="form04"
+                                    label="내용"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: '내용 입력'
+                                        }
+                                    ]}
+                                >
                                     <TextArea
                                         ref={contentsRef}
                                         rows={10}
@@ -327,9 +327,9 @@ export const NoticeRegister = (props) => {
                                         onChange={(e) => setItemContainer({ ...itemContainer, contents: e.target.value })}
                                         value={itemContainer?.contents}
                                     />
-                                </Col>
-                            </Row>
-                        </Form.Item>
+                                </Form.Item>
+                            </Col>
+                        </Row>
 
                         <Row gutter={24}>
                             <Col span={24}>

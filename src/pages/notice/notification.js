@@ -79,7 +79,7 @@ export const Notice_Notification = () => {
         const DeleteNoticeResponse = await DeleteNoticeApi({
             seqIdList: selectedRowKeys
         });
-        setDeleteNoticeData(DeleteNoticeResponse?.data?.RET_DATA);
+        SelectNoticeList_ApiCall();
     };
 
     const handleMenuClick = (menuKey) => {

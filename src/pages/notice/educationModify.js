@@ -44,7 +44,7 @@ export const EducationModify = (props) => {
         };
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
 
-        const UpdateInfoResponse = await UpdateInfoApi({ formData });
+        const UpdateInfoResponse = await UpdateInfoApi(formData);
         UpdateInfoResponse?.data?.RET_CODE === '0100'
             ? Modal.success({
                   content: '수정 완료',
