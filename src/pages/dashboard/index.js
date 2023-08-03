@@ -41,12 +41,13 @@ const DashboardDefault = () => {
                                 <NotificationOutlined /> 교육안내
                             </span>
                         }
+                        style={{ height: '300px' }}
                         extra={<a href="/education">More</a>}
                     >
                         {selectMainInfoListData.map((Idata, i) => (
                             <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
-                                <Col span={18}>{Idata.title}</Col>
-                                <Col span={6}>{Idata.insertDate}</Col>
+                                <Col span={16}>{Idata.title}</Col>
+                                <Col span={8}>{Idata.insertDate}</Col>
                             </Row>
                         ))}
                     </Card>
@@ -59,12 +60,13 @@ const DashboardDefault = () => {
                                 <NotificationOutlined /> 공지사항
                             </span>
                         }
+                        style={{ height: '300px' }}
                         extra={<a href="/notification">More</a>}
                     >
                         {selectMainNoticeListData.map((Ndata, i) => (
                             <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
-                                <Col span={18}>{Ndata.title}</Col>
-                                <Col span={6}>{Ndata.insertDate}</Col>
+                                <Col span={16}>{Ndata.title}</Col>
+                                <Col span={68}>{Ndata.insertDate}</Col>
                             </Row>
                         ))}
                     </Card>

@@ -421,7 +421,7 @@ export const Notice_Education = () => {
                                                 color: selectedMenu === 'notification' ? '#599bc4' : 'inherit'
                                             }}
                                         >
-                                            공지사항 {selectedMenu === 'notification' && <CaretRightOutlined />}
+                                            공지사항 {selectedMenu === 'notification' && '▼'}
                                         </Button>
                                         <Button
                                             onClick={() => handleMenuClick('education')}
@@ -433,7 +433,7 @@ export const Notice_Education = () => {
                                                 color: selectedMenu === 'education' ? '#599bc4' : 'inherit'
                                             }}
                                         >
-                                            교육안내 {selectedMenu === 'education' && <CaretRightOutlined />}
+                                            교육안내 {selectedMenu === 'education' && '▼'}
                                         </Button>
                                         <Button
                                             onClick={() => handleMenuClick('faq')}
@@ -445,7 +445,7 @@ export const Notice_Education = () => {
                                                 color: selectedMenu === 'faq' ? '#599bc4' : 'inherit'
                                             }}
                                         >
-                                            FAQ {selectedMenu === 'faq' && <CaretRightOutlined />}
+                                            FAQ {selectedMenu === 'faq' && '▼'}
                                         </Button>
                                     </Card>
                                 </Col>

@@ -33,6 +33,7 @@ const HeaderContent = () => {
     const MainMenuItems = [
         {
             name: '교육원소개',
+            path: '/greetings',
             subMenu: [
                 { name: '원장인사', path: '/greetings' },
                 { name: '조직도', path: '/organization' },
@@ -42,6 +43,7 @@ const HeaderContent = () => {
         },
         {
             name: '교육과정',
+            path: '/security',
             subMenu: [
                 { name: '보안검색 교육과정', path: '/security' },
                 { name: '항공경비 교육과정', path: '/airline' },
@@ -51,6 +53,7 @@ const HeaderContent = () => {
         },
         {
             name: '직업훈련비지원',
+            path: '/reason',
             subMenu: [
                 { name: '관련근거', path: '/reason' },
                 { name: '신청방법', path: '/application' }
@@ -58,6 +61,7 @@ const HeaderContent = () => {
         },
         {
             name: '게시판',
+            path: '/notification',
             subMenu: [
                 { name: '공지사항', path: '/notification' },
                 { name: '교육안내', path: '/education' },
@@ -103,7 +107,7 @@ const HeaderContent = () => {
                         </Grid>
                         <Grid item>
                             <Box>
-                                <Typography variant="body1">
+                                <Typography variant="body1" style={{ fontSize: '12px' }}>
                                     <Link to="/" style={linkStyle}>
                                         Home
                                     </Link>{' '}
@@ -112,9 +116,12 @@ const HeaderContent = () => {
                                         찾아오시는 길
                                     </Link>{' '}
                                     |{' '}
-                                    <Link to="/kasa" style={linkStyle}>
+                                    {/* <Link to="http://www.kasa21.kr" style={linkStyle} target="_blank">
                                         KASA
-                                    </Link>
+                                    </Link> */}
+                                    <a href="http://www.kasa21.kr" style={linkStyle} target="_blank" rel="noopener noreferrer">
+                                        KASA
+                                    </a>
                                     |{' '}
                                     {isLoggedIn === false ? (
                                         <Link to="/admin" style={linkStyle}>
@@ -135,24 +142,27 @@ const HeaderContent = () => {
                         <div
                             key={index}
                             style={{
-                                margin: '0 10px',
+                                margin: '0 7px',
                                 position: 'relative',
                                 display: 'inline-block'
                             }}
                             onMouseEnter={() => handleMenuHover(item.name)}
                             onMouseLeave={handleMenuLeave}
                         >
-                            <div
+                            <Button
                                 style={{
                                     margin: '0px 8px',
                                     color: '#ffffff',
-                                    padding: '10px',
+                                    padding: '7px',
                                     cursor: 'pointer',
-                                    fontWeight: 'bold'
+                                    fontWeight: 'bold',
+                                    border: 'none',
+                                    background: 'none'
                                 }}
+                                onClick={() => handleSubItemClick(item.path)}
                             >
-                                <AppstoreOutlined /> {item.name}
-                            </div>
+                                <AppstoreOutlined style={{ marginRight: '4px' }} /> {item.name}
+                            </Button>
                             {activeMenu === item.name && (
                                 <div
                                     className="submenu"
@@ -170,7 +180,7 @@ const HeaderContent = () => {
                                 >
                                     <Space>
                                         {item.subMenu.map((subItem, subIndex) => (
-                                            <div key={subIndex} style={{ padding: '5px', cursor: 'pointer' }}>
+                                            <div key={subIndex} style={{ padding: '8px', cursor: 'pointer' }}>
                                                 <Button
                                                     key={subIndex}
                                                     variant="contained"

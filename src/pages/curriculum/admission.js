@@ -33,16 +33,16 @@ export const Curriculum_Admission = () => {
     const menuItems = (
         <>
             <Menu.Item key="security" onClick={() => handleMenuClick('security')}>
-                보안검색 교육과정 {selectedMenu === 'security' && <CaretRightOutlined />}
+                보안검색 교육과정{selectedMenu === 'security' && <CaretRightOutlined />}
             </Menu.Item>
             <Menu.Item key="airline" onClick={() => handleMenuClick('airline')}>
-                항공경비 교육과정 {selectedMenu === 'airline' && <CaretRightOutlined />}
+                항공경비 교육과정{selectedMenu === 'airline' && <CaretRightOutlined />}
             </Menu.Item>
             <Menu.Item key="operate" onClick={() => handleMenuClick('operate')}>
-                정원 및 운영계획 {selectedMenu === 'operate' && <CaretRightOutlined />}
+                정원 및 운영계획{selectedMenu === 'operate' && <CaretRightOutlined />}
             </Menu.Item>
             <Menu.Item key="admission" onClick={() => handleMenuClick('admission')}>
-                입교절차 {selectedMenu === 'admission' && <CaretRightOutlined />}
+                입교절차{selectedMenu === 'admission' && <CaretRightOutlined />}
             </Menu.Item>
         </>
     );
@@ -81,50 +81,50 @@ export const Curriculum_Admission = () => {
                                     <Button
                                         onClick={() => handleMenuClick('security')}
                                         style={{
-                                            margin: '10px',
+                                            margin: '0px',
                                             border: 'none',
                                             background: 'none',
                                             fontWeight: 'bold',
                                             color: selectedMenu === 'security' ? '#599bc4' : 'inherit'
                                         }}
                                     >
-                                        보안검색 교육과정 {selectedMenu === 'security' && <CaretRightOutlined />}
+                                        보안검색 {selectedMenu === 'security' && '▼'}
                                     </Button>
                                     <Button
                                         onClick={() => handleMenuClick('airline')}
                                         style={{
-                                            margin: '10px',
+                                            margin: '0px',
                                             border: 'none',
                                             background: 'none',
                                             fontWeight: 'bold',
                                             color: selectedMenu === 'airline' ? '#599bc4' : 'inherit'
                                         }}
                                     >
-                                        항공경비 교육과정 {selectedMenu === 'airline' && <CaretRightOutlined />}
+                                        항공경비 {selectedMenu === 'airline' && '▼'}
                                     </Button>
                                     <Button
                                         onClick={() => handleMenuClick('operate')}
                                         style={{
-                                            margin: '10px',
+                                            margin: '0px',
                                             border: 'none',
                                             background: 'none',
                                             fontWeight: 'bold',
                                             color: selectedMenu === 'operate' ? '#599bc4' : 'inherit'
                                         }}
                                     >
-                                        정원 및 운영계획 {selectedMenu === 'operate' && <CaretRightOutlined />}
+                                        정원 및 운영계획 {selectedMenu === 'operate' && '▼'}
                                     </Button>
                                     <Button
                                         onClick={() => handleMenuClick('admission')}
                                         style={{
-                                            margin: '10px',
+                                            margin: '0px',
                                             border: 'none',
                                             background: 'none',
                                             fontWeight: 'bold',
                                             color: selectedMenu === 'admission' ? '#599bc4' : 'inherit'
                                         }}
                                     >
-                                        입교절차 {selectedMenu === 'admission' && <CaretRightOutlined />}
+                                        입교절차 {selectedMenu === 'admission' && '▼'}
                                     </Button>
                                 </Card>
                             </Col>

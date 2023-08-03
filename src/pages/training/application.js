@@ -82,7 +82,7 @@ export const Training_Application = () => {
                                             color: selectedMenu === 'reason' ? '#599bc4' : 'inherit'
                                         }}
                                     >
-                                        관련근거 {selectedMenu === 'reason' && <CaretRightOutlined />}
+                                        관련근거 {selectedMenu === 'reason' && '▼'}
                                     </Button>
                                     <Button
                                         onClick={() => handleMenuClick('application')}
@@ -94,7 +94,7 @@ export const Training_Application = () => {
                                             color: selectedMenu === 'application' ? '#599bc4' : 'inherit'
                                         }}
                                     >
-                                        신청방법 {selectedMenu === 'application' && <CaretRightOutlined />}
+                                        신청방법 {selectedMenu === 'application' && '▼'}
                                     </Button>
                                 </Card>
                             </Col>

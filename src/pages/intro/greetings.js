@@ -80,50 +80,50 @@ export const Intro_Greetings = () => {
                                     <Button
                                         onClick={() => handleMenuClick('greetings')}
                                         style={{
-                                            margin: '10px',
+                                            margin: '8px',
                                             border: 'none',
                                             background: 'none',
                                             fontWeight: 'bold',
                                             color: selectedMenu === 'greetings' ? '#599bc4' : 'inherit'
                                         }}
                                     >
-                                        원장인사 {selectedMenu === 'greetings' && <CaretRightOutlined />}
+                                        원장인사 {selectedMenu === 'greetings' && '▼'}
                                     </Button>
                                     <Button
                                         onClick={() => handleMenuClick('organization')}
                                         style={{
-                                            margin: '10px',
+                                            margin: '8px',
                                             border: 'none',
                                             background: 'none',
                                             fontWeight: 'bold',
                                             color: selectedMenu === 'organization' ? '#599bc4' : 'inherit'
                                         }}
                                     >
-                                        조직도 {selectedMenu === 'organization' && <CaretRightOutlined />}
+                                        조직도 {selectedMenu === 'organization' && '▼'}
                                     </Button>
                                     <Button
                                         onClick={() => handleMenuClick('facilities')}
                                         style={{
-                                            margin: '10px',
+                                            margin: '8px',
                                             border: 'none',
                                             background: 'none',
                                             fontWeight: 'bold',
                                             color: selectedMenu === 'facilities' ? '#599bc4' : 'inherit'
                                         }}
                                     >
-                                        교육시설 {selectedMenu === 'facilities' && <CaretRightOutlined />}
+                                        교육시설 {selectedMenu === 'facilities' && '▼'}
                                     </Button>
                                     <Button
                                         onClick={() => handleMenuClick('directions')}
                                         style={{
-                                            margin: '10px',
+                                            margin: '8px',
                                             border: 'none',
                                             background: 'none',
                                             fontWeight: 'bold',
                                             color: selectedMenu === 'directions' ? '#599bc4' : 'inherit'
                                         }}
                                     >
-                                        오시는길 {selectedMenu === 'directions' && <CaretRightOutlined />}
+                                        오시는길 {selectedMenu === 'directions' && '▼'}
                                     </Button>
                                 </Card>
                             </Col>
