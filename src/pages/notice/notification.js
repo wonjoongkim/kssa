@@ -76,7 +76,9 @@ export const Notice_Notification = () => {
     const [DeleteNoticeApi] = useDeleteNoticeMutation();
     const [deleteNoticeData, setDeleteNoticeData] = useState([]);
     const DeleteNotice_ApiCall = async () => {
-        const DeleteNoticeResponse = await DeleteNoticeApi({});
+        const DeleteNoticeResponse = await DeleteNoticeApi({
+            seqIdList: selectedRowKeys
+        });
         setDeleteNoticeData(DeleteNoticeResponse?.data?.RET_DATA);
     };
 
@@ -84,34 +86,6 @@ export const Notice_Notification = () => {
         setSelectedMenu(menuKey);
         navigate('/' + menuKey);
     };
-    // const data = [
-    //     // {
-    //     //     key: '2',
-    //     //     subject: '‘23년 6월 공항/항공사 항공경비요원 초기교육 일정 공지',
-    //     //     files: (
-    //     //         <Tooltip title="파일명" placement="bottom">
-    //     //             <a
-    //     //                 // href={`${decodeURIComponent(`${f.filePath}/${f.saveFileName}`)}`}
-    //     //                 href="#"
-    //     //                 target="_blank"
-    //     //                 // onClick={(e) => {
-    //     //                 //     e.preventDefault();
-    //     //                 //     window.open(
-    //     //                 //         `${decodeURIComponent(`${f.filePath}/${f.saveFileName}`)}`,
-    //     //                 //         'PDFViewer',
-    //     //                 //         `width=${window.innerWidth - 60},height=${window.innerHeight},left=20,top=20`
-    //     //                 //     );
-    //     //                 // }}
-    //     //                 onClick={() => alert('파일 다운로드')}
-    //     //             >
-    //     //                 <FileDoneOutlined style={{ fontSize: '20px' }} />
-    //     //             </a>
-    //     //         </Tooltip>
-    //     //     ),
-    //     //     indate: '2023.05.29',
-    //     //     visited: '98'
-    //     // }
-    // ];
 
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
@@ -223,9 +197,9 @@ export const Notice_Notification = () => {
             dataIndex: 'rowdata12',
             width: '8%',
             align: 'center',
-            render: (_, record) => (
+            render: (_, { rowdata12 }) => (
                 <>
-                    {record?.rowdata12?.map((f, i) => (
+                    {rowdata12?.map((f, i) => (
                         <Tooltip title={f.originalFileName} key={i}>
                             <a
                                 href={`${decodeURIComponent(`${f.filePath}/${f.saveFileName}`)}`}
@@ -235,7 +209,6 @@ export const Notice_Notification = () => {
                                     window.open(
                                         `${decodeURIComponent(`${f.filePath}/${f.saveFileName}`)}`,
                                         'PDFViewer',
-                                        // 'width=1000,height=800'
                                         `width=${window.innerWidth - 60},height=${window.innerHeight},left=20,top=20`
                                     );
                                 }}

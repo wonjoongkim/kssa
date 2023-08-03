@@ -43,7 +43,7 @@ export const NoticeModify = (props) => {
             useYn: itemContainer.useYn
         };
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
-
+        console.log(formData);
         const UpdateNoticeResponse = await UpdateNoticeApi({ formData });
         UpdateNoticeResponse?.data?.RET_CODE === '0100'
             ? Modal.success({

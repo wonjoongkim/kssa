@@ -75,7 +75,9 @@ export const Notice_Education = () => {
     const [DeleteInfoApi] = useDeleteInfoMutation();
     const [deleteInfoData, setDeleteInfoData] = useState([]);
     const DeleteInfo_ApiCall = async () => {
-        const DeleteInfoResponse = await DeleteInfoApi({});
+        const DeleteInfoResponse = await DeleteInfoApi({
+            seqIdList: selectedRowKeys
+        });
         setDeleteInfoData(DeleteInfoResponse?.data?.RET_DATA);
     };
 
@@ -83,41 +85,6 @@ export const Notice_Education = () => {
         setSelectedMenu(menuKey);
         navigate('/' + menuKey);
     };
-    // const data = [
-    //     {
-    //         key: '1',
-    //         subject: '’23년 항공보안검색요원 교육(2차) 안내 (6/12~16)',
-    //         files: '',
-    //         indate: '2023.05.29',
-    //         visited: '66'
-    //     },
-    //     {
-    //         key: '2',
-    //         subject: '’23년 항공경비요원 교육(2차) 안내 (6/12~16)',
-    //         files: (
-    //             <Tooltip title="파일명" placement="bottom">
-    //                 <a
-    //                     // href={`${decodeURIComponent(`${f.filePath}/${f.saveFileName}`)}`}
-    //                     href="#"
-    //                     target="_blank"
-    //                     // onClick={(e) => {
-    //                     //     e.preventDefault();
-    //                     //     window.open(
-    //                     //         `${decodeURIComponent(`${f.filePath}/${f.saveFileName}`)}`,
-    //                     //         'PDFViewer',
-    //                     //         `width=${window.innerWidth - 60},height=${window.innerHeight},left=20,top=20`
-    //                     //     );
-    //                     // }}
-    //                     onClick={() => alert('파일 다운로드')}
-    //                 >
-    //                     <FileDoneOutlined style={{ fontSize: '20px' }} />
-    //                 </a>
-    //             </Tooltip>
-    //         ),
-    //         indate: '2023.05.29',
-    //         visited: '98'
-    //     }
-    // ];
 
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');

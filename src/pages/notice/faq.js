@@ -75,7 +75,9 @@ export const Notice_Faq = () => {
     const [DeleteFAQApi] = useDeleteFAQMutation();
     const [deleteFAQData, setDeleteFAQData] = useState([]);
     const DeleteFAQ_ApiCall = async () => {
-        const DeleteFAQResponse = await DeleteFAQApi({});
+        const DeleteFAQResponse = await DeleteFAQApi({
+            seqIdList: selectedRowKeys
+        });
         setDeleteFAQData(DeleteFAQResponse?.data?.RET_DATA);
     };
 
