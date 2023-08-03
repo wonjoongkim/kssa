@@ -32,9 +32,6 @@ export const NoticeModify = (props) => {
     const [UpdateNoticeApi] = useUpdateNoticeMutation();
     const UpdateNotice_ApiCall = async () => {
         let formData = new FormData();
-        Object.values(selectedFiles).forEach((Noticefiles) => {
-            formData.append('files', Noticefiles);
-        });
         const params = {
             seqId: props.seqIdProps,
             title: itemContainer.title,
@@ -43,7 +40,11 @@ export const NoticeModify = (props) => {
             useYn: itemContainer.useYn
         };
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
-        console.log(formData);
+
+        Object.values(selectedFiles).forEach((Noticefiles) => {
+            formData.append('files', Noticefiles);
+        });
+
         const UpdateNoticeResponse = await UpdateNoticeApi({ formData });
         UpdateNoticeResponse?.data?.RET_CODE === '0100'
             ? Modal.success({
