@@ -1,5 +1,7 @@
 // material-ui
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import { Typography } from '@mui/material';
 import { Card, Row, Col } from 'antd';
 import { NotificationOutlined } from '@ant-design/icons';
@@ -42,7 +44,7 @@ const DashboardDefault = () => {
                             </span>
                         }
                         style={{ height: '300px' }}
-                        extra={<a href="/education">More</a>}
+                        extra={<Link to="/education">More</Link>}
                     >
                         {selectMainInfoListData.map((Idata, i) => (
                             <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
@@ -61,7 +63,7 @@ const DashboardDefault = () => {
                             </span>
                         }
                         style={{ height: '300px' }}
-                        extra={<a href="/notification">More</a>}
+                        extra={<Link to="/notification">More</Link>}
                     >
                         {selectMainNoticeListData.map((Ndata, i) => (
                             <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
