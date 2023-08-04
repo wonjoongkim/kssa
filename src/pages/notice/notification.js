@@ -179,7 +179,7 @@ export const Notice_Notification = () => {
         {
             title: '번호',
             dataIndex: 'rowdata0',
-            width: '8%',
+            // width: '8%',
             align: 'center'
         },
         {
@@ -195,7 +195,7 @@ export const Notice_Notification = () => {
         {
             title: '첨부',
             dataIndex: 'rowdata12',
-            width: '8%',
+            // width: '8%',
             align: 'center',
             render: (_, { rowdata12 }) => (
                 <>
@@ -223,7 +223,7 @@ export const Notice_Notification = () => {
         {
             title: '작성일',
             dataIndex: 'rowdata6',
-            width: '15%',
+            // width: '15%',
             align: 'center'
         },
         isLoggedIn === true
@@ -250,7 +250,7 @@ export const Notice_Notification = () => {
             : {
                   title: '조회',
                   dataIndex: 'rowdata4',
-                  width: '8%',
+                  //   width: '8%',
                   align: 'center'
               }
     ];
@@ -454,11 +454,11 @@ export const Notice_Notification = () => {
 
                             <Col
                                 xs={{
-                                    span: 24,
+                                    span: 20,
                                     offset: 1
                                 }}
                                 lg={{
-                                    span: 21,
+                                    span: 22,
                                     offset: 2
                                 }}
                                 style={{ marginLeft: '30px' }}
@@ -469,14 +469,14 @@ export const Notice_Notification = () => {
                             </Col>
                             <Col
                                 xs={{
-                                    span: 24,
+                                    span: 20,
                                     offset: 1
                                 }}
                                 lg={{
-                                    span: 21,
+                                    span: 22,
                                     offset: 2
                                 }}
-                                style={{ marginLeft: '45px' }}
+                                style={{ marginLeft: '30px' }}
                             >
                                 {isLoggedIn === true ? (
                                     <>

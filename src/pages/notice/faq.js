@@ -454,11 +454,11 @@ export const Notice_Faq = () => {
 
                             <Col
                                 xs={{
-                                    span: 24,
+                                    span: 20,
                                     offset: 1
                                 }}
                                 lg={{
-                                    span: 21,
+                                    span: 22,
                                     offset: 2
                                 }}
                                 style={{ marginLeft: '30px' }}
@@ -469,14 +469,14 @@ export const Notice_Faq = () => {
                             </Col>
                             <Col
                                 xs={{
-                                    span: 24,
+                                    span: 20,
                                     offset: 1
                                 }}
                                 lg={{
-                                    span: 21,
+                                    span: 22,
                                     offset: 2
                                 }}
-                                style={{ marginLeft: '45px' }}
+                                style={{ marginLeft: '30px' }}
                             >
                                 {isLoggedIn === true ? (
                                     <>

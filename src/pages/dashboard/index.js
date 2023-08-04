@@ -48,7 +48,7 @@ const DashboardDefault = () => {
                     >
                         {selectMainInfoListData.map((Idata, i) => (
                             <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
-                                <Col span={16}>{Idata.title}</Col>
+                                <Col span={16}>· {Idata.title}</Col>
                                 <Col span={8}>{Idata.insertDate}</Col>
                             </Row>
                         ))}
@@ -67,7 +67,7 @@ const DashboardDefault = () => {
                     >
                         {selectMainNoticeListData.map((Ndata, i) => (
                             <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
-                                <Col span={16}>{Ndata.title}</Col>
+                                <Col span={16}>· {Ndata.title}</Col>
                                 <Col span={68}>{Ndata.insertDate}</Col>
                             </Row>
                         ))}

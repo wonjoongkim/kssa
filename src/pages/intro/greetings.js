@@ -128,62 +128,52 @@ export const Intro_Greetings = () => {
                                 </Card>
                             </Col>
                         )}
-                        <Col xs={{ span: 24, order: 2 }} sm={{ span: 8, order: isMobileView ? 1 : 3 }}>
+                        <Col xs={{ span: 24, order: 1 }} sm={{ span: 8, order: isMobileView ? 1 : 3 }}>
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <img src={greetings} alt="" style={{ width: '87%' }} />
+                                <img src={greetings} alt="" style={{ width: '88%' }} />
                             </div>
                         </Col>
 
-                        <Col xs={{ span: 24, order: 1 }} sm={{ span: 16, order: isMobileView ? 2 : 4 }}>
+                        <Col xs={{ span: 24, order: 2 }} sm={{ span: 16, order: isMobileView ? 2 : 4 }}>
                             <div>
                                 <Typography>
-                                    <Title level={4}>최첨단 교육환경을 갖춘 선도적 교육기관!</Title>
+                                    <Paragraph>
+                                        <Title level={3}>항공보안 웹기반 CBT 서버</Title>
+                                        <Title level={4}>최첨단 교육환경을 갖춘 선도적 교육기관!</Title>
+                                    </Paragraph>
                                     <br />
+
                                     <Paragraph>
                                         안녕하십니까? <br />
                                         <br />
                                         한국보안인재개발원을 찾아주셔서 감사드립니다.
-                                        <br />
-                                        항공보안 분야 전문가들로 구성된 “대한민국항공보안협회”는 인공지능(AI) 기반 Web CBT(Computer based
-                                        Training)를 보유하고 있는 ㈜준과 협업하여 항공보안 전문교육기관인 한국보안인재개발원을 설립하게
-                                        되었습니다.
-                                        <br />
-                                        최근 공항에서 빈번하게 발생하고 있는 다양한 ***, *** 등의 보안검색 문제는 기존 CBT
-                                        교육프로그램만으로는 한계에 이르고 있음을 반증하고 있습니다.
                                     </Paragraph>
                                     <Paragraph>
-                                        본 인재개발원은
-                                        <br />
-                                        <br />
-                                        <Text strong>첫 번째,</Text> AI X-Ray 이미지 합성 기술을 적용하여 수억장의 X-Ray 이미지로 훈련할 수
-                                        있는 이미지를 제공하고, AI 3D X-Ray 생성 기술을 적용하여 다양한 각도에서 X-Ray 이미지를 반복학습할
-                                        수 있는 X-Ray 영상이미비를 제공합니다.
+                                        항공보안 분야 전문가들로 구성된 “대한민국항공보안협회”가 웹기반 CBT 최고의 기술을 보유하고 있는 ㈜
+                                        준 과의 협약으로 보안전문 교육기관을 설립하게 되었습니다.
                                     </Paragraph>
                                     <Paragraph>
-                                        <Text strong>두 번째,</Text> AI 강화학습 기술을 적용하여 교육생별 X-Ray 이미지 학습능력, 이미지
-                                        분석능력 등을 고려하여 부족한 X-Ray 이미지에 대한 강화학습 훈련을 적용함으로서 X-Ray 판독기술을 상향
-                                        평준화하여 교육생을 배출하겠습니다.
+                                        최근 공항에서 빈번히 발생하고 있는 보안검색 실패는 이제는 더 이상 구형 CBT(Computer based
+                                        Training)를 PC에 설치하여 교육하는 방식으로는 한계에 이르렀습니다.
                                     </Paragraph>
                                     <Paragraph>
-                                        <Text strong>세 번째,</Text> 현재 공항에서 운영하고 있는 양방향 X-Ray 장비를 교육현장에서 실습하고
-                                        운영할 수 있는 기술 교육을 실시하고, X-Ray 학습이미지도 양방향 X-Ray와 동일한 정면과 측면의 X-Ray
-                                        이미지를 통해 교육을 현실화 하겠습니다.
+                                        한국보안인재개발원은 보안검색 교육의 혁신 필요성을 인식하고 CBT 서버 프로그램에 수십명, 수백명이
+                                        동시에 접속하여, 교육생 필요 수 만큼 CBT 프로그램으로 반복 학습할 수 있도록 하였습니다.
                                     </Paragraph>
                                     <Paragraph>
-                                        <Text strong>네 번째,</Text> EOD(Explosive Ordnance Disposal) 장비를 구비하여 폭발물처리장치의
-                                        활용방법에 대한 확장교육을 실시하겠습니다.
+                                        전  현직의 우수한 보안전문 강사진과 앞서가는 기술력으로 언제든지 웹기반 CBT 서버 프로그램에
+                                        교육생이 접속하여 학습할 수 있는 최상의 교육 환경과 맞춤형 교육을 실현할 수 있는 교육기관입니다.
                                     </Paragraph>
                                     <Paragraph>
-                                        <Text strong>다섯 번째,</Text> 전·현직의 우수한 보안전문 강사진과 앞서가는 기술력으로 언제든지
-                                        웹기반 CBT 서버 프로그램에 교육생이 접속하여 학습할 수 있는 최상의 교육 환경과 맞춤형 교육을
-                                        실현하였습니다. 인재개발원은 최첨단 시설과 솔루션을 통해 전세계에서 가장 우수한 보안검색인력을
-                                        배출할 수 있는 항공보안과 안전에 밑거름이 될 수 있는 보안전문교육기기관으로서 선도적인 역활을
-                                        수행하겠습니다.
+                                        이러한 보안전문 프로그램을 통해 학생들의 학습 효과를 극대화하고, 항공보안 검색분야에서 향후 항만 
+                                        관세 등 보안 분야의 선도적인 역활을 수행하는 교육기관이 되겠습니다.
                                     </Paragraph>
                                     <Paragraph>감사합니다.</Paragraph>
+
+                                    <br />
                                     <br />
                                     <Paragraph>
-                                        <Title level={5}>한국보안인재개발원 원장 서일수</Title>
+                                        <Title level={4}>한국보안인재개발원 원장 서일수</Title>
                                     </Paragraph>
                                 </Typography>
                             </div>
