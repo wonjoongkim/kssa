@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 
 // 스크롤바 css
 import 'simplebar/src/simplebar.css';
@@ -23,9 +24,9 @@ const root = createRoot(container); // TypeScript를 사용하는 경우 createR
 root.render(
     <StrictMode>
         <ReduxProvider store={store}>
-            <BrowserRouter basename="/">
+            <Router basename="/">
                 <App />
-            </BrowserRouter>
+            </Router>
         </ReduxProvider>
     </StrictMode>
 );
