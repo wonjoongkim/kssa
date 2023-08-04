@@ -128,13 +128,13 @@ export const Intro_Greetings = () => {
                                 </Card>
                             </Col>
                         )}
-                        <Col xs={{ span: 24, order: 1 }} sm={{ span: 8, order: isMobileView ? 1 : 3 }}>
+                        <Col xs={{ span: 24, order: 1 }} sm={{ span: 8, order: isMobileView ? 1 : 4 }}>
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <img src={greetings} alt="" style={{ width: '88%' }} />
                             </div>
                         </Col>
 
-                        <Col xs={{ span: 24, order: 2 }} sm={{ span: 16, order: isMobileView ? 2 : 4 }}>
+                        <Col xs={{ span: 24, order: 2 }} sm={{ span: 14, order: isMobileView ? 2 : 3 }} style={{ marginLeft: '30px' }}>
                             <div>
                                 <Typography>
                                     <Paragraph>
@@ -172,8 +172,8 @@ export const Intro_Greetings = () => {
 
                                     <br />
                                     <br />
-                                    <Paragraph>
-                                        <Title level={4}>한국보안인재개발원 원장 서일수</Title>
+                                    <Paragraph style={{ letterSpacing: '1px' }}>
+                                        <Title level={4}>한국보안인재개발원장 서일수</Title>
                                     </Paragraph>
                                 </Typography>
                             </div>
