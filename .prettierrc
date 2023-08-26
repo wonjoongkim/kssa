@@ -4,5 +4,15 @@
     "singleQuote": true,
     "trailingComma": "none",
     "tabWidth": 4,
-    "useTabs": false
+    "useTabs": false,
+    "semi": true,
+    "quoteProps": "as-needed",
+    "jsxSingleQuote": false,
+    "arrowParens": "always",
+    "endOfLine": "lf",
+    "jsxBracketSameLine": false,
+    "requirePragma": false,
+    "insertPragma": false,
+    "proseWrap": "preserve",
+    "vueIndentScriptAndStyle": false
 }

@@ -528,7 +528,7 @@ export const Notice_Education = () => {
                 open={ModalOpenRe}
                 onOk={handleOk_Re}
                 closable={false}
-                width={780}
+                width={1080}
                 style={{
                     top: 320,
                     zIndex: 9999

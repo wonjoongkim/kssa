@@ -3,6 +3,10 @@ import { useInsertInfoMutation } from '../../hooks/api/BoardManagement/BoardMana
 import { useDropzone } from 'react-dropzone';
 import { DeleteOutlined, UploadOutlined } from '@ant-design/icons';
 import { Card, Button, Row, Col, Form, Input, Radio, Space, Divider, Typography, message, Tooltip, Modal } from 'antd';
+
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { Editor } from '@toast-ui/react-editor';
+
 const { TextArea } = Input;
 const { Text, Link } = Typography;
 
@@ -134,9 +138,16 @@ export const EducationRegister = (props) => {
         props.ModalClose();
     };
 
+    const handleChange = () => {
+        const editorInstance = contentsRef.current.getInstance();
+        const newContents = editorInstance.getMarkdown();
+        console.log(newContents);
+        setItemContainer({ ...itemContainer, contents: newContents });
+    };
+
     return (
         <>
-            <Card size="small" bordered={false} style={{ width: '100%', height: '470px', overflow: 'auto' }}>
+            <Card size="small" bordered={false} style={{ width: '100%', height: '490px', overflow: 'auto' }}>
                 <Card
                     type="inner"
                     title={
@@ -315,7 +326,42 @@ export const EducationRegister = (props) => {
                         >
                             <Row gutter={24}>
                                 <Col span={24}>
-                                    <TextArea
+                                    <div>
+                                        <Editor
+                                            ref={contentsRef}
+                                            initialValue={itemContainer?.contents || ' '} // 글 수정 시 사용
+                                            initialEditType="markdown" // wysiwyg & markdown
+                                            previewStyle="vertical"
+                                            hideModeSwitch={false}
+                                            height="400px"
+                                            usageStatistics={false}
+                                            useCommandShortcut={true}
+                                            name="contents"
+                                            onChange={handleChange}
+                                            // onChange={
+                                            //     (e) => console.log(e.getMarkdown())
+                                            //     // setItemContainer({ ...itemContainer, contents: e.target.value })
+                                            // }
+                                        />
+
+                                        {/* <Editor
+                                            ref={contentsRef}
+                                            name="contents"
+                                            // initialEditType="markdown"
+                                            previewStyle="vertical"
+                                            height="450px"
+                                            usageStatistics={false}
+                                            hooks={{
+                                                addImageBlobHook: async (blob, callback) => {
+                                                    const imageUrl = await handleImageUpload(blob);
+                                                    callback(imageUrl, 'alt text');
+                                                    return false;
+                                                }
+                                            }}
+                                            value={itemContainer?.contents}
+                                        /> */}
+                                    </div>
+                                    {/* <TextArea
                                         ref={contentsRef}
                                         rows={10}
                                         style={{
@@ -326,7 +372,7 @@ export const EducationRegister = (props) => {
                                         placeholder="# 내용 입력"
                                         onChange={(e) => setItemContainer({ ...itemContainer, contents: e.target.value })}
                                         value={itemContainer?.contents}
-                                    />
+                                    /> */}
                                 </Col>
                             </Row>
                         </Form.Item>
