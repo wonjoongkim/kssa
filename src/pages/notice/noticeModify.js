@@ -3,6 +3,14 @@ import { useSelectNoticeMutation, useUpdateNoticeMutation } from '../../hooks/ap
 import { useDropzone } from 'react-dropzone';
 import { DeleteOutlined, UploadOutlined } from '@ant-design/icons';
 import { Card, Button, Row, Col, Form, Input, Radio, Space, Divider, Typography, message, Tooltip, Modal } from 'antd';
+
+import '@toast-ui/editor/dist/i18n/ko-kr';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+import 'tui-color-picker/dist/tui-color-picker.css';
+import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
+import { Editor } from '@toast-ui/react-editor';
+
 const { TextArea } = Input;
 const { Text, Link } = Typography;
 
@@ -10,10 +18,8 @@ export const NoticeModify = (props) => {
     const { confirm } = Modal;
     const [form] = Form.useForm();
     const titleRef = useRef(null);
-    const contentsRef = useRef(null);
-
+    const editorRef = useRef(null);
     const [itemContainer, setItemContainer] = useState({}); // 항목 컨테이너
-
     const [command, setCommand] = useState('false'); // 파일 업로드 여부
     const [uploadedFiles, setUploadedFiles] = useState([]); // 파일 업로드 값
     const [selectedFiles, setSelectedFiles] = useState([]); // 파일 업로드
@@ -24,7 +30,7 @@ export const NoticeModify = (props) => {
         const SelectNoticeResponse = await SelectNoticeApi({
             seqId: props.seqIdProps
         });
-        console.log(SelectNoticeResponse?.data?.RET_DATA);
+        editorRef.current?.getInstance().setMarkdown(SelectNoticeResponse?.data?.RET_DATA.contents);
         setItemContainer(SelectNoticeResponse?.data?.RET_DATA);
         setUploadedFiles(SelectNoticeResponse?.data?.RET_DATA.fileList);
     };
@@ -133,8 +139,8 @@ export const NoticeModify = (props) => {
                   style: { top: 320 },
                   onOk() {},
                   afterClose() {
-                      if (contentsRef.current) {
-                          contentsRef.current.focus(); // 모달이 닫힌 후에도 포커스를 유지합니다.
+                      if (editorRef.current) {
+                          editorRef.current.focus(); // 모달이 닫힌 후에도 포커스를 유지합니다.
                       }
                   }
               })
@@ -207,9 +213,7 @@ export const NoticeModify = (props) => {
                                             message: '사용여부'
                                         }
                                     ]}
-                                    initialValue={
-                                        itemContainer?.useYn === undefined || itemContainer?.useYn === 'N' ? 'Y' : itemContainer?.useYn
-                                    }
+                                    initialValue={itemContainer?.useYn}
                                 >
                                     <Radio.Group
                                         name="useYn"
@@ -335,17 +339,24 @@ export const NoticeModify = (props) => {
                         >
                             <Row gutter={24}>
                                 <Col span={24}>
-                                    <TextArea
-                                        ref={contentsRef}
-                                        rows={10}
-                                        style={{
-                                            width: '100%'
-                                        }}
-                                        showCount
+                                    <Editor
+                                        ref={editorRef}
+                                        initialValue={itemContainer?.contents} // 글 수정 시 사용
+                                        initialEditType="markdown" // wysiwyg & markdown
+                                        previewStyle="vertical"
+                                        hideModeSwitch={false}
+                                        height="400px"
+                                        usageStatistics={false}
+                                        useCommandShortcut={true}
                                         name="contents"
-                                        placeholder="# 내용 입력"
-                                        onChange={(e) => setItemContainer({ ...itemContainer, contents: e.target.value })}
-                                        value={itemContainer?.contents}
+                                        onChange={() =>
+                                            setItemContainer({
+                                                ...itemContainer,
+                                                contents: editorRef.current.getInstance().getMarkdown()
+                                            })
+                                        }
+                                        plugins={[colorSyntax]}
+                                        language="ko-KR"
                                     />
                                 </Col>
                             </Row>

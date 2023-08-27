@@ -546,7 +546,7 @@ export const Notice_Education = () => {
                 open={ModalOpenMo}
                 onOk={handleOk_Mo}
                 closable={false}
-                width={780}
+                width={1080}
                 style={{
                     top: 320,
                     zIndex: 9999
@@ -565,7 +565,7 @@ export const Notice_Education = () => {
                 onOk={handleOk_Vi}
                 closable={true}
                 onCancel={handleCancel_Vi}
-                width={780}
+                width={1080}
                 style={{
                     top: 320,
                     zIndex: 9999
@@ -573,7 +573,7 @@ export const Notice_Education = () => {
                 footer={null}
                 getContainer={() => document.body}
             >
-                <EducationView ModalClose={handleCancel_Vi} seqIdValue={seqIdValue} />
+                <EducationView ModalClose={handleCancel_Vi} datetime={minutes + seconds} seqIdValue={seqIdValue} />
             </Modal>
             {/* 교육안내 상세정보 모달 창 End */}
         </>

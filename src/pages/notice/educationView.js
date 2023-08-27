@@ -4,12 +4,18 @@ import { Card, Typography, Tooltip } from 'antd';
 import { useSelectInfoMutation } from '../../hooks/api/BoardManagement/BoardManagement';
 import { Space } from '../../../node_modules/antd/lib/index';
 import { FileDoneOutlined } from '@ant-design/icons';
+
+import { Viewer } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+
 const { Title, Paragraph, Text, Link } = Typography;
 
 export const EducationView = (props) => {
     // 교육안내 상세조회
     const [SelectInfoApi] = useSelectInfoMutation();
     const [selectInfoData, setSelectInfoData] = useState([]);
+    const [viewerKey, setViewerKey] = useState(0); // Key 상태 추가
+
     const SelectInfo_ApiCall = async () => {
         const SelectInfoResponse = await SelectInfoApi({
             seqId: props.seqIdValue
@@ -20,6 +26,10 @@ export const EducationView = (props) => {
     useEffect(() => {
         SelectInfo_ApiCall();
     }, [props.seqIdValue]);
+
+    useEffect(() => {
+        setViewerKey((prevKey) => prevKey + 1); // Key 업데이트
+    }, [selectInfoData.contents]);
 
     return (
         <>
@@ -72,7 +82,7 @@ export const EducationView = (props) => {
                         </>
                     }
                 >
-                    <pre style={{ fontFamily: 'SUIT' }}>{selectInfoData.contents}</pre>
+                    <Viewer key={viewerKey} style={{ fontFamily: 'SUIT' }} initialValue={selectInfoData.contents} />
                 </Card>
             </Card>
         </>

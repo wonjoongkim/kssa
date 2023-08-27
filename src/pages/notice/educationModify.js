@@ -3,6 +3,14 @@ import { useSelectInfoMutation, useUpdateInfoMutation } from '../../hooks/api/Bo
 import { useDropzone } from 'react-dropzone';
 import { DeleteOutlined, UploadOutlined } from '@ant-design/icons';
 import { Card, Button, Row, Col, Form, Input, Radio, Space, Divider, Typography, message, Tooltip, Modal } from 'antd';
+
+import '@toast-ui/editor/dist/i18n/ko-kr';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+import 'tui-color-picker/dist/tui-color-picker.css';
+import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
+import { Editor } from '@toast-ui/react-editor';
+
 const { TextArea } = Input;
 const { Text, Link } = Typography;
 
@@ -10,10 +18,8 @@ export const EducationModify = (props) => {
     const { confirm } = Modal;
     const [form] = Form.useForm();
     const titleRef = useRef(null);
-    const contentsRef = useRef(null);
-
-    const [itemContainer, setItemContainer] = useState({}); // 항목 컨테이너
-
+    const editorRef = useRef(null);
+    const [itemContainer, setItemContainer] = useState([]); // 항목 컨테이너
     const [command, setCommand] = useState('false'); // 파일 업로드 여부
     const [uploadedFiles, setUploadedFiles] = useState([]); // 파일 업로드 값
     const [selectedFiles, setSelectedFiles] = useState([]); // 파일 업로드
@@ -24,6 +30,7 @@ export const EducationModify = (props) => {
         const SelectInfoResponse = await SelectInfoApi({
             seqId: props.seqIdProps
         });
+        editorRef.current?.getInstance().setMarkdown(SelectInfoResponse?.data?.RET_DATA.contents);
         setItemContainer(SelectInfoResponse?.data?.RET_DATA);
         setUploadedFiles(SelectInfoResponse?.data?.RET_DATA.fileList);
     };
@@ -130,8 +137,8 @@ export const EducationModify = (props) => {
                   style: { top: 320 },
                   onOk() {},
                   afterClose() {
-                      if (contentsRef.current) {
-                          contentsRef.current.focus(); // 모달이 닫힌 후에도 포커스를 유지합니다.
+                      if (editorRef.current) {
+                          editorRef.current.focus(); // 모달이 닫힌 후에도 포커스를 유지합니다.
                       }
                   }
               })
@@ -148,6 +155,37 @@ export const EducationModify = (props) => {
     useEffect(() => {
         SelectInfo_ApiCall();
     }, [props.seqIdProps, props.datetime]);
+
+    // useEffect(() => {
+    //     if (editorRef.current) {
+    //         // 기존 훅 제거
+    //         editorRef.current.getInstance().removeHook('addImageBlobHook');
+    //         // 새로운 훅 추가
+    //         editorRef.current.getInstance().addHook('addImageBlobHook', (blob, callback) => {
+    //             (async () => {
+    //                 let formData = new FormData();
+    //                 formData.append('image', blob);
+
+    //                 console.log('이미지가 업로드 됐습니다.');
+
+    //                 await axios.post(`{저장할 서버 api}`, formData, {
+    //                     header: { 'content-type': 'multipart/formdata' },
+    //                     withCredentials: true
+    //                 });
+
+    //                 const imageUrl = '저장된 서버 주소' + blob.name;
+
+    //                 setImages([...images, imageUrl]);
+    //                 callback(imageUrl, 'image');
+    //             })();
+
+    //             return false;
+    //         });
+    //     }
+
+    //     return () => {};
+    // }, [editorRef]);
+    console.log(itemContainer);
 
     return (
         <>
@@ -204,24 +242,26 @@ export const EducationModify = (props) => {
                                             message: '사용여부'
                                         }
                                     ]}
-                                    initialValue={
-                                        itemContainer?.useYn === undefined || itemContainer?.useYn === 'N' ? 'Y' : itemContainer?.useYn
-                                    }
+                                    initialValue={itemContainer?.useYn}
                                 >
-                                    <Radio.Group
-                                        name="useYn"
-                                        onChange={(e) => setItemContainer({ ...itemContainer, useYn: e.target.value })}
-                                        buttonStyle="solid"
-                                        value={itemContainer?.useYn}
-                                    >
-                                        <Radio.Button value="Y">
-                                            <span style={{ padding: '0 15px' }}>사용</span>
-                                        </Radio.Button>
-                                        <span style={{ padding: '0 10px' }}></span>
-                                        <Radio.Button value="N">
-                                            <span style={{ padding: '0 15px' }}>미사용</span>
-                                        </Radio.Button>
-                                    </Radio.Group>
+                                    <Row gutter={24}>
+                                        <Col xs={24}>
+                                            <Radio.Group
+                                                name="useYn"
+                                                onChange={(e) => setItemContainer({ ...itemContainer, useYn: e.target.value })}
+                                                buttonStyle="solid"
+                                                value={itemContainer?.useYn}
+                                            >
+                                                <Radio.Button value="Y">
+                                                    <span style={{ padding: '0 15px' }}>사용</span>
+                                                </Radio.Button>
+                                                <span style={{ padding: '0 10px' }}></span>
+                                                <Radio.Button value="N">
+                                                    <span style={{ padding: '0 15px' }}>미사용</span>
+                                                </Radio.Button>
+                                            </Radio.Group>
+                                        </Col>
+                                    </Row>
                                 </Form.Item>
                             </Col>
                         </Row>
@@ -239,10 +279,10 @@ export const EducationModify = (props) => {
                             <Row gutter={24}>
                                 <Col xs={24}>
                                     <Input
-                                        ref={titleRef}
                                         style={{
                                             width: '100%'
                                         }}
+                                        ref={titleRef}
                                         name="title"
                                         placeholder="# 제목 입력"
                                         onChange={(e) => setItemContainer({ ...itemContainer, title: e.target.value })}
@@ -252,7 +292,6 @@ export const EducationModify = (props) => {
                             </Row>
                         </Form.Item>
                         <Divider style={{ margin: '10px 0' }} />
-
                         <Form.Item
                             name="form03"
                             label="파일 업로드"
@@ -332,22 +371,28 @@ export const EducationModify = (props) => {
                         >
                             <Row gutter={24}>
                                 <Col span={24}>
-                                    <TextArea
-                                        ref={contentsRef}
-                                        rows={10}
-                                        style={{
-                                            width: '100%'
-                                        }}
-                                        showCount
+                                    <Editor
+                                        ref={editorRef}
+                                        initialValue={itemContainer?.contents} // 글 수정 시 사용
+                                        initialEditType="markdown" // wysiwyg & markdown
+                                        previewStyle="vertical"
+                                        hideModeSwitch={false}
+                                        height="400px"
+                                        usageStatistics={false}
+                                        useCommandShortcut={true}
                                         name="contents"
-                                        placeholder="# 내용 입력"
-                                        onChange={(e) => setItemContainer({ ...itemContainer, contents: e.target.value })}
-                                        value={itemContainer?.contents}
+                                        onChange={() =>
+                                            setItemContainer({
+                                                ...itemContainer,
+                                                contents: editorRef.current.getInstance().getMarkdown()
+                                            })
+                                        }
+                                        plugins={[colorSyntax]}
+                                        language="ko-KR"
                                     />
                                 </Col>
                             </Row>
                         </Form.Item>
-
                         <Row gutter={24}>
                             <Col span={24}>
                                 <Space style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -363,7 +408,6 @@ export const EducationModify = (props) => {
                                     >
                                         취소
                                     </Button>
-
                                     <Button
                                         style={{
                                             display: 'flex',

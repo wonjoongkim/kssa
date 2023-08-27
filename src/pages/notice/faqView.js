@@ -4,12 +4,18 @@ import { Card, Typography, Tooltip } from 'antd';
 import { useSelectFAQMutation } from '../../hooks/api/BoardManagement/BoardManagement';
 import { Space } from '../../../node_modules/antd/lib/index';
 import { FileDoneOutlined } from '@ant-design/icons';
+
+import { Viewer } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+
 const { Title, Paragraph, Text, Link } = Typography;
 
 export const FaqView = (props) => {
     // 공지사항 상세조회
     const [SelectFAQApi] = useSelectFAQMutation();
     const [selectFAQData, setSelectFAQData] = useState([]);
+    const [viewerKey, setViewerKey] = useState(0); // Key 상태 추가
+
     const SelectFAQ_ApiCall = async () => {
         const SelectFAQResponse = await SelectFAQApi({
             seqId: props.seqIdValue
@@ -20,6 +26,10 @@ export const FaqView = (props) => {
     useEffect(() => {
         SelectFAQ_ApiCall();
     }, [props.seqIdValue]);
+
+    useEffect(() => {
+        setViewerKey((prevKey) => prevKey + 1); // Key 업데이트
+    }, [selectFAQData.contents]);
 
     return (
         <>
@@ -72,7 +82,7 @@ export const FaqView = (props) => {
                         </>
                     }
                 >
-                    <pre style={{ fontFamily: 'SUIT' }}>{selectFAQData.contents}</pre>
+                    <Viewer key={viewerKey} style={{ fontFamily: 'SUIT' }} initialValue={selectFAQData.contents} />
                 </Card>
             </Card>
         </>

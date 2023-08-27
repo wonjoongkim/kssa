@@ -530,7 +530,7 @@ export const Notice_Notification = () => {
                 open={ModalOpenRe}
                 onOk={handleOk_Re}
                 closable={false}
-                width={780}
+                width={1080}
                 style={{
                     top: 320,
                     zIndex: 9999
@@ -548,7 +548,7 @@ export const Notice_Notification = () => {
                 open={ModalOpenMo}
                 onOk={handleOk_Mo}
                 closable={false}
-                width={780}
+                width={1080}
                 style={{
                     top: 320,
                     zIndex: 9999
@@ -567,7 +567,7 @@ export const Notice_Notification = () => {
                 onOk={handleOk_Vi}
                 closable={true}
                 onCancel={handleCancel_Vi}
-                width={780}
+                width={1080}
                 style={{
                     top: 320,
                     zIndex: 9999
@@ -575,7 +575,7 @@ export const Notice_Notification = () => {
                 footer={null}
                 getContainer={() => document.body}
             >
-                <NoticeView ModalClose={handleCancel_Vi} seqIdValue={seqIdValue} />
+                <NoticeView ModalClose={handleCancel_Vi} datetime={minutes + seconds} seqIdValue={seqIdValue} />
             </Modal>
             {/* Notice 상세정보 모달 창 End */}
         </>

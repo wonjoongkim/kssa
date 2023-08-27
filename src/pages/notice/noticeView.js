@@ -4,12 +4,18 @@ import { Card, Typography, Tooltip } from 'antd';
 import { useSelectNoticeMutation } from '../../hooks/api/BoardManagement/BoardManagement';
 import { Space } from '../../../node_modules/antd/lib/index';
 import { FileDoneOutlined } from '@ant-design/icons';
+
+import { Viewer } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+
 const { Title, Paragraph, Text, Link } = Typography;
 
 export const NoticeView = (props) => {
     // 공지사항 상세조회
     const [SelectNoticeApi] = useSelectNoticeMutation();
     const [selectNoticeData, setSelectNoticeData] = useState([]);
+    const [viewerKey, setViewerKey] = useState(0); // Key 상태 추가
+
     const SelectNotice_ApiCall = async () => {
         const SelectNoticeResponse = await SelectNoticeApi({
             seqId: props.seqIdValue
@@ -20,6 +26,10 @@ export const NoticeView = (props) => {
     useEffect(() => {
         SelectNotice_ApiCall();
     }, [props.seqIdValue]);
+
+    useEffect(() => {
+        setViewerKey((prevKey) => prevKey + 1); // Key 업데이트
+    }, [selectNoticeData.contents]);
 
     return (
         <>
@@ -74,7 +84,7 @@ export const NoticeView = (props) => {
                         </>
                     }
                 >
-                    <pre style={{ fontFamily: 'SUIT' }}>{selectNoticeData.contents}</pre>
+                    <Viewer key={viewerKey} style={{ fontFamily: 'SUIT' }} initialValue={selectNoticeData.contents} />
                 </Card>
             </Card>
         </>
