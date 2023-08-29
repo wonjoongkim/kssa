@@ -17,3 +17,15 @@
 # 테이터 HTMl 파싱 : npm install react-html-parser
 
 # 모듈 에러시 : npm install buffer
+
+###
+
+# 삭제
+
+# yarn remove @ckeditor/ckeditor5-react
+
+# yarn remove @ckeditor/ckeditor5-build-classic
+
+# yarn remove react-html-parser
+
+# yarn remove buffer
