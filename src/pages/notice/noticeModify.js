@@ -10,6 +10,7 @@ import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import { Editor } from '@toast-ui/react-editor';
+import '../../Style.css';
 
 const { TextArea } = Input;
 const { Text, Link } = Typography;
@@ -19,6 +20,7 @@ export const NoticeModify = (props) => {
     const [form] = Form.useForm();
     const titleRef = useRef(null);
     const editorRef = useRef(null);
+
     const [itemContainer, setItemContainer] = useState({}); // 항목 컨테이너
     const [command, setCommand] = useState('false'); // 파일 업로드 여부
     const [uploadedFiles, setUploadedFiles] = useState([]); // 파일 업로드 값
@@ -52,7 +54,6 @@ export const NoticeModify = (props) => {
         Object.values(selectedFiles).forEach((Noticefiles) => {
             formData.append('files', Noticefiles);
         });
-
         const UpdateNoticeResponse = await UpdateNoticeApi(formData);
         UpdateNoticeResponse?.data?.RET_CODE === '0100'
             ? Modal.success({
@@ -341,18 +342,19 @@ export const NoticeModify = (props) => {
                                 <Col span={24}>
                                     <Editor
                                         ref={editorRef}
-                                        initialValue={itemContainer?.contents} // 글 수정 시 사용
-                                        initialEditType="markdown" // wysiwyg & markdown
-                                        previewStyle="vertical"
+                                        initialValue={' '} // 글 수정 시 사용
+                                        initialEditType="wysiwyg" // wysiwyg & markdown
+                                        // previewStyle="vertical"
                                         hideModeSwitch={false}
                                         height="400px"
                                         usageStatistics={false}
                                         useCommandShortcut={true}
                                         name="contents"
+                                        // onChange={handleChange}
                                         onChange={() =>
                                             setItemContainer({
                                                 ...itemContainer,
-                                                contents: editorRef.current.getInstance().getMarkdown()
+                                                contents: editorRef.current?.getInstance().getHTML()
                                             })
                                         }
                                         plugins={[colorSyntax]}

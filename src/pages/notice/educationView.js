@@ -7,6 +7,7 @@ import { FileDoneOutlined } from '@ant-design/icons';
 
 import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+import '../../Style.css';
 
 const { Title, Paragraph, Text, Link } = Typography;
 

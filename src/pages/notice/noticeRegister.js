@@ -11,6 +11,11 @@ import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import { Editor } from '@toast-ui/react-editor';
 
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+import '../../Style.css';
+
 const { TextArea } = Input;
 const { Text, Link } = Typography;
 
@@ -25,10 +30,39 @@ export const NoticeRegister = (props) => {
     const [uploadedFiles, setUploadedFiles] = useState([]); // 파일 업로드 값
     const [selectedFiles, setSelectedFiles] = useState([]); // 파일 업로드
 
+    const customUploadAdapter = (loader) => {
+        return {
+            upload() {
+                return new Promise((resolve, reject) => {
+                    const formData = new FormData();
+                    loader.file.then((file) => {
+                        formData.append('file', file);
+                        console.log(formData);
+                        axios
+                            .post('http://localhost:3000/uploadImages/b0', formData)
+                            .then((res) => {
+                                resolve({
+                                    default: res.data.data.uri
+                                });
+                            })
+                            .catch((err) => reject(err));
+                    });
+                });
+            }
+        };
+    };
+
+    function uploadPlugin(editor) {
+        editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+            return customUploadAdapter(loader);
+        };
+    }
+
     // 공지사항 등록
     const [InsertNoticeApi] = useInsertNoticeMutation();
     const InsertNotice_ApiCall = async () => {
         let formData = new FormData();
+
         const params = {
             title: itemContainer.title,
             contents: itemContainer.contents,
@@ -41,7 +75,6 @@ export const NoticeRegister = (props) => {
             formData.append('files', Noticefiles);
         });
 
-        console.log(formData);
         const InsertNoticeResponse = await InsertNoticeApi(formData);
         InsertNoticeResponse?.data?.RET_CODE === '0100'
             ? Modal.success({
@@ -325,11 +358,152 @@ export const NoticeRegister = (props) => {
                                 >
                                     <Row gutter={24}>
                                         <Col span={24}>
+                                            {/* <CKEditor
+                                                editor={ClassicEditor}
+                                                config={{
+                                                    placeholder: '내용을 입력하세요.',
+                                                    toolbar: {
+                                                        items: [
+                                                            'undo',
+                                                            'redo',
+                                                            '|',
+                                                            'heading',
+                                                            '|',
+                                                            'fontfamily',
+                                                            'fontSize',
+                                                            'fontColor',
+                                                            'fontBackgroundColor',
+                                                            '|',
+                                                            'bold',
+                                                            'italic',
+                                                            'strikethrough',
+                                                            'subscript',
+                                                            'superscript',
+                                                            'code',
+                                                            '|',
+                                                            'link',
+                                                            'uploadImage',
+                                                            'imageInsert',
+                                                            'blockQuote',
+                                                            'mediaEmbed',
+                                                            'codeBlock',
+                                                            '|',
+                                                            'alignment',
+                                                            'bulletedList',
+                                                            'numberedList',
+                                                            'todoList',
+                                                            'outdent',
+                                                            'indent',
+                                                            '|',
+                                                            'insertTable',
+                                                            'tableColumn',
+                                                            'tableRow',
+                                                            'mergeTableCells',
+                                                            '|',
+                                                            'highlight',
+                                                            'selectAll',
+                                                            'removeFormat'
+                                                        ],
+                                                        shouldNotGroupWhenFull: false
+                                                    },
+                                                    extraPlugins: [uploadPlugin],
+                                                    heading: {
+                                                        options: [
+                                                            {
+                                                                model: 'paragraph',
+                                                                view: 'p',
+                                                                title: '본문',
+                                                                class: 'ck-heading_paragraph'
+                                                            },
+                                                            {
+                                                                model: 'heading1',
+                                                                view: 'h1',
+                                                                title: '헤더1',
+                                                                class: 'ck-heading_heading1'
+                                                            },
+                                                            {
+                                                                model: 'heading2',
+                                                                view: 'h2',
+                                                                title: '헤더2',
+                                                                class: 'ck-heading_heading2'
+                                                            },
+                                                            {
+                                                                model: 'heading3',
+                                                                view: 'h3',
+                                                                title: '헤더3',
+                                                                class: 'ck-heading_heading3'
+                                                            },
+                                                            {
+                                                                model: 'heading4',
+                                                                view: 'h4',
+                                                                title: '헤더4',
+                                                                class: 'ck-heading_heading4'
+                                                            },
+                                                            {
+                                                                model: 'heading5',
+                                                                view: 'h5',
+                                                                title: '헤더5',
+                                                                class: 'ck-heading_heading5'
+                                                            }
+                                                        ]
+                                                    },
+                                                    fontSize: {
+                                                        options: [
+                                                            9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
+                                                            29, 30
+                                                        ]
+                                                    },
+                                                    alignment: {
+                                                        options: ['justify', 'left', 'center', 'right']
+                                                    },
+                                                    table: {
+                                                        contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+                                                    },
+                                                    image: {
+                                                        resizeUnit: 'px',
+                                                        toolbar: [
+                                                            'imageStyle:alignLeft',
+                                                            'imageStyle:full',
+                                                            'imageStyle:alignRight',
+                                                            '|',
+                                                            'imageTextAlternative'
+                                                        ],
+                                                        styles: ['full', 'alignLeft', 'alignRight']
+                                                    },
+                                                    typing: {
+                                                        transformations: {
+                                                            remove: [
+                                                                'enDash',
+                                                                'emDash',
+                                                                'oneHalf',
+                                                                'oneThird',
+                                                                'twoThirds',
+                                                                'oneForth',
+                                                                'threeQuarters'
+                                                            ]
+                                                        }
+                                                    }
+                                                }}
+                                                onReady={(editor) => {
+                                                    // You can store the "editor" and use when it is needed.
+                                                    console.log('Editor is ready to use!', editor);
+                                                }}
+                                                onChange={(event, editor) => {
+                                                    const data = editor.getData();
+                                                    console.log({ event, editor, data });
+                                                }}
+                                                onBlur={(event, editor) => {
+                                                    console.log('Blur.', editor);
+                                                }}
+                                                onFocus={(event, editor) => {
+                                                    console.log('Focus.', editor);
+                                                }}
+                                            /> */}
                                             <Editor
                                                 ref={editorRef}
                                                 initialValue={' '} // 글 수정 시 사용
-                                                initialEditType="markdown" // wysiwyg & markdown
-                                                previewStyle="vertical"
+                                                initialEditType="wysiwyg" // wysiwyg & markdown
+                                                // previewStyle="vertical"
                                                 hideModeSwitch={false}
                                                 height="400px"
                                                 usageStatistics={false}
@@ -339,7 +513,7 @@ export const NoticeRegister = (props) => {
                                                 onChange={() =>
                                                     setItemContainer({
                                                         ...itemContainer,
-                                                        contents: editorRef.current.getInstance().getMarkdown()
+                                                        contents: editorRef.current?.getInstance().getHTML()
                                                     })
                                                 }
                                                 plugins={[colorSyntax]}

@@ -14,7 +14,7 @@ import {
 import Highlighter from 'react-highlight-words';
 
 import { useNavigate } from 'react-router-dom';
-import './style.css';
+import '../../Style.css';
 
 import { EducationRegister } from 'pages/notice/educationRegister';
 import { EducationModify } from 'pages/notice/educationModify';

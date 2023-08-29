@@ -14,7 +14,7 @@ import {
 import Highlighter from 'react-highlight-words';
 
 import { useNavigate } from 'react-router-dom';
-import './style.css';
+import '../../Style.css';
 
 import { FaqRegister } from 'pages/notice/faqRegister';
 import { FaqModify } from 'pages/notice/faqModify';

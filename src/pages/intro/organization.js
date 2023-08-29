@@ -4,6 +4,7 @@ import { CaretRightOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
 import organization from '../../images/organization.png';
+import '../../Style.css';
 
 const { Title, Paragraph, Text, Link } = Typography;
 const { Sider, Content } = Layout;

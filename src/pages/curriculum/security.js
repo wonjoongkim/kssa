@@ -4,7 +4,7 @@ import { CaretRightOutlined, AppstoreOutlined, BlockOutlined, RightCircleFilled,
 import { useNavigate } from 'react-router-dom';
 import facilities from '../../images/facilities.png';
 
-import './style.css';
+import '../../Style.css';
 
 const { Title, Paragraph, Text, Link } = Typography;
 const { Sider, Content } = Layout;

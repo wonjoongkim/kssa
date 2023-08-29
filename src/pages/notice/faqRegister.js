@@ -10,6 +10,7 @@ import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import { Editor } from '@toast-ui/react-editor';
+import '../../Style.css';
 
 const { TextArea } = Input;
 const { Text, Link } = Typography;
@@ -326,8 +327,8 @@ export const FaqRegister = (props) => {
                                     <Editor
                                         ref={editorRef}
                                         initialValue={' '} // 글 수정 시 사용
-                                        initialEditType="markdown" // wysiwyg & markdown
-                                        previewStyle="vertical"
+                                        initialEditType="wysiwyg" // wysiwyg & markdown
+                                        // previewStyle="vertical"
                                         hideModeSwitch={false}
                                         height="400px"
                                         usageStatistics={false}
@@ -337,7 +338,7 @@ export const FaqRegister = (props) => {
                                         onChange={() =>
                                             setItemContainer({
                                                 ...itemContainer,
-                                                contents: editorRef.current.getInstance().getMarkdown()
+                                                contents: editorRef.current?.getInstance().getHTML()
                                             })
                                         }
                                         plugins={[colorSyntax]}

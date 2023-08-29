@@ -35,6 +35,7 @@ import { useUserToken } from '../../hooks/core/UserToken';
 import { useLoginMutation } from '../../hooks/api/LoginManagement/LoginManagement';
 // import { useLocalStorage } from '../../../hooks/misc/LocalStorage';
 // ============================|| FIREBASE - LOGIN ||============================ //
+import '../../Style.css';
 
 export const Admin_Login = () => {
     const navigate = useNavigate();
@@ -77,7 +78,7 @@ export const Admin_Login = () => {
     };
 
     return (
-        <>
+        <div>
             <Formik
                 initialValues={{
                     id: '',
@@ -191,6 +192,6 @@ export const Admin_Login = () => {
                     </form>
                 )}
             </Formik>
-        </>
+        </div>
     );
 };

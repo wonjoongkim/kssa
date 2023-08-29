@@ -4,7 +4,7 @@ import { CaretRightOutlined, AppstoreOutlined, BlockOutlined, RightCircleFilled,
 import { useNavigate } from 'react-router-dom';
 import facilities from '../../images/facilities.png';
 
-import './style.css';
+import '../../Style.css';
 
 const { Title, Paragraph, Text, Link } = Typography;
 const { Sider, Content } = Layout;
@@ -174,15 +174,17 @@ export const Training_Reason = () => {
                                                             경우를 말한다]를 주어 실시하는 직업능력개발 훈련
                                                         </li>
                                                     </ol>
-                                                    <code>가</code> 우선지원 대상기업의 사업주나 상시 사용하는 근로자 수가 150명 미만인
-                                                    사업주가 해당 근로자를 대상으로 계속하여 7일 이상의 유급휴가를 주어 30시간 이상의 훈련을
-                                                    실시할 것
-                                                    <br /> <code>나</code> 가목에 해당하지 아니하는 사업주가 1년 이상 재직하고 있는 근로자를
-                                                    대상으로 30일 이상의 유급 휴가를 주어 120시간 이상의 훈련을 실시할 것
+                                                    <code style={{ lineHeight: '45px' }}>가</code> 우선지원 대상기업의 사업주나 상시
+                                                    사용하는 근로자 수가 150명 미만인 사업주가 해당 근로자를 대상으로 계속하여 7일 이상의
+                                                    유급휴가를 주어 30시간 이상의 훈련을 실시할 것
                                                     <br />
-                                                    <code>다</code> 사업주가 기능ㆍ기술을 장려하기 위하여 근로자 중 생산직 또는 관련 직에
-                                                    종사하는 근로자로서 고용노동부장관이 고시하는 자를 대상으로 유급휴가를 주어 20시간
-                                                    이상의 훈련을 실시할 것
+                                                    <code style={{ lineHeight: '45px' }}>나</code> 가목에 해당하지 아니하는 사업주가 1년
+                                                    이상 재직하고 있는 근로자를 대상으로 30일 이상의 유급 휴가를 주어 120시간 이상의 훈련을
+                                                    실시할 것
+                                                    <br />
+                                                    <code style={{ lineHeight: '45px' }}>다</code> 사업주가 기능ㆍ기술을 장려하기 위하여
+                                                    근로자 중 생산직 또는 관련 직에 종사하는 근로자로서 고용노동부장관이 고시하는 자를
+                                                    대상으로 유급휴가를 주어 20시간 이상의 훈련을 실시할 것
                                                     <br />※ 고용노동부지정 직업훈련개발과정에 대한 보다 자세한 사항은 http://www.hrd.go.kr을
                                                     참조하시기 바랍니다.
                                                 </li>

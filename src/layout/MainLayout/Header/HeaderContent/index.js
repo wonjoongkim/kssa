@@ -107,7 +107,7 @@ const HeaderContent = () => {
                         </Grid>
                         <Grid item>
                             <Box>
-                                <Typography variant="body1" style={{ fontSize: '12px' }}>
+                                <Typography variant="body1" style={{ fontSize: '0.95rem' }}>
                                     <Link to="/" style={linkStyle}>
                                         Home
                                     </Link>{' '}
@@ -157,11 +157,12 @@ const HeaderContent = () => {
                                     cursor: 'pointer',
                                     fontWeight: 'bold',
                                     border: 'none',
-                                    background: 'none'
+                                    background: 'none',
+                                    fontSize: '0.95rem'
                                 }}
                                 onClick={() => handleSubItemClick(item.path)}
                             >
-                                <AppstoreOutlined style={{ marginRight: '4px' }} /> {item.name}
+                                {item.name}
                             </Button>
                             {activeMenu === item.name && (
                                 <div

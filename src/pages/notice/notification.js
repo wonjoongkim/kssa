@@ -15,7 +15,7 @@ import {
 import Highlighter from 'react-highlight-words';
 
 import { useNavigate } from 'react-router-dom';
-import './style.css';
+import '../../Style.css';
 
 import { NoticeRegister } from 'pages/notice/noticeRegister';
 import { NoticeModify } from 'pages/notice/noticeModify';
@@ -567,7 +567,7 @@ export const Notice_Notification = () => {
                 onOk={handleOk_Vi}
                 closable={true}
                 onCancel={handleCancel_Vi}
-                width={1080}
+                width={780}
                 style={{
                     top: 320,
                     zIndex: 9999

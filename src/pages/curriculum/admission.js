@@ -4,7 +4,7 @@ import { CaretRightOutlined, AppstoreOutlined, BlockOutlined, RightCircleFilled,
 import { useNavigate } from 'react-router-dom';
 import facilities from '../../images/facilities.png';
 
-import './style.css';
+import '../../Style.css';
 
 const { Title, Paragraph, Text, Link } = Typography;
 const { Sider, Content } = Layout;
@@ -164,12 +164,13 @@ export const Curriculum_Admission = () => {
                                         </Title>
                                         <Paragraph style={{ margin: '0px 25px' }}>
                                             <ul>
-                                                <li style={{ textAlign: 'left', margin: '8px 0px 8px 15px' }}>
+                                                <li style={{ textAlign: 'left', margin: '8px 0px 8px 15px', height: '75px' }}>
                                                     인재원에 입교하고자 하는 사람 관련기관 업체 등은 다음의 각 호의 서류를 교육 시작 7일
                                                     전까지 제출
                                                     <br />
-                                                    ① 입교 신청서(온라인 신청포함)
-                                                    <br />② 기타 인재개발원에서 요구하는 자료
+                                                    <span style={{ fontSize: '0.65rem' }}>①</span> 입교 신청서(온라인 신청포함)
+                                                    <br />
+                                                    <span style={{ fontSize: '0.65rem' }}>②</span> 기타 인재개발원에서 요구하는 자료
                                                 </li>
                                                 <li style={{ textAlign: 'left', margin: '8px 0px 8px 15px' }}>
                                                     입교신청을 한 사람은 교육비를 입교 전까지 인재개발원 지정계좌에 납부

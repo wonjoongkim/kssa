@@ -4,6 +4,7 @@ import { CaretRightOutlined, AntDesignOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
 import { KakaoMap } from './kakamap';
+import '../../Style.css';
 
 const { Title, Paragraph, Text, Link } = Typography;
 const { Sider, Content } = Layout;
