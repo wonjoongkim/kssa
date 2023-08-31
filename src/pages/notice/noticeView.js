@@ -85,7 +85,7 @@ export const NoticeView = (props) => {
                         </>
                     }
                 >
-                    <Viewer key={viewerKey} style={{ fontFamily: 'SUIT' }} initialValue={selectNoticeData.contents} />
+                    <Viewer key={viewerKey} style={{ fontFamily: 'SUIT', textAlign: 'justify' }} initialValue={selectNoticeData.contents} />
                 </Card>
             </Card>
         </>

@@ -49,12 +49,12 @@ export const Training_Application = () => {
                         type="inner"
                         style={{ width: '225px' }}
                         title={<span style={{ fontWeight: 'bold', color: 'white', marginLeft: '30px' }}>직업훈련비지원</span>}
-                        headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#599bc4' }}
+                        headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#215482' }}
                     >
                         <Menu
                             mode="vertical"
                             selectedKeys={[selectedMenu]}
-                            style={{ borderRight: 0 }}
+                            style={{ borderRight: 0, fontWeight: '900' }}
                             onClick={() => setIsMobileView(false)}
                         >
                             {menuItems}

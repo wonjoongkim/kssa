@@ -48,19 +48,19 @@ export const Intro_Organization = () => {
     );
 
     return (
-        <Layout style={{ minHeight: '55vw' }}>
+        <Layout style={{ minHeight: '28vw' }}>
             {!isMobileView && (
                 <Sider width={230} theme="light">
                     <Card
                         type="inner"
                         style={{ width: '225px' }}
                         title={<span style={{ fontWeight: 'bold', color: 'white', marginLeft: '30px' }}>교육원소개</span>}
-                        headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#599bc4' }}
+                        headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#215482' }}
                     >
                         <Menu
                             mode="vertical"
                             selectedKeys={[selectedMenu]}
-                            style={{ borderRight: 0 }}
+                            style={{ borderRight: 0, fontWeight: '900' }}
                             onClick={() => setIsMobileView(false)}
                         >
                             {menuItems}
@@ -131,7 +131,7 @@ export const Intro_Organization = () => {
                         )}
                         <Col xs={{ span: 24, order: 2 }} sm={{ span: 24, order: isMobileView ? 1 : 3 }}>
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <img src={organization} alt="" style={{ width: '75%' }} />
+                                <img src={organization} alt="" style={{ width: '41%' }} />
                             </div>
                         </Col>
                     </Row>

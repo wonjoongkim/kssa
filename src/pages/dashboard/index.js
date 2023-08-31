@@ -41,7 +41,7 @@ const DashboardDefault = () => {
                         <Card
                             type="inner"
                             title={
-                                <span style={{ color: '#00b0f0', fontWeight: 'bold' }}>
+                                <span style={{ color: '#215482', fontWeight: 'bold' }}>
                                     <NotificationOutlined /> 교육안내
                                 </span>
                             }
@@ -50,7 +50,11 @@ const DashboardDefault = () => {
                         >
                             {selectMainInfoListData.map((Idata, i) => (
                                 <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
-                                    <Col span={16}>· {Idata.title}</Col>
+                                    <Col span={16}>
+                                        <Link to="/education" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            · {Idata.title}
+                                        </Link>
+                                    </Col>
                                     <Col span={8}>{Idata.insertDate}</Col>
                                 </Row>
                             ))}
@@ -60,7 +64,7 @@ const DashboardDefault = () => {
                         <Card
                             type="inner"
                             title={
-                                <span style={{ color: '#00b0f0', fontWeight: 'bold' }}>
+                                <span style={{ color: '#215482', fontWeight: 'bold' }}>
                                     <NotificationOutlined /> 공지사항
                                 </span>
                             }
@@ -69,7 +73,11 @@ const DashboardDefault = () => {
                         >
                             {selectMainNoticeListData.map((Ndata, i) => (
                                 <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
-                                    <Col span={16}>· {Ndata.title}</Col>
+                                    <Col span={16}>
+                                        <Link to="/notification" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            · {Ndata.title}
+                                        </Link>
+                                    </Col>
                                     <Col span={68}>{Ndata.insertDate}</Col>
                                 </Row>
                             ))}

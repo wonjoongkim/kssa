@@ -387,13 +387,13 @@ export const Notice_Education = () => {
                         <Card
                             type="inner"
                             style={{ width: '225px' }}
-                            title={<span style={{ fontWeight: 'bold', color: 'white', marginLeft: '30px' }}>게시판</span>}
-                            headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#599bc4' }}
+                            title={<span style={{ fontWeight: 'bold', color: 'white', marginLeft: '50px' }}>게시판</span>}
+                            headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#215482' }}
                         >
                             <Menu
                                 mode="vertical"
                                 selectedKeys={[selectedMenu]}
-                                style={{ borderRight: 0 }}
+                                style={{ borderRight: 0, fontWeight: '900' }}
                                 onClick={() => setIsMobileView(false)}
                             >
                                 {menuItems}

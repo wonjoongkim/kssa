@@ -54,13 +54,13 @@ export const Curriculum_Operate = () => {
                     <Card
                         type="inner"
                         style={{ width: '225px' }}
-                        title={<span style={{ fontWeight: 'bold', color: 'white', marginLeft: '30px' }}>교육과정</span>}
-                        headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#599bc4' }}
+                        title={<span style={{ fontWeight: 'bold', color: 'white', marginLeft: '50px' }}>교육과정</span>}
+                        headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#215482' }}
                     >
                         <Menu
                             mode="vertical"
                             selectedKeys={[selectedMenu]}
-                            style={{ borderRight: 0 }}
+                            style={{ float: 'left', borderRight: 0, fontWeight: '900' }}
                             onClick={() => setIsMobileView(false)}
                         >
                             {menuItems}

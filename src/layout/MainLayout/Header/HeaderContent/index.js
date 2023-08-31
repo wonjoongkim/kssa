@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Box, Grid, Button } from '@mui/material';
 import { AppstoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 
-import { Space, Modal } from 'antd';
+import { Space, Modal, Row, Col } from 'antd';
 import kssa_logo from '../../../../images/kssa_logo.png';
 import kssa_title from '../../../../images/kssa_title.png';
 import 'antd/dist/antd.css';
@@ -137,67 +137,6 @@ const HeaderContent = () => {
                         </Grid>
                     </Grid>
                 </Toolbar>
-                <div style={{ backgroundColor: '#5099c7', display: 'flex', justifyContent: 'center' }}>
-                    {MainMenuItems.map((item, index) => (
-                        <div
-                            key={index}
-                            style={{
-                                margin: '0 7px',
-                                position: 'relative',
-                                display: 'inline-block'
-                            }}
-                            onMouseEnter={() => handleMenuHover(item.name)}
-                            onMouseLeave={handleMenuLeave}
-                        >
-                            <Button
-                                style={{
-                                    margin: '0px 8px',
-                                    color: '#ffffff',
-                                    padding: '7px',
-                                    cursor: 'pointer',
-                                    fontWeight: 'bold',
-                                    border: 'none',
-                                    background: 'none',
-                                    fontSize: '0.95rem'
-                                }}
-                                onClick={() => handleSubItemClick(item.path)}
-                            >
-                                {item.name}
-                            </Button>
-                            {activeMenu === item.name && (
-                                <div
-                                    className="submenu"
-                                    onMouseEnter={() => handleMenuHover(item.name)}
-                                    onMouseLeave={handleMenuLeave}
-                                    style={{
-                                        position: 'fixed',
-                                        textAlign: 'center',
-                                        left: '0',
-                                        width: '100vw',
-                                        padding: '10px',
-                                        color: '#ffffff',
-                                        backgroundColor: 'rgba(0, 0, 0, 0.7)'
-                                    }}
-                                >
-                                    <Space>
-                                        {item.subMenu.map((subItem, subIndex) => (
-                                            <div key={subIndex} style={{ padding: '8px', cursor: 'pointer' }}>
-                                                <Button
-                                                    key={subIndex}
-                                                    variant="contained"
-                                                    onClick={() => handleSubItemClick(subItem.path)}
-                                                    style={{ margin: '0px 7px', border: 'none', background: 'none' }}
-                                                >
-                                                    {subItem.name}
-                                                </Button>
-                                            </div>
-                                        ))}
-                                    </Space>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
                 <div
                     style={{
                         backgroundImage: `url(${kssa_title})`,
@@ -205,9 +144,90 @@ const HeaderContent = () => {
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
                         width: '100%',
-                        height: '18vh'
+                        height: '22vh'
                     }}
-                />
+                >
+                    <Row
+                        justify="center"
+                        style={{
+                            position: 'relative',
+                            background: '#000',
+                            height: '42px',
+                            textAlign: 'center',
+                            left: '0px',
+                            color: 'rgb(255, 255, 255)',
+                            backgroundColor: 'rgba(0, 0, 0, 0.7)'
+                        }}
+                    >
+                        {MainMenuItems.map((item, index) => (
+                            <>
+                                <Col
+                                    span={4}
+                                    key={index}
+                                    style={{ textAlign: 'center' }}
+                                    onMouseEnter={() => handleMenuHover(item.name)}
+                                    onMouseLeave={handleMenuLeave}
+                                >
+                                    <div style={{ textAlign: 'center', alignItems: 'center' }}>
+                                        <Button
+                                            variant="contained"
+                                            style={{
+                                                margin: '0px 8px',
+                                                color: '#ffffff',
+                                                padding: '7px',
+                                                cursor: 'pointer',
+                                                fontWeight: 'bold',
+                                                border: 'none',
+                                                background: 'none',
+                                                fontSize: '1rem'
+                                            }}
+                                            onClick={() => handleSubItemClick(item.path)}
+                                        >
+                                            {item.name}
+                                        </Button>
+                                    </div>
+                                    {activeMenu === item.name && (
+                                        <div
+                                            className="submenu"
+                                            onMouseEnter={() => handleMenuHover(item.name)}
+                                            onMouseLeave={handleMenuLeave}
+                                            style={{
+                                                position: 'fixed',
+                                                textAlign: 'center',
+                                                left: '0',
+                                                width: '100vw',
+                                                padding: '10px',
+                                                color: '#ffffff',
+                                                backgroundColor: 'rgba(0, 0, 0, 0.7)'
+                                            }}
+                                        >
+                                            <Space>
+                                                {item.subMenu.map((subItem, subIndex) => (
+                                                    <div key={subIndex} style={{ padding: '8px', cursor: 'pointer' }}>
+                                                        <Button
+                                                            key={subIndex}
+                                                            variant="contained"
+                                                            onClick={() => handleSubItemClick(subItem.path)}
+                                                            style={{
+                                                                margin: '0px 7px',
+                                                                border: 'none',
+                                                                background: 'none',
+                                                                fontSize: '1rem',
+                                                                fontWeight: '900'
+                                                            }}
+                                                        >
+                                                            · {subItem.name}
+                                                        </Button>
+                                                    </div>
+                                                ))}
+                                            </Space>
+                                        </div>
+                                    )}
+                                </Col>
+                            </>
+                        ))}
+                    </Row>
+                </div>
             </AppBar>
         </>
     );

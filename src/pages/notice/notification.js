@@ -236,7 +236,7 @@ export const Notice_Notification = () => {
                                   <Button
                                       type="primary"
                                       onClick={() => handle_modify(rowdata1)}
-                                      style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '12px' }}
+                                      style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '1.0rem' }}
                                       icon={<EditFilled />}
                                   >
                                       수정
@@ -388,13 +388,13 @@ export const Notice_Notification = () => {
                         <Card
                             type="inner"
                             style={{ width: '225px' }}
-                            title={<span style={{ fontWeight: 'bold', color: 'white', marginLeft: '30px' }}>게시판</span>}
-                            headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#599bc4' }}
+                            title={<span style={{ fontWeight: 'bold', color: 'white', marginLeft: '50px' }}>게시판</span>}
+                            headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#215482' }}
                         >
                             <Menu
                                 mode="vertical"
                                 selectedKeys={[selectedMenu]}
-                                style={{ borderRight: 0 }}
+                                style={{ borderRight: 0, fontWeight: '900' }}
                                 onClick={() => setIsMobileView(false)}
                             >
                                 {menuItems}
@@ -483,7 +483,7 @@ export const Notice_Notification = () => {
                                         <Space style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
                                             <Button
                                                 onClick={handle_Register}
-                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '12px' }}
+                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '1.0rem' }}
                                                 type="success"
                                                 icon={<PlusOutlined />}
                                             >
@@ -493,7 +493,7 @@ export const Notice_Notification = () => {
                                             <Button
                                                 type="danger"
                                                 // onClick={handleDel}
-                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '12px' }}
+                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '1.0rem' }}
                                                 icon={<DeleteFilled />}
                                                 onClick={handleDel}
                                             >

@@ -55,12 +55,12 @@ export const Intro_Greetings = () => {
                         type="inner"
                         style={{ width: '225px' }}
                         title={<span style={{ fontWeight: 'bold', color: 'white', marginLeft: '30px' }}>교육원소개</span>}
-                        headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#599bc4' }}
+                        headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#215482' }}
                     >
                         <Menu
                             mode="vertical"
                             selectedKeys={[selectedMenu]}
-                            style={{ borderRight: 0 }}
+                            style={{ borderRight: 0, fontWeight: '900' }}
                             onClick={() => setIsMobileView(false)}
                         >
                             {menuItems}
