@@ -49,6 +49,11 @@ span {
     font-family: 'pretendard';
     font-size: 1rem;
 }
+Button {
+    font-family: 'Noto Sans KR';
+    font-size: 0.95rem;
+}
+
 .editable-cell {
     position: relative;
 }

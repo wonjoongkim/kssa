@@ -151,12 +151,15 @@ const HeaderContent = () => {
                         justify="center"
                         style={{
                             position: 'relative',
-                            background: '#000',
-                            height: '42px',
+                            // background: '#000',
+                            height: '52px',
                             textAlign: 'center',
                             left: '0px',
-                            color: 'rgb(255, 255, 255)',
-                            backgroundColor: 'rgba(0, 0, 0, 0.7)'
+                            background: 'transparent',
+                            transition: 'all 0.2s linear',
+                            transition: 'all .2s linear; transition: all .2s linear; transition: all .2s linear',
+                            background: 'linear-gradient(-45deg, transparent, #e5e5e5, transparent)'
+                            // background: #e5e5e5 #23a6d5
                         }}
                     >
                         {MainMenuItems.map((item, index) => (
@@ -173,8 +176,8 @@ const HeaderContent = () => {
                                             variant="contained"
                                             style={{
                                                 margin: '0px 8px',
-                                                color: '#ffffff',
-                                                padding: '7px',
+                                                color: '#2e2e2e',
+                                                padding: '12px',
                                                 cursor: 'pointer',
                                                 fontWeight: 'bold',
                                                 border: 'none',

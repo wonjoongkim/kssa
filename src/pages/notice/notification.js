@@ -483,7 +483,7 @@ export const Notice_Notification = () => {
                                         <Space style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
                                             <Button
                                                 onClick={handle_Register}
-                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '1.0rem' }}
+                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb' }}
                                                 type="success"
                                                 icon={<PlusOutlined />}
                                             >
@@ -493,7 +493,7 @@ export const Notice_Notification = () => {
                                             <Button
                                                 type="danger"
                                                 // onClick={handleDel}
-                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '1.0rem' }}
+                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb' }}
                                                 icon={<DeleteFilled />}
                                                 onClick={handleDel}
                                             >
