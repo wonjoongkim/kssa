@@ -30,6 +30,11 @@ import { Notice_Education } from 'pages/notice/education';
 import { Notice_Faq } from 'pages/notice/faq';
 import { Notice_Notification } from 'pages/notice/notification';
 
+// render - Reference page
+import { Reference_News } from 'pages/reference/news';
+import { Reference_Laws } from 'pages/reference/laws';
+import { Reference_Datum } from 'pages/reference/datum';
+
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -84,7 +89,6 @@ const MainRoutes = {
             path: 'reason',
             element: <Training_Reason />
         },
-
         {
             path: 'education',
             element: <Notice_Education />
@@ -96,6 +100,18 @@ const MainRoutes = {
         {
             path: 'notification',
             element: <Notice_Notification />
+        },
+        {
+            path: 'news',
+            element: <Reference_News />
+        },
+        {
+            path: 'laws',
+            element: <Reference_Laws />
+        },
+        {
+            path: 'datum',
+            element: <Reference_Datum />
         },
         {
             path: 'admin',

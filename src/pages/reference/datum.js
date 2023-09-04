@@ -17,11 +17,11 @@ import Highlighter from 'react-highlight-words';
 import { useNavigate } from 'react-router-dom';
 import '../../Style.css';
 
-import { NoticeRegister } from 'pages/notice/noticeRegister';
-import { NoticeModify } from 'pages/notice/noticeModify';
-import { NoticeView } from 'pages/notice/noticeView';
+import { DatumRegister } from 'pages/reference/datumRegister';
+import { DatumModify } from 'pages/reference/datumModify';
+import { DatumView } from 'pages/reference/datumView';
 
-// 공지사항 리스트, 상세조회, 등록, 수정, 삭제
+// 교육자료 리스트, 상세조회, 등록, 수정, 삭제
 import { useSelectNoticeListMutation, useDeleteNoticeMutation } from '../../hooks/api/BoardManagement/BoardManagement';
 
 import { useUserStatus } from '../../hooks/core/UserStatus';
@@ -29,14 +29,14 @@ import { useUserStatus } from '../../hooks/core/UserStatus';
 const { Title } = Typography;
 const { Sider, Content } = Layout;
 
-export const Notice_Notification = () => {
+export const Reference_Datum = () => {
     const currentDateTime = new Date();
     const minutes = currentDateTime.getMinutes();
     const seconds = currentDateTime.getSeconds();
 
     const { confirm } = Modal;
     const navigate = useNavigate();
-    const [selectedMenu, setSelectedMenu] = useState('notification');
+    const [selectedMenu, setSelectedMenu] = useState('datum');
     const [loading, setLoading] = useState(false);
     const [isMobileView, setIsMobileView] = useState(false);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]); //셀렉트 박스 option Selected 값
@@ -46,7 +46,7 @@ export const Notice_Notification = () => {
     const [ModalOpenMo, setModalOpenMo] = useState(false); // Notice 수정 Modal창
     const [ModalOpenVi, setModalOpenVi] = useState(false); // Notice 상세 Modal창
 
-    // 공지사항 리스트
+    // 교육자료 리스트
     const [SelectNoticeListApi] = useSelectNoticeListMutation();
     const [selectNoticeListData, setSelectNoticeListData] = useState([]);
     const SelectNoticeList_ApiCall = async () => {
@@ -72,7 +72,7 @@ export const Notice_Notification = () => {
         setLoading(false);
     };
 
-    // 공지사항 삭제
+    // 교육자료 삭제
     const [DeleteNoticeApi] = useDeleteNoticeMutation();
     const [deleteNoticeData, setDeleteNoticeData] = useState([]);
     const DeleteNotice_ApiCall = async () => {
@@ -236,7 +236,7 @@ export const Notice_Notification = () => {
                                   <Button
                                       type="primary"
                                       onClick={() => handle_modify(rowdata1)}
-                                      style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '1.0rem' }}
+                                      style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', height: '46px' }}
                                       icon={<EditFilled />}
                                   >
                                       수정
@@ -368,14 +368,14 @@ export const Notice_Notification = () => {
 
     const menuItems = (
         <>
-            <Menu.Item key="notification" onClick={() => handleMenuClick('notification')}>
-                공지사항 {selectedMenu === 'notification' && <CaretRightOutlined />}
+            <Menu.Item key="news" onClick={() => handleMenuClick('news')}>
+                최신뉴스 {selectedMenu === 'news' && <CaretRightOutlined />}
             </Menu.Item>
-            <Menu.Item key="education" onClick={() => handleMenuClick('education')}>
-                교육안내 {selectedMenu === 'education' && <CaretRightOutlined />}
+            <Menu.Item key="laws" onClick={() => handleMenuClick('laws')}>
+                관련법령 {selectedMenu === 'laws' && <CaretRightOutlined />}
             </Menu.Item>
-            <Menu.Item key="faq" onClick={() => handleMenuClick('faq')}>
-                FAQ {selectedMenu === 'faq' && <CaretRightOutlined />}
+            <Menu.Item key="datum" onClick={() => handleMenuClick('datum')}>
+                교육자료 {selectedMenu === 'datum' && <CaretRightOutlined />}
             </Menu.Item>
         </>
     );
@@ -388,7 +388,7 @@ export const Notice_Notification = () => {
                         <Card
                             type="inner"
                             style={{ width: '225px' }}
-                            title={<span style={{ fontWeight: 'bold', color: 'white', marginLeft: '50px' }}>게시판</span>}
+                            title={<span style={{ fontWeight: 'bold', color: 'white', marginLeft: '50px' }}>자료실</span>}
                             headStyle={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px', backgroundColor: '#215482' }}
                         >
                             <Menu
@@ -410,43 +410,43 @@ export const Notice_Notification = () => {
                                     <Card
                                         type="inner"
                                         style={{ width: '100%', marginBottom: '24px' }}
-                                        title={<span style={{ fontWeight: 'bold' }}>게시판</span>}
+                                        title={<span style={{ fontWeight: 'bold' }}>자료실</span>}
                                     >
                                         <Button
-                                            onClick={() => handleMenuClick('notification')}
+                                            onClick={() => handleMenuClick('news')}
                                             style={{
                                                 margin: '10px',
                                                 border: 'none',
                                                 background: 'none',
                                                 fontWeight: 'bold',
-                                                color: selectedMenu === 'notification' ? '#599bc4' : 'inherit'
+                                                color: selectedMenu === 'news' ? '#599bc4' : 'inherit'
                                             }}
                                         >
-                                            공지사항 {selectedMenu === 'notification' && '▼'}
+                                            최신뉴스 {selectedMenu === 'news' && '▼'}
                                         </Button>
                                         <Button
-                                            onClick={() => handleMenuClick('education')}
+                                            onClick={() => handleMenuClick('laws')}
                                             style={{
                                                 margin: '10px',
                                                 border: 'none',
                                                 background: 'none',
                                                 fontWeight: 'bold',
-                                                color: selectedMenu === 'education' ? '#599bc4' : 'inherit'
+                                                color: selectedMenu === 'laws' ? '#599bc4' : 'inherit'
                                             }}
                                         >
-                                            교육안내 {selectedMenu === 'education' && '▼'}
+                                            관련법령 {selectedMenu === 'laws' && '▼'}
                                         </Button>
                                         <Button
-                                            onClick={() => handleMenuClick('faq')}
+                                            onClick={() => handleMenuClick('datum')}
                                             style={{
                                                 margin: '10px',
                                                 border: 'none',
                                                 background: 'none',
                                                 fontWeight: 'bold',
-                                                color: selectedMenu === 'faq' ? '#599bc4' : 'inherit'
+                                                color: selectedMenu === 'datum' ? '#599bc4' : 'inherit'
                                             }}
                                         >
-                                            FAQ {selectedMenu === 'faq' && '▼'}
+                                            교육자료 {selectedMenu === 'datum' && '▼'}
                                         </Button>
                                     </Card>
                                 </Col>
@@ -464,7 +464,7 @@ export const Notice_Notification = () => {
                                 style={{ marginLeft: '30px' }}
                             >
                                 <Title level={3}>
-                                    <BlockOutlined /> 공지사항
+                                    <BlockOutlined /> 교육자료
                                 </Title>
                             </Col>
                             <Col
@@ -483,7 +483,7 @@ export const Notice_Notification = () => {
                                         <Space style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
                                             <Button
                                                 onClick={handle_Register}
-                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb' }}
+                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', height: '46px' }}
                                                 type="success"
                                                 icon={<PlusOutlined />}
                                             >
@@ -493,7 +493,7 @@ export const Notice_Notification = () => {
                                             <Button
                                                 type="danger"
                                                 // onClick={handleDel}
-                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb' }}
+                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', height: '46px' }}
                                                 icon={<DeleteFilled />}
                                                 onClick={handleDel}
                                             >
@@ -538,7 +538,7 @@ export const Notice_Notification = () => {
                 footer={null}
                 getContainer={() => document.body}
             >
-                <NoticeRegister ModalClose={handleCancel_Re} SaveClose={SaveClose} />
+                <DatumRegister ModalClose={handleCancel_Re} SaveClose={SaveClose} />
             </Modal>
             {/* Notice 등록 모달 창 End */}
 
@@ -556,7 +556,7 @@ export const Notice_Notification = () => {
                 footer={null}
                 getContainer={() => document.body}
             >
-                <NoticeModify ModalClose={handleCancel_Mo} seqIdProps={seqIdValue} datetime={minutes + seconds} SaveClose={SaveClose} />
+                <DatumModify ModalClose={handleCancel_Mo} seqIdProps={seqIdValue} datetime={minutes + seconds} SaveClose={SaveClose} />
             </Modal>
             {/* Notice 수정 모달 창 End */}
 
@@ -575,7 +575,7 @@ export const Notice_Notification = () => {
                 footer={null}
                 getContainer={() => document.body}
             >
-                <NoticeView ModalClose={handleCancel_Vi} datetime={minutes + seconds} seqIdValue={seqIdValue} />
+                <DatumView ModalClose={handleCancel_Vi} datetime={minutes + seconds} seqIdValue={seqIdValue} />
             </Modal>
             {/* Notice 상세정보 모달 창 End */}
         </>

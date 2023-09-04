@@ -11,8 +11,8 @@ import '../../Style.css';
 
 const { Title, Paragraph, Text, Link } = Typography;
 
-export const NoticeView = (props) => {
-    // 공지사항 상세조회
+export const NewsView = (props) => {
+    // 최신뉴스 상세조회
     const [SelectNoticeApi] = useSelectNoticeMutation();
     const [selectNoticeData, setSelectNoticeData] = useState([]);
     const [viewerKey, setViewerKey] = useState(0); // Key 상태 추가

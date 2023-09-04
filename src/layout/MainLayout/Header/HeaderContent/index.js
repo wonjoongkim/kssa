@@ -67,6 +67,15 @@ const HeaderContent = () => {
                 { name: '교육안내', path: '/education' },
                 { name: 'FAQ', path: '/faq' }
             ]
+        },
+        {
+            name: '자료실',
+            path: '/news',
+            subMenu: [
+                { name: '최신뉴스', path: '/news' },
+                { name: '관련법령', path: '/laws' },
+                { name: '교육자료', path: '/datum' }
+            ]
         }
     ];
 
@@ -107,7 +116,7 @@ const HeaderContent = () => {
                         </Grid>
                         <Grid item>
                             <Box>
-                                <Typography variant="body1" style={{ fontSize: '0.95rem' }}>
+                                <Typography variant="body1" style={{ fontSize: '1rem' }}>
                                     <Link to="/" style={linkStyle}>
                                         Home
                                     </Link>{' '}
@@ -152,7 +161,7 @@ const HeaderContent = () => {
                         style={{
                             position: 'relative',
                             // background: '#000',
-                            height: '52px',
+                            height: '58px',
                             textAlign: 'center',
                             left: '0px',
                             background: 'transparent',
@@ -182,7 +191,7 @@ const HeaderContent = () => {
                                                 fontWeight: 'bold',
                                                 border: 'none',
                                                 background: 'none',
-                                                fontSize: '1rem'
+                                                fontSize: '1.2rem'
                                             }}
                                             onClick={() => handleSubItemClick(item.path)}
                                         >
@@ -215,7 +224,7 @@ const HeaderContent = () => {
                                                                 margin: '0px 7px',
                                                                 border: 'none',
                                                                 background: 'none',
-                                                                fontSize: '1rem',
+                                                                fontSize: '1.1rem',
                                                                 fontWeight: '900'
                                                             }}
                                                         >

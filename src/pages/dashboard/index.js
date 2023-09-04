@@ -41,7 +41,7 @@ const DashboardDefault = () => {
                         <Card
                             type="inner"
                             title={
-                                <span style={{ color: '#215482', fontWeight: 'bold' }}>
+                                <span style={{ color: '#215482', fontWeight: 'bold', fontSize: '1.6rem' }}>
                                     <NotificationOutlined /> 교육안내
                                 </span>
                             }
@@ -64,7 +64,7 @@ const DashboardDefault = () => {
                         <Card
                             type="inner"
                             title={
-                                <span style={{ color: '#215482', fontWeight: 'bold' }}>
+                                <span style={{ color: '#215482', fontWeight: 'bold', fontSize: '1.6rem' }}>
                                     <NotificationOutlined /> 공지사항
                                 </span>
                             }

@@ -84,7 +84,6 @@ export const Intro_Greetings = () => {
                                             margin: '8px',
                                             border: 'none',
                                             background: 'none',
-                                            fontWeight: 'bold',
                                             color: selectedMenu === 'greetings' ? '#599bc4' : 'inherit'
                                         }}
                                     >
@@ -96,7 +95,6 @@ export const Intro_Greetings = () => {
                                             margin: '8px',
                                             border: 'none',
                                             background: 'none',
-                                            fontWeight: 'bold',
                                             color: selectedMenu === 'organization' ? '#599bc4' : 'inherit'
                                         }}
                                     >
@@ -108,7 +106,6 @@ export const Intro_Greetings = () => {
                                             margin: '8px',
                                             border: 'none',
                                             background: 'none',
-                                            fontWeight: 'bold',
                                             color: selectedMenu === 'facilities' ? '#599bc4' : 'inherit'
                                         }}
                                     >
@@ -120,7 +117,6 @@ export const Intro_Greetings = () => {
                                             margin: '8px',
                                             border: 'none',
                                             background: 'none',
-                                            fontWeight: 'bold',
                                             color: selectedMenu === 'directions' ? '#599bc4' : 'inherit'
                                         }}
                                     >
@@ -139,8 +135,8 @@ export const Intro_Greetings = () => {
                             <div>
                                 <Typography>
                                     <Paragraph>
-                                        <Title level={3}>항공보안 웹기반 CBT 서버</Title>
-                                        <Title level={4}>최첨단 교육환경을 갖춘 선도적 교육기관!</Title>
+                                        <Title level={2}>항공보안 웹기반 CBT 서버</Title>
+                                        <Title level={3}>최첨단 교육환경을 갖춘 선도적 교육기관!</Title>
                                     </Paragraph>
                                     <br />
 

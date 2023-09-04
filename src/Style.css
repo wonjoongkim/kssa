@@ -47,7 +47,7 @@ body {
 div,
 span {
     font-family: 'pretendard';
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 Button {
     font-family: 'Noto Sans KR';
@@ -125,7 +125,7 @@ Button {
     border-bottom: 1px solid #a9c0ff;
     background-color: #64a5f5;
     font-family: 'SUIT';
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1;
     text-align: center;
     color: #ffffff;
@@ -136,7 +136,7 @@ Button {
     padding: 10px 2px;
     border-bottom: 1px solid #a9c0ff;
     font-family: 'SUIT';
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1;
     text-align: center;
     color: #111111;
@@ -145,6 +145,7 @@ Button {
 
 .con_table .table tr th {
     font-weight: 700;
+    height: 55px;
 }
 
 .con_table .table tr td {
@@ -154,6 +155,7 @@ Button {
 .con_table .table tr td:not(:first-child) {
     font-weight: 500;
     border-left: 1px solid #a9c0ff;
+    height: 50px;
 }
 
 .con_table .table .t_blue {

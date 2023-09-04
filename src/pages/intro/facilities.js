@@ -194,7 +194,7 @@ export const Intro_Facilities = () => {
                             style={{ marginLeft: '30px' }}
                         >
                             <div>
-                                <Title level={5}>
+                                <Title level={4}>
                                     <AntDesignOutlined /> 교육시설 개요
                                 </Title>
                                 <div className="con_table cop_table">
@@ -270,10 +270,10 @@ export const Intro_Facilities = () => {
                                 span: 21,
                                 offset: 2
                             }}
-                            style={{ marginLeft: '30px' }}
+                            style={{ marginLeft: '30px', marginTop: '30px' }}
                         >
                             <div>
-                                <Title level={5}>
+                                <Title level={4}>
                                     <AntDesignOutlined /> X-Ray CBT 훈련프로그램
                                 </Title>
                                 <div className="con_table cop_table">
@@ -319,9 +319,9 @@ export const Intro_Facilities = () => {
                                 span: 21,
                                 offset: 2
                             }}
-                            style={{ marginLeft: '30px' }}
+                            style={{ marginLeft: '30px', marginTop: '30px' }}
                         >
-                            <Title level={5}>
+                            <Title level={4}>
                                 <AntDesignOutlined /> 교육장 배치도
                             </Title>
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -339,7 +339,7 @@ export const Intro_Facilities = () => {
                             }}
                             style={{ marginLeft: '30px', marginTop: '50px' }}
                         >
-                            <Title level={5}>
+                            <Title level={4}>
                                 <AntDesignOutlined /> 시설 및 교보재
                             </Title>
                             <div>
