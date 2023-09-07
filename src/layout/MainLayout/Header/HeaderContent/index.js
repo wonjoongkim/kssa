@@ -146,11 +146,11 @@ const HeaderContent = () => {
                 <div
                     style={{
                         backgroundImage: `url(${kssa_title})`,
-                        backgroundPosition: 'left',
+                        backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
                         width: '100%',
-                        height: '22vh'
+                        height: '230px'
                     }}
                 >
                     <Row
@@ -165,7 +165,6 @@ const HeaderContent = () => {
                             transition: 'all 0.2s linear',
                             transition: 'all .2s linear; transition: all .2s linear; transition: all .2s linear',
                             background: 'linear-gradient(-45deg, transparent, #e5e5e5, transparent)'
-                            // background: #e5e5e5 #23a6d5
                         }}
                     >
                         {MainMenuItems.map((item, index) => (
