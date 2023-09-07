@@ -148,7 +148,7 @@ const HeaderContent = () => {
                         backgroundImage: `url(${kssa_title})`,
                         backgroundPosition: 'left',
                         backgroundRepeat: 'no-repeat',
-                        // backgroundSize: 'cover',
+                        backgroundSize: 'cover',
                         width: '100%',
                         height: '22vh'
                     }}
