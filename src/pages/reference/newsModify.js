@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelectNoticeMutation, useUpdateNoticeMutation } from '../../hooks/api/BoardManagement/BoardManagement';
+import { useSelectReferenceRoomMutation, useUpdateReferenceRoomMutation } from '../../hooks/api/ReferenceManagement/ReferenceManagement';
 import { useDropzone } from 'react-dropzone';
 import { DeleteOutlined, UploadOutlined } from '@ant-design/icons';
 import { Card, Button, Row, Col, Form, Input, Radio, Space, Divider, Typography, message, Tooltip, Modal } from 'antd';
@@ -27,22 +27,24 @@ export const NewsModify = (props) => {
     const [selectedFiles, setSelectedFiles] = useState([]); // 파일 업로드
 
     // 최신뉴스 상세조회
-    const [SelectNoticeApi] = useSelectNoticeMutation();
-    const SelectNotice_ApiCall = async () => {
-        const SelectNoticeResponse = await SelectNoticeApi({
+    const [SelectReferenceRoomApi] = useSelectReferenceRoomMutation();
+    const SelectReferenceRoom_ApiCall = async () => {
+        const SelectReferenceRoomResponse = await SelectReferenceRoomApi({
+            path: 'news',
             seqId: props.seqIdProps
         });
-        editorRef.current?.getInstance().setMarkdown(SelectNoticeResponse?.data?.RET_DATA.contents);
-        setItemContainer(SelectNoticeResponse?.data?.RET_DATA);
-        setUploadedFiles(SelectNoticeResponse?.data?.RET_DATA.fileList);
+        editorRef.current?.getInstance().setMarkdown(SelectReferenceRoomResponse?.data?.RET_DATA.contents);
+        setItemContainer(SelectReferenceRoomResponse?.data?.RET_DATA);
+        setUploadedFiles(SelectReferenceRoomResponse?.data?.RET_DATA.fileList);
     };
 
     // 최신뉴스 수정
-    const [UpdateNoticeApi] = useUpdateNoticeMutation();
-    const UpdateNotice_ApiCall = async () => {
+    const [UpdateReferenceRoomApi] = useUpdateReferenceRoomMutation();
+    const UpdateReferenceRoom_ApiCall = async () => {
         let formData = new FormData();
 
         const params = {
+            path: 'news',
             seqId: props.seqIdProps,
             title: itemContainer.title,
             contents: itemContainer.contents,
@@ -54,8 +56,8 @@ export const NewsModify = (props) => {
         Object.values(selectedFiles).forEach((Noticefiles) => {
             formData.append('files', Noticefiles);
         });
-        const UpdateNoticeResponse = await UpdateNoticeApi(formData);
-        UpdateNoticeResponse?.data?.RET_CODE === '0100'
+        const UpdateReferenceRoomResponse = await UpdateReferenceRoomApi(formData);
+        UpdateReferenceRoomResponse?.data?.RET_CODE === '0100'
             ? Modal.success({
                   content: '수정 완료',
                   style: { top: 320 },
@@ -145,7 +147,7 @@ export const NewsModify = (props) => {
                       }
                   }
               })
-            : UpdateNotice_ApiCall();
+            : UpdateReferenceRoom_ApiCall();
     };
 
     const ModalClose = () => {
@@ -156,7 +158,7 @@ export const NewsModify = (props) => {
     };
 
     useEffect(() => {
-        SelectNotice_ApiCall();
+        SelectReferenceRoom_ApiCall();
     }, [props.seqIdProps, props.datetime]);
 
     return (

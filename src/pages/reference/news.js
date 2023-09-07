@@ -22,7 +22,10 @@ import { NewsModify } from 'pages/reference/newsModify';
 import { NewsView } from 'pages/reference/newsView';
 
 // 최신뉴스 리스트, 상세조회, 등록, 수정, 삭제
-import { useSelectNoticeListMutation, useDeleteNoticeMutation } from '../../hooks/api/BoardManagement/BoardManagement';
+import {
+    useSelectReferenceRoomListMutation,
+    useDeleteReferenceRoomMutation
+} from '../../hooks/api/ReferenceManagement/ReferenceManagement';
 
 import { useUserStatus } from '../../hooks/core/UserStatus';
 
@@ -47,12 +50,14 @@ export const Reference_News = () => {
     const [ModalOpenVi, setModalOpenVi] = useState(false); // Notice 상세 Modal창
 
     // 최신뉴스 리스트
-    const [SelectNoticeListApi] = useSelectNoticeListMutation();
-    const [selectNoticeListData, setSelectNoticeListData] = useState([]);
-    const SelectNoticeList_ApiCall = async () => {
-        const SelectNoticeListResponse = await SelectNoticeListApi({});
-        setSelectNoticeListData([
-            ...SelectNoticeListResponse?.data?.RET_DATA.map((d, i) => ({
+    const [SelectReferenceRoomListApi] = useSelectReferenceRoomListMutation();
+    const [SelectReferenceRoomListData, setSelectReferenceRoomListData] = useState([]);
+    const SelectReferenceRoomList_ApiCall = async () => {
+        const SelectReferenceRoomListResponse = await SelectReferenceRoomListApi({
+            path: 'news'
+        });
+        setSelectReferenceRoomListData([
+            ...SelectReferenceRoomListResponse?.data?.RET_DATA.map((d, i) => ({
                 key: d.seqId,
                 rowdata0: i + 1, // 일련번호
                 rowdata1: d.seqId, // 시퀀스
@@ -73,13 +78,14 @@ export const Reference_News = () => {
     };
 
     // 최신뉴스 삭제
-    const [DeleteNoticeApi] = useDeleteNoticeMutation();
-    const [deleteNoticeData, setDeleteNoticeData] = useState([]);
-    const DeleteNotice_ApiCall = async () => {
-        const DeleteNoticeResponse = await DeleteNoticeApi({
+    const [DeleteReferenceRoomApi] = useDeleteReferenceRoomMutation();
+    const [DeleteReferenceRoomData, setDeleteReferenceRoomData] = useState([]);
+    const DeleteReferenceRoom_ApiCall = async () => {
+        const DeleteReferenceRoomResponse = await DeleteReferenceRoomApi({
+            path: 'news',
             seqIdList: selectedRowKeys
         });
-        SelectNoticeList_ApiCall();
+        SelectReferenceRoomList_ApiCall();
     };
 
     const handleMenuClick = (menuKey) => {
@@ -309,7 +315,7 @@ export const Reference_News = () => {
     const SaveClose = () => {
         setModalOpenMo(false);
         setModalOpenRe(false);
-        SelectNoticeList_ApiCall();
+        SelectReferenceRoomList_ApiCall();
     };
 
     // 상세 클릭 Start
@@ -345,7 +351,7 @@ export const Reference_News = () => {
                 cancelText: '아니오',
                 style: { top: 320 },
                 onOk() {
-                    DeleteNotice_ApiCall(selectedRowKeys);
+                    DeleteReferenceRoom_ApiCall(selectedRowKeys);
                 },
                 onCancel() {}
             });
@@ -354,7 +360,7 @@ export const Reference_News = () => {
 
     useEffect(() => {
         setLoading(true);
-        SelectNoticeList_ApiCall();
+        SelectReferenceRoomList_ApiCall();
 
         const handleResize = () => {
             setIsMobileView(window.innerWidth < 768);
@@ -502,7 +508,7 @@ export const Reference_News = () => {
                                         </Space>
                                         <Table
                                             columns={columns}
-                                            dataSource={selectNoticeListData}
+                                            dataSource={SelectReferenceRoomListData}
                                             rowSelection={{ ...rowSelection }}
                                             bordered={true}
                                             onChange={onChange}
@@ -512,7 +518,7 @@ export const Reference_News = () => {
                                 ) : (
                                     <Table
                                         columns={columns}
-                                        dataSource={selectNoticeListData}
+                                        dataSource={SelectReferenceRoomListData}
                                         bordered={true}
                                         onChange={onChange}
                                         loading={loading}

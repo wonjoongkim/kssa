@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useInsertNoticeMutation } from '../../hooks/api/BoardManagement/BoardManagement';
+import { useInsertReferenceRoomMutation } from '../../hooks/api/ReferenceManagement/ReferenceManagement';
 import { useDropzone } from 'react-dropzone';
 import { DeleteOutlined, UploadOutlined } from '@ant-design/icons';
 import { Card, Button, Row, Col, Form, Input, Radio, Space, Divider, Typography, message, Tooltip, Modal } from 'antd';
@@ -58,11 +58,12 @@ export const NewsRegister = (props) => {
     }
 
     // 최신뉴스 등록
-    const [InsertNoticeApi] = useInsertNoticeMutation();
-    const InsertNotice_ApiCall = async () => {
+    const [InsertReferenceRoomApi] = useInsertReferenceRoomMutation();
+    const InsertReferenceRoom_ApiCall = async () => {
         let formData = new FormData();
 
         const params = {
+            path: 'news',
             title: itemContainer.title,
             contents: itemContainer.contents,
             userName: 'Admin',
@@ -74,8 +75,8 @@ export const NewsRegister = (props) => {
             formData.append('files', Noticefiles);
         });
 
-        const InsertNoticeResponse = await InsertNoticeApi(formData);
-        InsertNoticeResponse?.data?.RET_CODE === '0100'
+        const InsertReferenceRoomResponse = await InsertReferenceRoomApi(formData);
+        InsertReferenceRoomResponse?.data?.RET_CODE === '0100'
             ? Modal.success({
                   content: '등록 완료',
                   style: { top: 320 },
@@ -165,7 +166,7 @@ export const NewsRegister = (props) => {
                       }
                   }
               })
-            : InsertNotice_ApiCall();
+            : InsertReferenceRoom_ApiCall();
     };
 
     const ModalClose = () => {

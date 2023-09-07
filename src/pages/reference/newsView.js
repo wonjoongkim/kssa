@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Card, Typography, Tooltip, Button, Row, Col } from 'antd';
 
-import { useSelectNoticeMutation } from '../../hooks/api/BoardManagement/BoardManagement';
+import { useSelectReferenceRoomMutation } from '../../hooks/api/ReferenceManagement/ReferenceManagement';
 import { Space } from '../../../node_modules/antd/lib/index';
 import { FileDoneOutlined } from '@ant-design/icons';
 
@@ -13,27 +13,28 @@ const { Title, Paragraph, Text, Link } = Typography;
 
 export const NewsView = (props) => {
     // 최신뉴스 상세조회
-    const [SelectNoticeApi] = useSelectNoticeMutation();
-    const [selectNoticeData, setSelectNoticeData] = useState([]);
+    const [SelectReferenceRoomApi] = useSelectReferenceRoomMutation();
+    const [SelectReferenceRoomData, setSelectReferenceRoomData] = useState([]);
     const [viewerKey, setViewerKey] = useState(0); // Key 상태 추가
 
-    const SelectNotice_ApiCall = async () => {
-        const SelectNoticeResponse = await SelectNoticeApi({
+    const SelectReferenceRoom_ApiCall = async () => {
+        const SelectReferenceRoomResponse = await SelectReferenceRoomApi({
+            path: 'news',
             seqId: props.seqIdValue
         });
-        setSelectNoticeData(SelectNoticeResponse?.data?.RET_DATA);
+        setSelectReferenceRoomData(SelectReferenceRoomResponse?.data?.RET_DATA);
     };
 
     useEffect(() => {
-        SelectNotice_ApiCall();
+        SelectReferenceRoom_ApiCall();
     }, [props.seqIdValue]);
 
     useEffect(() => {
         setViewerKey((prevKey) => prevKey + 1); // Key 업데이트
-    }, [selectNoticeData.contents]);
+    }, [SelectReferenceRoomData.contents]);
 
     const ModalClose = () => {
-        setSelectNoticeData([]);
+        setSelectReferenceRoomData([]);
         props.ModalClose();
     };
 
@@ -63,22 +64,22 @@ export const NewsView = (props) => {
                     title={
                         <>
                             <Typography>
-                                <h4>{selectNoticeData.title}</h4>
+                                <h4>{SelectReferenceRoomData.title}</h4>
                             </Typography>
                             <h4>
                                 <Paragraph style={{ marginBottom: '-20px' }}>
                                     <Space>
                                         <blockquote style={{ marginRight: '10px', fontSize: '12px' }}>
-                                            Date {selectNoticeData?.insertDate}
+                                            Date {SelectReferenceRoomData?.insertDate}
                                         </blockquote>
                                         <blockquote style={{ marginLeft: '10px', fontSize: '12px' }}>
-                                            Hit {selectNoticeData?.hit}
+                                            Hit {SelectReferenceRoomData?.hit}
                                         </blockquote>
                                         <blockquote style={{ marginLeft: '10px', fontSize: '12px' }}>
                                             File
                                             {
                                                 <>
-                                                    {selectNoticeData?.fileList?.map((f, i) => (
+                                                    {SelectReferenceRoomData?.fileList?.map((f, i) => (
                                                         <Tooltip title={f.originalFileName} key={i}>
                                                             <a
                                                                 href={`${decodeURIComponent(`${f.filePath}/${f.saveFileName}`)}`}
@@ -108,7 +109,11 @@ export const NewsView = (props) => {
                         </>
                     }
                 >
-                    <Viewer key={viewerKey} style={{ fontFamily: 'SUIT', textAlign: 'justify' }} initialValue={selectNoticeData.contents} />
+                    <Viewer
+                        key={viewerKey}
+                        style={{ fontFamily: 'SUIT', textAlign: 'justify' }}
+                        initialValue={SelectReferenceRoomData.contents}
+                    />
                 </Card>
                 <Row gutter={24}>
                     <Col span={24}>

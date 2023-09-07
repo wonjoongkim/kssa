@@ -168,7 +168,7 @@ export const Curriculum_Admission = () => {
                                                     인재원에 입교하고자 하는 사람 관련기관 업체 등은 다음의 각 호의 서류를 교육 시작 7일
                                                     전까지 제출
                                                     <br />
-                                                    <span style={{ fontSize: '0.65rem' }}>①</span> 입교 신청서(온라인 신청포함)
+                                                    <span style={{ fontSize: '0.65rem' }}>①</span> 입교 신청서
                                                     <br />
                                                     <span style={{ fontSize: '0.65rem' }}>②</span> 기타 인재개발원에서 요구하는 자료
                                                 </li>
@@ -181,6 +181,9 @@ export const Curriculum_Admission = () => {
                                                 </li>
                                                 <li style={{ textAlign: 'left', margin: '8px 0px 8px 15px' }}>
                                                     신청 차수에 교육대상자로 선정되지 않은 인원에 대해서는 차기 교육대상자에 우선 선발
+                                                </li>
+                                                <li style={{ textAlign: 'left', margin: '8px 0px 8px 15px' }}>
+                                                    입교신청 문의 이메일 : admin@kssa.re.kr
                                                 </li>
                                             </ul>
                                         </Paragraph>

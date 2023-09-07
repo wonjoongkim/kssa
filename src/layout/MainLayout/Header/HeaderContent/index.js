@@ -125,9 +125,6 @@ const HeaderContent = () => {
                                         찾아오시는 길
                                     </Link>{' '}
                                     |{' '}
-                                    {/* <Link to="http://www.kasa21.kr" style={linkStyle} target="_blank">
-                                        KASA
-                                    </Link> */}
                                     <a href="http://www.kasa21.kr" style={linkStyle} target="_blank" rel="noopener noreferrer">
                                         KASA
                                     </a>
@@ -149,9 +146,9 @@ const HeaderContent = () => {
                 <div
                     style={{
                         backgroundImage: `url(${kssa_title})`,
-                        backgroundPosition: 'center',
+                        backgroundPosition: 'left',
                         backgroundRepeat: 'no-repeat',
-                        backgroundSize: 'cover',
+                        // backgroundSize: 'cover',
                         width: '100%',
                         height: '22vh'
                     }}
@@ -210,7 +207,7 @@ const HeaderContent = () => {
                                                 width: '100vw',
                                                 padding: '10px',
                                                 color: '#ffffff',
-                                                backgroundColor: 'rgba(0, 0, 0, 0.7)'
+                                                backgroundColor: 'rgba(83, 83, 83, 0.7)'
                                             }}
                                         >
                                             <Space>
