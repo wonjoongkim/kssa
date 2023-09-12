@@ -246,11 +246,11 @@ export const FaqModify = (props) => {
                             <Col xs={24}>
                                 <Form.Item
                                     name="form02"
-                                    label="등록일"
+                                    label="작성일"
                                     rules={[
                                         {
                                             required: true,
-                                            message: '등록일'
+                                            message: '작성일'
                                         }
                                     ]}
                                 >
@@ -261,7 +261,7 @@ export const FaqModify = (props) => {
                                                 onChange={(date) => {
                                                     setItemContainer({ ...itemContainer, insertDate: date });
                                                 }}
-                                                placeholder="등록일"
+                                                placeholder="작성일"
                                                 style={{
                                                     width: '945px'
                                                 }}
