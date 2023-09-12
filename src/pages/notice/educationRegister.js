@@ -43,7 +43,8 @@ export const EducationRegister = (props) => {
             title: itemContainer.title,
             contents: itemContainer.contents,
             userName: 'Admin',
-            useYn: itemContainer.useYn
+            useYn: itemContainer.useYn,
+            insertDate: itemContainer.insertDate
         };
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
 
