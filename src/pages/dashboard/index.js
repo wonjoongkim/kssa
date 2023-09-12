@@ -45,7 +45,7 @@ const DashboardDefault = () => {
                                     <NotificationOutlined /> 교육안내
                                 </span>
                             }
-                            style={{ height: '300px' }}
+                            style={{ height: '350px' }}
                             extra={<Link to="/education">More</Link>}
                         >
                             {selectMainInfoListData.length === 0 ? (
@@ -76,7 +76,7 @@ const DashboardDefault = () => {
                                     <NotificationOutlined /> 공지사항
                                 </span>
                             }
-                            style={{ height: '300px' }}
+                            style={{ height: '350px' }}
                             extra={<Link to="/notification">More</Link>}
                         >
                             {selectMainNoticeListData.length === 0 ? (

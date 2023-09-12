@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelectInfoMutation, useUpdateInfoMutation } from '../../hooks/api/BoardManagement/BoardManagement';
 import { useDropzone } from 'react-dropzone';
 import { DeleteOutlined, UploadOutlined } from '@ant-design/icons';
-import { Card, Button, Row, Col, Form, Input, Radio, Space, Divider, Typography, message, Tooltip, Modal } from 'antd';
+import { Card, Button, Row, Col, Form, Input, Radio, Space, Divider, Typography, message, Tooltip, Modal, DatePicker } from 'antd';
 
 import '@toast-ui/editor/dist/i18n/ko-kr';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -10,16 +10,26 @@ import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import { Editor } from '@toast-ui/react-editor';
+
+import dayjs from 'dayjs';
+import weekday from 'dayjs/plugin/weekday';
+import localeData from 'dayjs/plugin/localeData';
+
 import '../../Style.css';
 
 const { TextArea } = Input;
 const { Text, Link } = Typography;
+const { RangePicker } = DatePicker;
 
 export const EducationModify = (props) => {
     const { confirm } = Modal;
     const [form] = Form.useForm();
     const titleRef = useRef(null);
     const editorRef = useRef(null);
+
+    dayjs.extend(weekday);
+    dayjs.extend(localeData);
+
     const [itemContainer, setItemContainer] = useState([]); // 항목 컨테이너
     const [command, setCommand] = useState('false'); // 파일 업로드 여부
     const [uploadedFiles, setUploadedFiles] = useState([]); // 파일 업로드 값
@@ -261,6 +271,37 @@ export const EducationModify = (props) => {
                                                     <span style={{ padding: '0 15px' }}>미사용</span>
                                                 </Radio.Button>
                                             </Radio.Group>
+                                        </Col>
+                                    </Row>
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Divider style={{ margin: '10px 0' }} />
+                        <Row gutter={24}>
+                            <Col xs={24}>
+                                <Form.Item
+                                    name="form02"
+                                    label="등록일"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: '등록일'
+                                        }
+                                    ]}
+                                >
+                                    <Row>
+                                        <Col>
+                                            <DatePicker
+                                                name="insertDate"
+                                                onChange={(date) => {
+                                                    setItemContainer({ ...itemContainer, insertDate: date });
+                                                }}
+                                                placeholder="등록일"
+                                                style={{
+                                                    width: '945px'
+                                                }}
+                                                value={itemContainer?.insertDate ? dayjs(itemContainer.insertDate) : dayjs(new Date())}
+                                            />
                                         </Col>
                                     </Row>
                                 </Form.Item>
