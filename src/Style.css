@@ -262,6 +262,14 @@ Button {
     height: 400px;
 }
 
+.height450 {
+    height: 450px;
+}
+
+.height500 {
+    height: 500px;
+}
+
 .height700 {
     height: 700px;
 }

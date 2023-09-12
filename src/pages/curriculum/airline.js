@@ -221,7 +221,7 @@ export const Curriculum_Airline = () => {
                                             <RightCircleFilled /> 교육프로그램
                                         </Title>
 
-                                        <div className="con_table cop_table">
+                                        <div className="con_table cop_table ">
                                             <table className="table">
                                                 <colgroup>
                                                     <col style={{ width: '20%' }} />

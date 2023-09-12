@@ -238,7 +238,7 @@ export const Curriculum_Security = () => {
                                                 </thead>
                                             </table>
                                         </div>
-                                        <div className="con_table cop_table height700">
+                                        <div className="con_table cop_table height750">
                                             <table className="table">
                                                 <colgroup>
                                                     <col style={{ width: '20%' }} />
@@ -464,7 +464,7 @@ export const Curriculum_Security = () => {
                                             <RightCircleFilled /> 교육프로그램
                                         </Title>
 
-                                        <div className="con_table cop_table">
+                                        <div className="con_table cop_table ">
                                             <table className="table">
                                                 <colgroup>
                                                     <col style={{ width: '20%' }} />
@@ -480,7 +480,7 @@ export const Curriculum_Security = () => {
                                                 </thead>
                                             </table>
                                         </div>
-                                        <div className="con_table cop_table height400">
+                                        <div className="con_table cop_table height500">
                                             <table className="table">
                                                 <colgroup>
                                                     <col style={{ width: '20%' }} />

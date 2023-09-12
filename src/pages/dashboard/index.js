@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Typography } from '@mui/material';
-import { Card, Row, Col } from 'antd';
+import { Card, Row, Col, Empty } from 'antd';
 import { NotificationOutlined } from '@ant-design/icons';
 import '../../Style.css';
 
@@ -48,16 +48,24 @@ const DashboardDefault = () => {
                             style={{ height: '300px' }}
                             extra={<Link to="/education">More</Link>}
                         >
-                            {selectMainInfoListData.map((Idata, i) => (
-                                <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
-                                    <Col span={16}>
-                                        <Link to="/education" style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            · {Idata.title}
-                                        </Link>
+                            {selectMainInfoListData.length === 0 ? (
+                                <Row gutter={24} style={{ margin: '20px 0px' }}>
+                                    <Col span={24}>
+                                        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={<span>자료 준비중!</span>} />
                                     </Col>
-                                    <Col span={8}>{Idata.insertDate}</Col>
                                 </Row>
-                            ))}
+                            ) : (
+                                selectMainInfoListData?.map((Idata, i) => (
+                                    <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
+                                        <Col span={16}>
+                                            <Link to="/education" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                                · {Idata.title}
+                                            </Link>
+                                        </Col>
+                                        <Col span={8}>{Idata.insertDate}</Col>
+                                    </Row>
+                                ))
+                            )}
                         </Card>
                     </Col>
                     <Col xs={24} sm={12} md={12} lg={12} xl={12}>
@@ -71,16 +79,24 @@ const DashboardDefault = () => {
                             style={{ height: '300px' }}
                             extra={<Link to="/notification">More</Link>}
                         >
-                            {selectMainNoticeListData.map((Ndata, i) => (
-                                <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
-                                    <Col span={16}>
-                                        <Link to="/notification" style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            · {Ndata.title}
-                                        </Link>
+                            {selectMainNoticeListData.length === 0 ? (
+                                <Row gutter={24} style={{ margin: '20px 0px' }}>
+                                    <Col span={24}>
+                                        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={<span>자료 준비중!</span>} />
                                     </Col>
-                                    <Col span={68}>{Ndata.insertDate}</Col>
                                 </Row>
-                            ))}
+                            ) : (
+                                selectMainNoticeListData.map((Ndata, i) => (
+                                    <Row key={i} gutter={24} style={{ margin: '20px 0px' }}>
+                                        <Col span={16}>
+                                            <Link to="/notification" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                                · {Ndata.title}
+                                            </Link>
+                                        </Col>
+                                        <Col span={68}>{Ndata.insertDate}</Col>
+                                    </Row>
+                                ))
+                            )}
                         </Card>
                     </Col>
                 </Row>
