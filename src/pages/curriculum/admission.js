@@ -183,7 +183,7 @@ export const Curriculum_Admission = () => {
                                                     신청 차수에 교육대상자로 선정되지 않은 인원에 대해서는 차기 교육대상자에 우선 선발
                                                 </li>
                                                 <li style={{ textAlign: 'left', margin: '8px 0px 8px 15px' }}>
-                                                    입교신청 문의 이메일 : admin@kssa.re.kr
+                                                    입교신청 문의 이메일 : kssa@kssa.re.kr
                                                 </li>
                                             </ul>
                                         </Paragraph>

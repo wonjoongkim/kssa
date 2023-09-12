@@ -152,7 +152,7 @@ export const Intro_Directions = () => {
                                 </Col>
                                 <Col span={24}>
                                     <span style={{ float: 'left', width: '250px' }}>● http://www.kssa.re.kr</span>{' '}
-                                    <span style={{ marginLeft: '30px' }}>● 이메일문의: admin@kssa.re.kr</span>
+                                    <span style={{ marginLeft: '30px' }}>● 이메일문의: kssa@kssa.re.kr</span>
                                 </Col>
                             </Row>
                         </Col>
