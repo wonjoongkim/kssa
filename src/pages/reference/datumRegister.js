@@ -74,7 +74,7 @@ export const DatumRegister = (props) => {
             contents: itemContainer.contents,
             userName: 'Admin',
             useYn: itemContainer.useYn,
-            insertDate: itemContainer.insertDate
+            insertDate: itemContainer.insertDate === null ? dayjs(new Date()).format('YYYY-MM-DD') : itemContainer.insertDate
         };
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
 
