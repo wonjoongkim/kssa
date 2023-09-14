@@ -44,7 +44,10 @@ export const EducationRegister = (props) => {
             contents: itemContainer.contents,
             userName: 'Admin',
             useYn: itemContainer.useYn,
-            insertDate: itemContainer.insertDate === null ? dayjs(new Date()).format('YYYY-MM-DD') : itemContainer.insertDate
+            insertDate:
+                itemContainer.insertDate === null || itemContainer.insertDate === undefined
+                    ? dayjs(new Date()).format('YYYY-MM-DD')
+                    : dayjs(itemContainer.insertDate).format('YYYY-MM-DD')
         };
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
 
@@ -59,6 +62,8 @@ export const EducationRegister = (props) => {
                   style: { top: 320 },
                   onOk() {
                       form.resetFields();
+                      setItemContainer('');
+                      setUploadedFiles('');
                       props.SaveClose();
                   }
               })
@@ -216,7 +221,10 @@ export const EducationRegister = (props) => {
                                                 boxShadow: '2px 3px 0px 0px #dbdbdb'
                                             }}
                                             type="primary"
-                                            onClick={() => Register_Process()}
+                                            onClick={() => {
+                                                form.resetFields();
+                                                Register_Process();
+                                            }}
                                         >
                                             추가
                                         </Button>
@@ -292,7 +300,7 @@ export const EducationRegister = (props) => {
                         </Row>
                         <Divider style={{ margin: '10px 0' }} />
                         <Form.Item
-                            name="form02"
+                            name="form03"
                             label="제목"
                             rules={[
                                 {
@@ -319,7 +327,7 @@ export const EducationRegister = (props) => {
                         <Divider style={{ margin: '10px 0' }} />
 
                         <Form.Item
-                            name="form03"
+                            name="form04"
                             label="파일 업로드"
                             rules={[
                                 {
@@ -384,7 +392,7 @@ export const EducationRegister = (props) => {
                         </Form.Item>
                         <Divider style={{ margin: '10px 0' }} />
                         <Form.Item
-                            name="form04"
+                            name="form05"
                             label="내용"
                             rules={[
                                 {
@@ -455,7 +463,10 @@ export const EducationRegister = (props) => {
                                             boxShadow: '2px 3px 0px 0px #dbdbdb'
                                         }}
                                         type="primary"
-                                        onClick={() => Register_Process()}
+                                        onClick={() => {
+                                            form.resetFields();
+                                            Register_Process();
+                                        }}
                                     >
                                         추가
                                     </Button>

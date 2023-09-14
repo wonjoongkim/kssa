@@ -46,8 +46,12 @@ export const NewsRegister = (props) => {
             contents: itemContainer.contents,
             userName: 'Admin',
             useYn: itemContainer.useYn,
-            insertDate: itemContainer.insertDate === null ? dayjs(new Date()).format('YYYY-MM-DD') : itemContainer.insertDate
+            insertDate:
+                itemContainer.insertDate === null || itemContainer.insertDate === undefined
+                    ? dayjs(new Date()).format('YYYY-MM-DD')
+                    : dayjs(itemContainer.insertDate).format('YYYY-MM-DD')
         };
+        console.log(params);
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
 
         Object.values(selectedFiles).forEach((Noticefiles) => {
@@ -61,6 +65,8 @@ export const NewsRegister = (props) => {
                   style: { top: 320 },
                   onOk() {
                       form.resetFields();
+                      setItemContainer('');
+                      setUploadedFiles('');
                       props.SaveClose();
                   }
               })
@@ -270,7 +276,7 @@ export const NewsRegister = (props) => {
                         <Row gutter={24}>
                             <Col xs={24}>
                                 <Form.Item
-                                    name="form02"
+                                    name="form03"
                                     label="제목"
                                     rules={[
                                         {
@@ -296,7 +302,7 @@ export const NewsRegister = (props) => {
                         <Row gutter={24}>
                             <Col span={24}>
                                 <Form.Item
-                                    name="form03"
+                                    name="form04"
                                     label="파일 업로드"
                                     rules={[
                                         {
@@ -361,7 +367,7 @@ export const NewsRegister = (props) => {
                         <Row gutter={24}>
                             <Col span={24}>
                                 <Form.Item
-                                    name="form04"
+                                    name="form05"
                                     label="내용"
                                     rules={[
                                         {

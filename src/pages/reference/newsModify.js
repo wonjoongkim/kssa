@@ -59,14 +59,18 @@ export const NewsModify = (props) => {
             contents: itemContainer.contents,
             userName: 'Admin',
             useYn: itemContainer.useYn,
-            insertDate: itemContainer.insertDate === null ? dayjs(new Date()).format('YYYY-MM-DD') : itemContainer.insertDate
+            insertDate:
+                itemContainer.insertDate === null || itemContainer.insertDate === undefined
+                    ? dayjs(new Date()).format('YYYY-MM-DD')
+                    : dayjs(itemContainer.insertDate).format('YYYY-MM-DD')
         };
-        console.log(params);
+
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
 
         Object.values(selectedFiles).forEach((Noticefiles) => {
             formData.append('files', Noticefiles);
         });
+
         const UpdateReferenceRoomResponse = await UpdateReferenceRoomApi(formData);
         UpdateReferenceRoomResponse?.data?.RET_CODE === '0100'
             ? Modal.success({
@@ -74,6 +78,8 @@ export const NewsModify = (props) => {
                   style: { top: 320 },
                   onOk() {
                       form.resetFields();
+                      setItemContainer('');
+                      setUploadedFiles('');
                       props.SaveClose();
                   }
               })
@@ -128,11 +134,9 @@ export const NewsModify = (props) => {
 
     // 업로드 된 파일 삭제
     const handleFileDelete = (index) => {
-        setUploadedFiles((prevFiles) => {
-            const updatedFiles = [...prevFiles];
-            updatedFiles.splice(index, 1);
-            return updatedFiles;
-        });
+        const updatedFiles = [...uploadedFiles];
+        updatedFiles.splice(index, 1);
+        setUploadedFiles(updatedFiles);
     };
 
     const Modify_Process = () => {

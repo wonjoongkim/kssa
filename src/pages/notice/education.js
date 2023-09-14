@@ -78,7 +78,7 @@ export const Notice_Education = () => {
         const DeleteInfoResponse = await DeleteInfoApi({
             seqIdList: selectedRowKeys
         });
-        setDeleteInfoData(DeleteInfoResponse?.data?.RET_DATA);
+        SelectInfoList_ApiCall();
     };
 
     const handleMenuClick = (menuKey) => {
@@ -235,7 +235,7 @@ export const Notice_Education = () => {
                                   <Button
                                       type="primary"
                                       onClick={() => handle_modify(rowdata1)}
-                                      style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '12px' }}
+                                      style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', height: '46px' }}
                                       icon={<EditFilled />}
                                   >
                                       수정
@@ -482,7 +482,7 @@ export const Notice_Education = () => {
                                         <Space style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
                                             <Button
                                                 onClick={handle_Register}
-                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '12px' }}
+                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', height: '46px' }}
                                                 type="success"
                                                 icon={<PlusOutlined />}
                                             >
@@ -492,7 +492,7 @@ export const Notice_Education = () => {
                                             <Button
                                                 type="danger"
                                                 // onClick={handleDel}
-                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', fontSize: '12px' }}
+                                                style={{ borderRadius: '5px', boxShadow: '2px 3px 0px 0px #dbdbdb', height: '46px' }}
                                                 icon={<DeleteFilled />}
                                                 onClick={handleDel}
                                             >
@@ -563,7 +563,7 @@ export const Notice_Education = () => {
                 maskClosable={false}
                 open={ModalOpenVi}
                 onOk={handleOk_Vi}
-                closable={true}
+                closable={false}
                 onCancel={handleCancel_Vi}
                 width={1080}
                 style={{

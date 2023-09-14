@@ -44,7 +44,10 @@ export const FaqRegister = (props) => {
             contents: itemContainer.contents,
             userName: 'Admin',
             useYn: itemContainer.useYn,
-            insertDate: itemContainer.insertDate === null ? dayjs(new Date()).format('YYYY-MM-DD') : itemContainer.insertDate
+            insertDate:
+                itemContainer.insertDate === null || itemContainer.insertDate === undefined
+                    ? dayjs(new Date()).format('YYYY-MM-DD')
+                    : dayjs(itemContainer.insertDate).format('YYYY-MM-DD')
         };
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
 
@@ -59,6 +62,8 @@ export const FaqRegister = (props) => {
                   style: { top: 320 },
                   onOk() {
                       form.resetFields();
+                      setItemContainer('');
+                      setUploadedFiles('');
                       props.SaveClose();
                   }
               })
@@ -186,7 +191,10 @@ export const FaqRegister = (props) => {
                                                 boxShadow: '2px 3px 0px 0px #dbdbdb'
                                             }}
                                             type="primary"
-                                            onClick={() => Register_Process()}
+                                            onClick={() => {
+                                                form.resetFields();
+                                                Register_Process();
+                                            }}
                                         >
                                             추가
                                         </Button>
@@ -413,7 +421,10 @@ export const FaqRegister = (props) => {
                                             boxShadow: '2px 3px 0px 0px #dbdbdb'
                                         }}
                                         type="primary"
-                                        onClick={() => Register_Process()}
+                                        onClick={() => {
+                                            form.resetFields();
+                                            Register_Process();
+                                        }}
                                     >
                                         추가
                                     </Button>

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Card, Typography, Tooltip } from 'antd';
+import { Card, Typography, Tooltip, Button, Row, Col } from 'antd';
 
 import { useSelectFAQMutation } from '../../hooks/api/BoardManagement/BoardManagement';
 import { Space } from '../../../node_modules/antd/lib/index';
@@ -32,8 +32,31 @@ export const FaqView = (props) => {
         setViewerKey((prevKey) => prevKey + 1); // Key 업데이트
     }, [selectFAQData.contents]);
 
+    const ModalClose = () => {
+        setSelectFAQData([]);
+        props.ModalClose();
+    };
     return (
         <>
+            <Row gutter={24}>
+                <Col span={24}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize: '14px' }}>
+                        <Button
+                            type="primary"
+                            onClick={ModalClose}
+                            style={{
+                                width: '100px',
+                                marginTop: '10px',
+                                borderRadius: '5px',
+                                boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                height: '46px'
+                            }}
+                        >
+                            Close
+                        </Button>
+                    </div>
+                </Col>
+            </Row>
             <Card size="small" bordered={false} style={{ width: '100%', marginTop: '20px', height: '470px', overflow: 'auto' }}>
                 <Card
                     type="inner"
@@ -85,6 +108,25 @@ export const FaqView = (props) => {
                 >
                     <Viewer key={viewerKey} style={{ fontFamily: 'SUIT' }} initialValue={selectFAQData.contents} />
                 </Card>
+                <Row gutter={24}>
+                    <Col span={24}>
+                        <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize: '14px' }}>
+                            <Button
+                                type="primary"
+                                onClick={ModalClose}
+                                style={{
+                                    width: '100px',
+                                    marginTop: '10px',
+                                    borderRadius: '5px',
+                                    boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                    height: '46px'
+                                }}
+                            >
+                                Close
+                            </Button>
+                        </div>
+                    </Col>
+                </Row>
             </Card>
         </>
     );

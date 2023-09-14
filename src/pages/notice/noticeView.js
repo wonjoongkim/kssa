@@ -49,7 +49,8 @@ export const NoticeView = (props) => {
                                 width: '100px',
                                 marginTop: '10px',
                                 borderRadius: '5px',
-                                boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                height: '46px'
                             }}
                         >
                             Close
@@ -120,7 +121,8 @@ export const NoticeView = (props) => {
                                     width: '100px',
                                     marginTop: '10px',
                                     borderRadius: '5px',
-                                    boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                    boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                    height: '46px'
                                 }}
                             >
                                 Close

@@ -57,7 +57,10 @@ export const NoticeModify = (props) => {
             contents: itemContainer.contents,
             userName: 'Admin',
             useYn: itemContainer.useYn,
-            insertDate: itemContainer.insertDate === null ? dayjs(new Date()).format('YYYY-MM-DD') : itemContainer.insertDate
+            insertDate:
+                itemContainer.insertDate === null || itemContainer.insertDate === undefined
+                    ? dayjs(new Date()).format('YYYY-MM-DD')
+                    : dayjs(itemContainer.insertDate).format('YYYY-MM-DD')
         };
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
 
@@ -71,6 +74,8 @@ export const NoticeModify = (props) => {
                   style: { top: 320 },
                   onOk() {
                       form.resetFields();
+                      setItemContainer('');
+                      setUploadedFiles('');
                       props.SaveClose();
                   }
               })
