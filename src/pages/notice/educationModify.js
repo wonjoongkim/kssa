@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelectInfoMutation, useUpdateInfoMutation } from '../../hooks/api/BoardManagement/BoardManagement';
+import { useSelectInfoMutation, useUpdateInfoMutation, useDeleteFileMutation } from '../../hooks/api/BoardManagement/BoardManagement';
 import { useDropzone } from 'react-dropzone';
 import { DeleteOutlined, UploadOutlined } from '@ant-design/icons';
 import { Card, Button, Row, Col, Form, Input, Radio, Space, Divider, Typography, message, Tooltip, Modal, DatePicker } from 'antd';
@@ -44,6 +44,7 @@ export const EducationModify = (props) => {
         editorRef.current?.getInstance().setMarkdown(SelectInfoResponse?.data?.RET_DATA.contents);
         setItemContainer(SelectInfoResponse?.data?.RET_DATA);
         setUploadedFiles(SelectInfoResponse?.data?.RET_DATA.fileList);
+        // setSelectedFiles(SelectInfoResponse?.data?.RET_DATA.fileList);
     };
 
     // 공지사항 수정
@@ -53,6 +54,7 @@ export const EducationModify = (props) => {
         Object.values(selectedFiles).forEach((Infofiles) => {
             formData.append('files', Infofiles);
         });
+
         const params = {
             seqId: props.seqIdProps,
             title: itemContainer.title,
@@ -83,6 +85,17 @@ export const EducationModify = (props) => {
                   style: { top: 320 },
                   onOk() {}
               });
+    };
+
+    // 파일 삭제
+    const [DeleteFileApi] = useDeleteFileMutation();
+    const DeleteFile_ApiCall = async (seqId, attachFileId) => {
+        const DeleteFileResponse = await DeleteFileApi({
+            path: '',
+            seqId: seqId,
+            attachFileId: attachFileId
+        });
+        console.log(DeleteFileResponse);
     };
 
     const handleDrop = (acceptedFiles) => {
@@ -128,12 +141,11 @@ export const EducationModify = (props) => {
     });
 
     // 업로드 된 파일 삭제
-    const handleFileDelete = (index) => {
-        setUploadedFiles((prevFiles) => {
-            const updatedFiles = [...prevFiles];
-            updatedFiles.splice(index, 1);
-            return updatedFiles;
-        });
+    const handleFileDelete = (index, flag1, flag2) => {
+        const updatedFiles = [...uploadedFiles];
+        updatedFiles.splice(index, 1);
+        // setUploadedFiles(updatedFiles);
+        DeleteFile_ApiCall(flag1, flag2);
     };
 
     const Modify_Process = () => {
@@ -172,37 +184,6 @@ export const EducationModify = (props) => {
     useEffect(() => {
         SelectInfo_ApiCall();
     }, [props.seqIdProps, props.datetime]);
-
-    // useEffect(() => {
-    //     if (editorRef.current) {
-    //         // 기존 훅 제거
-    //         editorRef.current.getInstance().removeHook('addImageBlobHook');
-    //         // 새로운 훅 추가
-    //         editorRef.current.getInstance().addHook('addImageBlobHook', (blob, callback) => {
-    //             (async () => {
-    //                 let formData = new FormData();
-    //                 formData.append('image', blob);
-
-    //                 console.log('이미지가 업로드 됐습니다.');
-
-    //                 await axios.post(`{저장할 서버 api}`, formData, {
-    //                     header: { 'content-type': 'multipart/formdata' },
-    //                     withCredentials: true
-    //                 });
-
-    //                 const imageUrl = '저장된 서버 주소' + blob.name;
-
-    //                 setImages([...images, imageUrl]);
-    //                 callback(imageUrl, 'image');
-    //             })();
-
-    //             return false;
-    //         });
-    //     }
-
-    //     return () => {};
-    // }, [editorRef]);
-    console.log(itemContainer);
 
     return (
         <>
@@ -388,7 +369,9 @@ export const EducationModify = (props) => {
                                                                         <Button
                                                                             type="danger"
                                                                             icon={<DeleteOutlined />}
-                                                                            onClick={() => handleFileDelete(index)}
+                                                                            onClick={() =>
+                                                                                handleFileDelete(index, props.seqIdProps, file.attachFileId)
+                                                                            }
                                                                         >
                                                                             {file.originalFileName === undefined
                                                                                 ? file.name

@@ -27,7 +27,7 @@ export const LawsView = (props) => {
 
     useEffect(() => {
         SelectReferenceRoom_ApiCall();
-    }, [props.seqIdValue]);
+    }, [props.seqIdValue, props.datetime]);
 
     useEffect(() => {
         setViewerKey((prevKey) => prevKey + 1); // Key 업데이트

@@ -26,7 +26,7 @@ export const FaqView = (props) => {
 
     useEffect(() => {
         SelectFAQ_ApiCall();
-    }, [props.seqIdValue]);
+    }, [props.seqIdProps, props.datetime]);
 
     useEffect(() => {
         setViewerKey((prevKey) => prevKey + 1); // Key 업데이트
