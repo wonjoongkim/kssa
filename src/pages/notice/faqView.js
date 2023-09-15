@@ -38,7 +38,7 @@ export const FaqView = (props) => {
     };
     return (
         <>
-            <Row gutter={24}>
+            {/* <Row gutter={24}>
                 <Col span={24}>
                     <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize: '14px' }}>
                         <Button
@@ -56,7 +56,7 @@ export const FaqView = (props) => {
                         </Button>
                     </div>
                 </Col>
-            </Row>
+            </Row> */}
             <Card size="small" bordered={false} style={{ width: '100%', marginTop: '20px', height: '470px', overflow: 'auto' }}>
                 <Card
                     type="inner"

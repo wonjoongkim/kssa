@@ -440,7 +440,6 @@ export const FaqModify = (props) => {
                                             borderRadius: '5px',
                                             boxShadow: '2px 3px 0px 0px #dbdbdb',
                                             height: '46px',
-                                            lineHehgit: '46px',
                                             lineHeight: '36px'
                                         }}
                                         type="danger"
@@ -456,7 +455,6 @@ export const FaqModify = (props) => {
                                             borderRadius: '5px',
                                             boxShadow: '2px 3px 0px 0px #dbdbdb',
                                             height: '46px',
-                                            lineHehgit: '46px',
                                             lineHeight: '36px'
                                         }}
                                         type="primary"

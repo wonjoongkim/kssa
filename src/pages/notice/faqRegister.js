@@ -176,7 +176,9 @@ export const FaqRegister = (props) => {
                                                 display: 'flex',
                                                 justifyContent: 'flex-end',
                                                 borderRadius: '5px',
-                                                boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                                boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                                height: '46px',
+                                                lineHeight: '36px'
                                             }}
                                             type="danger"
                                             onClick={ModalClose}
@@ -188,7 +190,9 @@ export const FaqRegister = (props) => {
                                                 display: 'flex',
                                                 justifyContent: 'flex-end',
                                                 borderRadius: '5px',
-                                                boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                                boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                                height: '46px',
+                                                lineHeight: '36px'
                                             }}
                                             type="primary"
                                             onClick={() => {
@@ -383,7 +387,6 @@ export const FaqRegister = (props) => {
                                         usageStatistics={false}
                                         useCommandShortcut={true}
                                         name="contents"
-                                        // onChange={handleChange}
                                         onChange={() =>
                                             setItemContainer({
                                                 ...itemContainer,
@@ -405,7 +408,9 @@ export const FaqRegister = (props) => {
                                             display: 'flex',
                                             justifyContent: 'flex-end',
                                             borderRadius: '5px',
-                                            boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                            boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                            height: '46px',
+                                            lineHeight: '36px'
                                         }}
                                         type="danger"
                                         onClick={ModalClose}
@@ -418,7 +423,9 @@ export const FaqRegister = (props) => {
                                             display: 'flex',
                                             justifyContent: 'flex-end',
                                             borderRadius: '5px',
-                                            boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                            boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                            height: '46px',
+                                            lineHeight: '36px'
                                         }}
                                         type="primary"
                                         onClick={() => {

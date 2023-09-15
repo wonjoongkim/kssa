@@ -565,7 +565,7 @@ export const Notice_Faq = () => {
                 maskClosable={false}
                 open={ModalOpenVi}
                 onOk={handleOk_Vi}
-                closable={false}
+                closable={true}
                 onCancel={handleCancel_Vi}
                 width={1080}
                 style={{

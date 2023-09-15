@@ -570,8 +570,8 @@ export const Reference_Datum = () => {
                 maskClosable={false}
                 open={ModalOpenVi}
                 onOk={handleOk_Vi}
-                closable={false}
-                // onCancel={handleCancel_Vi}
+                closable={true}
+                onCancel={handleCancel_Vi}
                 width={780}
                 style={{
                     top: 320,
