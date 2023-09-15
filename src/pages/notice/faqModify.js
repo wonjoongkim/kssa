@@ -203,7 +203,10 @@ export const FaqModify = (props) => {
                                                 display: 'flex',
                                                 justifyContent: 'flex-end',
                                                 borderRadius: '5px',
-                                                boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                                boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                                height: '46px',
+                                                lineHehgit: '46px',
+                                                lineHeight: '36px'
                                             }}
                                             type="danger"
                                             onClick={ModalClose}
@@ -215,7 +218,10 @@ export const FaqModify = (props) => {
                                                 display: 'flex',
                                                 justifyContent: 'flex-end',
                                                 borderRadius: '5px',
-                                                boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                                boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                                height: '46px',
+                                                lineHehgit: '46px',
+                                                lineHeight: '36px'
                                             }}
                                             type="primary"
                                             onClick={() => Modify_Process()}
@@ -432,7 +438,10 @@ export const FaqModify = (props) => {
                                             display: 'flex',
                                             justifyContent: 'flex-end',
                                             borderRadius: '5px',
-                                            boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                            boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                            height: '46px',
+                                            lineHehgit: '46px',
+                                            lineHeight: '36px'
                                         }}
                                         type="danger"
                                         onClick={ModalClose}
@@ -445,7 +454,10 @@ export const FaqModify = (props) => {
                                             display: 'flex',
                                             justifyContent: 'flex-end',
                                             borderRadius: '5px',
-                                            boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                            boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                            height: '46px',
+                                            lineHehgit: '46px',
+                                            lineHeight: '36px'
                                         }}
                                         type="primary"
                                         onClick={() => Modify_Process()}

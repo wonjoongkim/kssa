@@ -55,7 +55,6 @@ export const NewsModify = (props) => {
     const [UpdateReferenceRoomApi] = useUpdateReferenceRoomMutation();
     const UpdateReferenceRoom_ApiCall = async () => {
         let formData = new FormData();
-
         const params = {
             path: 'news',
             seqId: props.seqIdProps,
@@ -68,7 +67,6 @@ export const NewsModify = (props) => {
                     ? dayjs(new Date()).format('YYYY-MM-DD')
                     : dayjs(itemContainer.insertDate).format('YYYY-MM-DD')
         };
-
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
 
         Object.values(selectedFiles).forEach((Noticefiles) => {
@@ -212,7 +210,9 @@ export const NewsModify = (props) => {
                                                 justifyContent: 'flex-end',
                                                 borderRadius: '5px',
                                                 boxShadow: '2px 3px 0px 0px #dbdbdb',
-                                                height: '38px',
+                                                height: '46px',
+                                                lineHehgit: '46px',
+                                                lineHeight: '36px',
                                                 padding: '4px 20px'
                                             }}
                                             type="danger"
@@ -226,7 +226,9 @@ export const NewsModify = (props) => {
                                                 justifyContent: 'flex-end',
                                                 borderRadius: '5px',
                                                 boxShadow: '2px 3px 0px 0px #dbdbdb',
-                                                height: '38px',
+                                                height: '46px',
+                                                lineHehgit: '46px',
+                                                lineHeight: '36px',
                                                 padding: '4px 20px'
                                             }}
                                             type="primary"
@@ -445,7 +447,9 @@ export const NewsModify = (props) => {
                                             justifyContent: 'flex-end',
                                             borderRadius: '5px',
                                             boxShadow: '2px 3px 0px 0px #dbdbdb',
-                                            height: '38px',
+                                            height: '46px',
+                                            lineHehgit: '46px',
+                                            lineHeight: '36px',
                                             padding: '4px 20px'
                                         }}
                                         type="danger"
@@ -460,7 +464,9 @@ export const NewsModify = (props) => {
                                             justifyContent: 'flex-end',
                                             borderRadius: '5px',
                                             boxShadow: '2px 3px 0px 0px #dbdbdb',
-                                            height: '38px',
+                                            height: '46px',
+                                            lineHehgit: '46px',
+                                            lineHeight: '36px',
                                             padding: '4px 20px'
                                         }}
                                         type="primary"

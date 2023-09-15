@@ -210,7 +210,9 @@ export const LawsModify = (props) => {
                                                 justifyContent: 'flex-end',
                                                 borderRadius: '5px',
                                                 boxShadow: '2px 3px 0px 0px #dbdbdb',
-                                                height: '38px',
+                                                height: '46px',
+                                                lineHehgit: '46px',
+                                                lineHeight: '36px',
                                                 padding: '4px 20px'
                                             }}
                                             type="danger"
@@ -224,7 +226,9 @@ export const LawsModify = (props) => {
                                                 justifyContent: 'flex-end',
                                                 borderRadius: '5px',
                                                 boxShadow: '2px 3px 0px 0px #dbdbdb',
-                                                height: '38px',
+                                                height: '46px',
+                                                lineHehgit: '46px',
+                                                lineHeight: '36px',
                                                 padding: '4px 20px'
                                             }}
                                             type="primary"
@@ -443,7 +447,9 @@ export const LawsModify = (props) => {
                                             justifyContent: 'flex-end',
                                             borderRadius: '5px',
                                             boxShadow: '2px 3px 0px 0px #dbdbdb',
-                                            height: '38px',
+                                            height: '46px',
+                                            lineHehgit: '46px',
+                                            lineHeight: '36px',
                                             padding: '4px 20px'
                                         }}
                                         type="danger"
@@ -458,7 +464,9 @@ export const LawsModify = (props) => {
                                             justifyContent: 'flex-end',
                                             borderRadius: '5px',
                                             boxShadow: '2px 3px 0px 0px #dbdbdb',
-                                            height: '38px',
+                                            height: '46px',
+                                            lineHehgit: '46px',
+                                            lineHeight: '36px',
                                             padding: '4px 20px'
                                         }}
                                         type="primary"

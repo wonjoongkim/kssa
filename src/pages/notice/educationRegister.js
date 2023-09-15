@@ -206,7 +206,10 @@ export const EducationRegister = (props) => {
                                                 display: 'flex',
                                                 justifyContent: 'flex-end',
                                                 borderRadius: '5px',
-                                                boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                                boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                                height: '46px',
+                                                lineHeight: '36px',
+                                                padding: '4px 20px'
                                             }}
                                             type="danger"
                                             onClick={ModalClose}
@@ -218,7 +221,10 @@ export const EducationRegister = (props) => {
                                                 display: 'flex',
                                                 justifyContent: 'flex-end',
                                                 borderRadius: '5px',
-                                                boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                                boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                                height: '46px',
+                                                lineHeight: '36px',
+                                                padding: '4px 20px'
                                             }}
                                             type="primary"
                                             onClick={() => {
@@ -447,7 +453,10 @@ export const EducationRegister = (props) => {
                                             display: 'flex',
                                             justifyContent: 'flex-end',
                                             borderRadius: '5px',
-                                            boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                            boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                            height: '46px',
+                                            lineHehgit: '46px',
+                                            lineHeight: '36px'
                                         }}
                                         type="danger"
                                         onClick={ModalClose}
@@ -460,7 +469,10 @@ export const EducationRegister = (props) => {
                                             display: 'flex',
                                             justifyContent: 'flex-end',
                                             borderRadius: '5px',
-                                            boxShadow: '2px 3px 0px 0px #dbdbdb'
+                                            boxShadow: '2px 3px 0px 0px #dbdbdb',
+                                            height: '46px',
+                                            lineHehgit: '46px',
+                                            lineHeight: '36px'
                                         }}
                                         type="primary"
                                         onClick={() => {
