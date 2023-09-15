@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelectInfoMutation, useUpdateInfoMutation, useDeleteFileMutation } from '../../hooks/api/BoardManagement/BoardManagement';
+import { useSelectInfoMutation, useUpdateInfoMutation } from '../../hooks/api/BoardManagement/BoardManagement';
 import { useDropzone } from 'react-dropzone';
 import { DeleteOutlined, UploadOutlined } from '@ant-design/icons';
 import { Card, Button, Row, Col, Form, Input, Radio, Space, Divider, Typography, message, Tooltip, Modal, DatePicker } from 'antd';
