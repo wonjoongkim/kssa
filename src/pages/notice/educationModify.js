@@ -51,10 +51,6 @@ export const EducationModify = (props) => {
     const [UpdateInfoApi] = useUpdateInfoMutation();
     const UpdateInfo_ApiCall = async () => {
         let formData = new FormData();
-        Object.values(selectedFiles).forEach((Infofiles) => {
-            formData.append('files', Infofiles);
-        });
-
         const params = {
             seqId: props.seqIdProps,
             title: itemContainer.title,
@@ -67,6 +63,10 @@ export const EducationModify = (props) => {
                     : dayjs(itemContainer.insertDate).format('YYYY-MM-DD')
         };
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
+
+        Object.values(selectedFiles).forEach((Infofiles) => {
+            formData.append('files', Infofiles);
+        });
 
         const UpdateInfoResponse = await UpdateInfoApi(formData);
         UpdateInfoResponse?.data?.RET_CODE === '0100'
@@ -85,17 +85,6 @@ export const EducationModify = (props) => {
                   style: { top: 320 },
                   onOk() {}
               });
-    };
-
-    // 파일 삭제
-    const [DeleteFileApi] = useDeleteFileMutation();
-    const DeleteFile_ApiCall = async (seqId, attachFileId) => {
-        const DeleteFileResponse = await DeleteFileApi({
-            path: '',
-            seqId: seqId,
-            attachFileId: attachFileId
-        });
-        console.log(DeleteFileResponse);
     };
 
     const handleDrop = (acceptedFiles) => {
@@ -141,11 +130,24 @@ export const EducationModify = (props) => {
     });
 
     // 업로드 된 파일 삭제
-    const handleFileDelete = (index, flag1, flag2) => {
-        const updatedFiles = [...uploadedFiles];
-        updatedFiles.splice(index, 1);
+    const handleFileDelete = (index) => {
+        setSelectedFiles((prevFiles) => {
+            const updatedFiles = [...prevFiles];
+            updatedFiles.splice(index, 1);
+            return updatedFiles;
+        });
+        setUploadedFiles((prevFiles) => {
+            const updatedFiles = [...prevFiles];
+            updatedFiles.splice(index, 1);
+            return updatedFiles;
+        });
+
+        // const updatedFiles = [...uploadedFiles];
+        // updatedFiles.splice(index, 1);
         // setUploadedFiles(updatedFiles);
-        DeleteFile_ApiCall(flag1, flag2);
+        //setSelectedFiles(filesToUpload);
+
+        //DeleteFile_ApiCall(flag1, flag2);
     };
 
     const Modify_Process = () => {
