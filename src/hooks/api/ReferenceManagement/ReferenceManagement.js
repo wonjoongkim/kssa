@@ -63,6 +63,15 @@ export const referenceManagement = createApi({
                 method: 'POST',
                 body: body
             })
+        }),
+
+        // 파일 삭제
+        deleteFile: builder.mutation({
+            query: (body) => ({
+                url: 'board/deleteFile.do',
+                method: 'POST',
+                body: body
+            })
         })
     })
 });
@@ -72,5 +81,6 @@ export const {
     useSelectReferenceRoomMutation,
     useInsertReferenceRoomMutation,
     useUpdateReferenceRoomMutation,
-    useDeleteReferenceRoomMutation
+    useDeleteReferenceRoomMutation,
+    useDeleteFileMutation // 파일 삭제
 } = referenceManagement;

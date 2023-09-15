@@ -171,6 +171,15 @@ export const boardManagement = createApi({
                 method: 'POST',
                 body: body
             })
+        }),
+
+        // 파일 삭제
+        deleteFile: builder.mutation({
+            query: (body) => ({
+                url: 'board/deleteFile.do',
+                method: 'POST',
+                body: body
+            })
         })
     })
 });
@@ -192,5 +201,7 @@ export const {
     useSelectInfoMutation, // 교육안내 상세조회
     useInsertInfoMutation, // 교육안내 등록
     useUpdateInfoMutation, // 교육안내 수정
-    useDeleteInfoMutation // 교육안내 삭제
+    useDeleteInfoMutation, // 교육안내 삭제
+
+    useDeleteFileMutation // 파일 삭제
 } = boardManagement;

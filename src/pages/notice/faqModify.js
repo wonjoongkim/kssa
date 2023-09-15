@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelectFAQMutation, useUpdateFAQMutation } from '../../hooks/api/BoardManagement/BoardManagement';
+import { useSelectFAQMutation, useUpdateFAQMutation, useDeleteFileMutation } from '../../hooks/api/BoardManagement/BoardManagement';
 import { useDropzone } from 'react-dropzone';
 import { DeleteOutlined, UploadOutlined } from '@ant-design/icons';
 import { Card, Button, Row, Col, Form, Input, Radio, Space, Divider, Typography, message, Tooltip, Modal, DatePicker } from 'antd';
@@ -50,9 +50,6 @@ export const FaqModify = (props) => {
     const [UpdateFAQApi] = useUpdateFAQMutation();
     const UpdateFAQ_ApiCall = async () => {
         let formData = new FormData();
-        Object.values(selectedFiles).forEach((Noticefiles) => {
-            formData.append('files', Noticefiles);
-        });
         const params = {
             seqId: props.seqIdProps,
             title: itemContainer.title,
@@ -66,6 +63,10 @@ export const FaqModify = (props) => {
         };
         formData.append('params', new Blob([JSON.stringify(params)], { type: 'application/json' }));
 
+        Object.values(selectedFiles).forEach((Noticefiles) => {
+            formData.append('files', Noticefiles);
+        });
+
         const UpdateFAQResponse = await UpdateFAQApi(formData);
         UpdateFAQResponse?.data?.RET_CODE === '0100'
             ? Modal.success({
@@ -75,6 +76,7 @@ export const FaqModify = (props) => {
                       form.resetFields();
                       setItemContainer('');
                       setUploadedFiles('');
+                      setSelectedFiles('');
                       props.SaveClose();
                   }
               })
@@ -83,6 +85,17 @@ export const FaqModify = (props) => {
                   style: { top: 320 },
                   onOk() {}
               });
+    };
+
+    // 파일 삭제
+    const [DeleteFileApi] = useDeleteFileMutation();
+    const DeleteFile_ApiCall = async (seqId, attachFileId) => {
+        const DeleteFileResponse = await DeleteFileApi({
+            path: '',
+            seqId: seqId,
+            attachFileId: attachFileId
+        });
+        setUploadedFiles(DeleteFileResponse.data.RET_DATA);
     };
 
     const handleDrop = (acceptedFiles) => {
@@ -128,12 +141,11 @@ export const FaqModify = (props) => {
     });
 
     // 업로드 된 파일 삭제
-    const handleFileDelete = (index) => {
-        setUploadedFiles((prevFiles) => {
-            const updatedFiles = [...prevFiles];
-            updatedFiles.splice(index, 1);
-            return updatedFiles;
-        });
+    const handleFileDelete = (index, flag1, flag2) => {
+        const updatedFiles = [...uploadedFiles];
+        updatedFiles.splice(index, 1);
+        // setUploadedFiles(updatedFiles);
+        DeleteFile_ApiCall(flag1, flag2);
     };
 
     const Modify_Process = () => {
@@ -318,30 +330,31 @@ export const FaqModify = (props) => {
                         >
                             <Row gutter={24}>
                                 <Col span={24}>
+                                    <Space direction="vertical" style={{ width: '100%' }}>
+                                        <Button
+                                            {...getRootProps()}
+                                            className={`dropzone ${isDragActive ? 'active' : ''}`}
+                                            style={{ width: '100%', height: '90px', fontSize: '13px' }}
+                                            size="large"
+                                            disabled={uploadedFiles?.length >= 5}
+                                        >
+                                            <p>
+                                                <UploadOutlined />
+                                            </p>
+                                            <input {...getInputProps()} />
+                                            {isDragActive ? (
+                                                <>
+                                                    <div style={{ width: '100%' }}> 파일을 여기에 놓아주세요...</div>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <div style={{ width: '100%' }}>파일을 드래그하거나 클릭하여 업로드하세요.</div>
+                                                </>
+                                            )}
+                                        </Button>
+                                    </Space>
                                     {uploadedFiles?.length === 0 ? (
-                                        <Space direction="vertical" style={{ width: '100%' }}>
-                                            <Button
-                                                {...getRootProps()}
-                                                className={`dropzone ${isDragActive ? 'active' : ''}`}
-                                                style={{ width: '100%', height: '90px', fontSize: '13px' }}
-                                                size="large"
-                                                disabled={uploadedFiles?.length >= 5}
-                                            >
-                                                <p>
-                                                    <UploadOutlined />
-                                                </p>
-                                                <input {...getInputProps()} />
-                                                {isDragActive ? (
-                                                    <>
-                                                        <div style={{ width: '100%' }}> 파일을 여기에 놓아주세요...</div>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <div style={{ width: '100%' }}>파일을 드래그하거나 클릭하여 업로드하세요.</div>
-                                                    </>
-                                                )}
-                                            </Button>
-                                        </Space>
+                                        ''
                                     ) : (
                                         <>
                                             <Card>
@@ -354,7 +367,9 @@ export const FaqModify = (props) => {
                                                                         <Button
                                                                             type="danger"
                                                                             icon={<DeleteOutlined />}
-                                                                            onClick={() => handleFileDelete(index)}
+                                                                            onClick={() =>
+                                                                                handleFileDelete(index, props.seqIdProps, file.attachFileId)
+                                                                            }
                                                                         >
                                                                             {file.originalFileName === undefined
                                                                                 ? file.name
