@@ -126,7 +126,7 @@ const HeaderContent = () => {
                                     </Link>{' '}
                                     |{' '}
                                     <a href="http://www.kasa21.kr" style={linkStyle} target="_blank" rel="noopener noreferrer">
-                                        KASA
+                                        대한민국 항공보안협회
                                     </a>
                                     |{' '}
                                     {isLoggedIn === false ? (
