@@ -1,4 +1,5 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 // material-ui
 import { Box } from '@mui/material';
@@ -6,11 +7,19 @@ import { Box } from '@mui/material';
 // project import
 import Header from './Header';
 import { Footer } from './Footer';
+import { Schedule_Calendar } from 'pages/schedule/Schedule_Calendar';
 // ==============================|| MAIN LAYOUT ||============================== //
 
 const MainLayout = () => {
+    const [location, setLocation] = useState(useLocation());
+
+    useEffect(() => {
+        console.log('current page path : ', location?.pathname);
+    }, [location]);
+
     return (
         <>
+            {location.pathname === '/' || location.pathname === '/dashboard' ? <Schedule_Calendar navigate={0} /> : ''}
             <Box sx={{ display: 'flex', width: '100%', flexDirection: 'column', height: '100%' }}>
                 <Header />
                 <Box

@@ -281,7 +281,7 @@ export const Curriculum_Airline = () => {
                                                                 </li>
                                                             </ul>
                                                         </td>
-                                                        <td>9h</td>
+                                                        <td>12h</td>
                                                     </tr>
                                                     <tr>
                                                         <td>항공경비실무</td>
@@ -322,7 +322,7 @@ export const Curriculum_Airline = () => {
                                                                 </li>
                                                             </ul>
                                                         </td>
-                                                        <td>15h</td>
+                                                        <td>12h</td>
                                                     </tr>
                                                     <tr>
                                                         <td>우발계획 및 인적요소</td>
@@ -386,7 +386,7 @@ export const Curriculum_Airline = () => {
                                                                     총 100점 만점의 80점 이상 득점시 수료
                                                                 </li>
                                                                 <li style={{ textAlign: 'left', margin: '8px 0px 8px 40px' }}>
-                                                                    배점: 이론평가(40점) + 대인(금속탐지기/촉수) & 차량검색(60점)
+                                                                    배점: 이론평가(100점)
                                                                 </li>
                                                                 <li style={{ textAlign: 'left', margin: '8px 0px 8px 40px' }}>
                                                                     총 교육시간의 90%이상 출석자
@@ -509,7 +509,7 @@ export const Curriculum_Airline = () => {
                                                                 <li style={{ textAlign: 'left', margin: '8px 0px 8px 40px' }}>보고절차</li>
                                                             </ul>
                                                         </td>
-                                                        <td>3h</td>
+                                                        <td>8h</td>
                                                     </tr>
                                                     <tr>
                                                         <td>항공경비 실무</td>
@@ -529,7 +529,7 @@ export const Curriculum_Airline = () => {
                                                                 </li>
                                                             </ul>
                                                         </td>
-                                                        <td>5h</td>
+                                                        <td>8h</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -565,6 +565,12 @@ export const Curriculum_Airline = () => {
                                                         <td>5일 / 40시간</td>
                                                         <td>
                                                             <ul>
+                                                                <li style={{ textAlign: 'left', margin: '8px 0px 8px 40px' }}>
+                                                                    총 100점 만점의 80점 이상 득점시 수료
+                                                                </li>
+                                                                <li style={{ textAlign: 'left', margin: '8px 0px 8px 40px' }}>
+                                                                    배점: 이론평가(50점) + CBT 실습평가(50점)
+                                                                </li>
                                                                 <li style={{ textAlign: 'left', margin: '8px 0px 8px 40px' }}>
                                                                     총 교육시간의 90%이상 출석자
                                                                 </li>

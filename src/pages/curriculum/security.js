@@ -258,7 +258,7 @@ export const Curriculum_Security = () => {
                                                                 </li>
                                                             </ul>
                                                         </td>
-                                                        <td>2h</td>
+                                                        <td>40h</td>
                                                     </tr>
                                                     <tr>
                                                         <td>항공보안 보안관련 법규</td>
@@ -282,7 +282,7 @@ export const Curriculum_Security = () => {
                                                                 </li>
                                                             </ul>
                                                         </td>
-                                                        <td>5h</td>
+                                                        <td>40h</td>
                                                     </tr>
                                                     <tr>
                                                         <td>보안검색실무</td>
@@ -332,7 +332,7 @@ export const Curriculum_Security = () => {
                                                                 </li>
                                                             </ul>
                                                         </td>
-                                                        <td>13h</td>
+                                                        <td>40h</td>
                                                     </tr>
                                                     <tr>
                                                         <td>보안검색실습(CBT)</td>
@@ -343,7 +343,7 @@ export const Curriculum_Security = () => {
                                                                 </li>
                                                             </ul>
                                                         </td>
-                                                        <td>20h</td>
+                                                        <td>40h</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -515,7 +515,7 @@ export const Curriculum_Security = () => {
                                                                 </li>
                                                             </ul>
                                                         </td>
-                                                        <td>3h</td>
+                                                        <td>8h</td>
                                                     </tr>
                                                     <tr>
                                                         <td>X-RAY 판독</td>
@@ -535,7 +535,7 @@ export const Curriculum_Security = () => {
                                                                 </li>
                                                             </ul>
                                                         </td>
-                                                        <td>5h</td>
+                                                        <td>8h</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -568,14 +568,14 @@ export const Curriculum_Security = () => {
                                                 </colgroup>
                                                 <tbody>
                                                     <tr>
-                                                        <td>1일 / 8시간</td>
+                                                        <td>5일 / 40시간</td>
                                                         <td>
                                                             <ul>
                                                                 <li style={{ textAlign: 'left', margin: '8px 0px 8px 40px' }}>
                                                                     총 100점 만점의 80점 이상 득점시 수료
                                                                 </li>
                                                                 <li style={{ textAlign: 'left', margin: '8px 0px 8px 40px' }}>
-                                                                    배점: CBT 실습평가(100점)
+                                                                    배점: 이론평가(50점) + CBT 실습평가(50점)
                                                                 </li>
                                                                 <li style={{ textAlign: 'left', margin: '8px 0px 8px 40px' }}>
                                                                     총 교육시간의 90%이상 출석자

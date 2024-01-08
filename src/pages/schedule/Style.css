@@ -1,0 +1,133 @@
+.ant-select-dropdown {
+    z-index: 1700 !important;
+}
+
+.edu-date-picker-popup {
+    z-index: 1700;
+}
+
+.css-16x8z05-MuiPaper-root-MuiAppBar-root:has(.CalendarModals) {
+    z-index: auto !important;
+}
+/* TOAST 캘린더 */
+
+.toastui-calendar-form-container > .toastui-calendar-dropdown-section.toastui-calendar-calendar-section:nth-child(1),/* 이벤트(Calendars) Select 드롭다운 크기 */
+.toastui-calendar-form-container > .toastui-calendar-popup-section-item.toastui-calendar-popup-button:nth-child(1)/* 이벤트(Calendars) Select 버튼 드롭다운 크기 */ {
+    width: 300px;
+}
+
+/* 이벤트(Calendars) Select 드롭다운 크기 */
+.toastui-calendar-content.toastui-calendar-event-calendar {
+    width: 249px;
+}
+
+/* 참석자 아이콘(attendees) */
+.toastui-calendar-icon.toastui-calendar-ic-user-b {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAO5JREFUKBVjYCATMOLSFxkZqfHnz5+1QHktNDVbV69e7cOCJgjmQjXtB3IksMh7g8SY0CXQNTEyMlYD1fBCabhyFI3omkCq/v//PwnotC8gGq4LyIBrxKYJpBBoU15oaCgPiEbWCPYjUEIFGBBY/QS0qRWooRVIg/UBDXgMYoBtBHJSgWxsAQFWjET8BBqQBuLDNM4Can6GpAAb8ydQMADo3x0gSbDGlStX3gVqdMSjGUUTSCNKAggPD1cDOmU/EEuBJKEAQxNIHEUjSABNM1ZNIHXMIAIZXL169a2+vv5moK18QKeXAv20B1meYjYAr7xrljpOzc0AAAAASUVORK5CYII=)
+        no-repeat;
+}
+
+/* 팝업 컨테이너 */
+.toastui-calendar-popup-container {
+    width: auto;
+}
+
+/* 팝업 컨테이너 > 상세보기 컨테이너 */
+.toastui-calendar-popup-container > .toastui-calendar-detail-container {
+    width: auto;
+}
+
+/* Form Title(Subject) */
+.toastui-calendar-popup-section-item.toastui-calendar-popup-section-title > input {
+    min-width: 386px;
+}
+
+/* private 여부 버튼 */
+.toastui-calendar-popup-section-item.toastui-calendar-popup-section-private.toastui-calendar-popup-button,
+/* state(free/busy) 설정 버튼 */
+.toastui-calendar-popup-section.toastui-calendar-dropdown-section.toastui-calendar-state-section,
+/* 장소 입력 Input */
+.toastui-calendar-icon.toastui-calendar-ic-location,
+/* 상세보기 */
+.toastui-calendar-detail-item.toastui-calendar-detail-item-indent,
+/* 상세보기 State */
+.toastui-calendar-detail-item:nth-child(2) {
+    display: none;
+}
+
+/* 일정 상세보기 모달 컨테이너 */
+.toastui-calendar-popup-container {
+    margin: -11%;
+    transform: translate(-71%);
+}
+
+/* 일정 등록 모달 컨테이너 */
+.toastui-calendar-popup-container:has(form) {
+    transform: translate(-50%);
+}
+
+.toastui-calendar-popup-arrow-border,
+.toastui-calendar-popup-arrow-fill {
+    display: none;
+}
+
+.toastui-calendar-layout * {
+    user-select: none;
+    pointer-events: none;
+}
+
+.toastui-calendar-weekday-event-block,
+.toastui-calendar-weekday-event {
+    user-select: auto;
+    pointer-events: auto;
+    -webkit-user-drag: none;
+}
+
+.toastui-calendar-weekday-event-block {
+    text-align: center;
+}
+
+.toastui-calendar-grid-cell-more-events {
+    user-select: auto;
+    pointer-events: auto;
+}
+
+.toastui-calendar-see-more-container {
+    width: auto !important;
+    height: auto !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+}
+.toastui-calendar-see-more {
+    width: 100%;
+}
+
+.toastui-calendar-template-monthDayName {
+    text-align: center;
+}
+
+/* 사용자 경험 개선 - calendar event 여백 조정 */
+/* .toastui-calendar-weekday-event-block {
+    position: relative !important;
+    height: 30px !important;
+    text-align: center;
+    margin: 5px 0 5px 0;
+    font-size: 0.9rem;
+}
+
+.toastui-calendar-weekday-event {
+    height: 100% !important;
+    padding: 5px 0 5px 0;
+    font-size: 0.9rem;
+} */
+
+/* TOAST 캘린더 */
+
+/* 
+.schedule-modal.create-schedule,
+.schedule-modal.update-schedule,
+.schedule-modal.delete-schedule {
+    z-index: 1500;
+}
+*/

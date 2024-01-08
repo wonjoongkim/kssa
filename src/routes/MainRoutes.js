@@ -34,6 +34,9 @@ import { Notice_Notification } from 'pages/notice/notification';
 import { Reference_News } from 'pages/reference/news';
 import { Reference_Laws } from 'pages/reference/laws';
 import { Reference_Datum } from 'pages/reference/datum';
+import { Schedule_Calendar } from 'pages/schedule/Schedule_Calendar';
+
+// render - Calendar page
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -116,6 +119,14 @@ const MainRoutes = {
         {
             path: 'admin',
             element: <Admin_Login />
+        },
+        {
+            path: 'schedule',
+            element: <Schedule_Calendar navigate={-1} />
+        },
+        {
+            path: 'monthly',
+            element: <Schedule_Calendar navigate={-1} />
         }
     ]
 };

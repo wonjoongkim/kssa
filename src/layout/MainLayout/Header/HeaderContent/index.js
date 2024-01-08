@@ -52,6 +52,14 @@ const HeaderContent = () => {
             ]
         },
         {
+            name: '교육계획', //교육일정
+            path: '/schedule',
+            subMenu: [
+                { name: '월간운영계획', path: '/monthly' }
+                // { name: '연간운영계획', path: '/yearly' } 미구현기능
+            ]
+        },
+        {
             name: '직업훈련비지원',
             path: '/reason',
             subMenu: [
@@ -119,6 +127,10 @@ const HeaderContent = () => {
                                 <Typography variant="body1" style={{ fontSize: '1rem' }}>
                                     <Link to="/" style={linkStyle}>
                                         Home
+                                    </Link>{' '}
+                                    |{' '}
+                                    <Link to="/schedule" style={linkStyle}>
+                                        교육일정안내
                                     </Link>{' '}
                                     |{' '}
                                     <Link to="/directions" style={linkStyle}>
